@@ -9,7 +9,7 @@ import jaxb.schema.generated.Path;
 import jaxb.schema.generated.Stop;
 import jaxb.schema.generated.TransPool;
 import jaxb.schema.generated.TransPoolTrip;
-import main.window.newxmlload.newXmlLoadController;
+//import main.window.newxmlload.newXmlLoadController;
 import tasks.loadFile.loadXmlFileTask;
 import transpool.logic.map.WorldMap;
 import transpool.logic.map.structure.Road;
@@ -42,19 +42,19 @@ public class LogicHandler {
         usersNameToObject = new HashMap<>();
     }
 
-    public void collectMetadata(SimpleStringProperty fileName, newXmlLoadController XmlLoadController){
-
-        //creates new task to load xml file
-        currentRunningTask = new loadXmlFileTask(fileName.get(), this, XmlLoadController);
-
-        //bind task to UI
-        XmlLoadController.bindTaskToUIComponents(currentRunningTask);
-
-        //run the task in background thread
-        new Thread(currentRunningTask).start();
-
-
-    }
+//    public void collectMetadata(SimpleStringProperty fileName, newXmlLoadController XmlLoadController){
+//
+//        //creates new task to load xml file
+//        currentRunningTask = new loadXmlFileTask(fileName.get(), this, XmlLoadController);
+//
+//        //bind task to UI
+//        XmlLoadController.bindTaskToUIComponents(currentRunningTask);
+//
+//        //run the task in background thread
+//        new Thread(currentRunningTask).start();
+//
+//
+//    }
 
     public void fetchFile(String pathToFile) throws FaildLoadingXMLFileException {
         transPool = (new XMLHandler(pathToFile)).LoadXML();

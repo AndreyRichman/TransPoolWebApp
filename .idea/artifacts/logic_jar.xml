@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="logic:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/logic_jar</output-path>
+    <root id="archive" name="logic.jar">
+      <element id="module-output" name="logic" />
+    </root>
+  </artifact>
+</component>

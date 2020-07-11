@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="transpool:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/transpool_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="transpool/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="transpool" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="artifact" artifact-name="logic:jar" />
+          <element id="library" level="project" name="gson-2.8.2" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
