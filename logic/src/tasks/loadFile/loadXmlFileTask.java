@@ -4,7 +4,7 @@ import exception.FaildLoadingXMLFileException;
 import exception.InvalidMapBoundariesException;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import main.window.newxmlload.newXmlLoadController;
+//import main.window.newxmlload.newXmlLoadController;
 import transpool.logic.handler.LogicHandler;
 import transpool.logic.handler.XMLHandler;
 
@@ -18,7 +18,7 @@ public class loadXmlFileTask extends Task<Boolean> {
     private String fileName;
     private LogicHandler logicHandler;
     private final int SLEEP_TIME = 100;
-    private newXmlLoadController xmlLoadController;
+//    private newXmlLoadController xmlLoadController;
 
 
     @Override
@@ -48,7 +48,7 @@ public class loadXmlFileTask extends Task<Boolean> {
         updateProgress(5,5);
         Thread.sleep(SLEEP_TIME);
 
-        Platform.runLater(() ->xmlLoadController.updateLiveMap());
+//        Platform.runLater(() ->xmlLoadController.updateLiveMap());
 
         } catch (FaildLoadingXMLFileException e) {
             updateMessage(e.getReason());
@@ -60,10 +60,10 @@ public class loadXmlFileTask extends Task<Boolean> {
     //TODO:
     }
 
-    public loadXmlFileTask(String fileName, LogicHandler logicHandler, newXmlLoadController xmlLoadController) {
-        this.fileName = fileName;
-        this.logicHandler = logicHandler;
-        this.xmlLoadController = xmlLoadController;
-    }
+//    public loadXmlFileTask(String fileName, LogicHandler logicHandler, newXmlLoadController xmlLoadController) {
+//        this.fileName = fileName;
+//        this.logicHandler = logicHandler;
+//        this.xmlLoadController = xmlLoadController;
+//    }
 }
 
