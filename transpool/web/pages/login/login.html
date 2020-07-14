@@ -27,7 +27,6 @@
 		$(function () {
 			$("#login-form").submit(function () {
 				var parameters = $(this).serialize();
-
 				$.ajax({
 					data: parameters,
 					url: "../../login",
@@ -37,11 +36,17 @@
 						console.log("Failed to submit");
 						// $("#result h1").text("Failed to get result from server");
 					},
+					statusCode: {
+						401 : function () {
+							$("#error").text("User already in use..");
+						}
+					},
 					success: function(r) {
 						var resp = $.parseJSON(r);
 						if (resp.isValid){
 							window.location = "../../index.html";
 						}
+						else
 						console.log(isValid);
 					}
 				});
@@ -64,7 +69,6 @@
 					<span class="login100-form-title p-t-20 p-b-45">
 						Welcome To Carpool!
 					</span>
-
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
 						<input class="input100" type="text" name="username" placeholder="Username">
 						<span class="focus-input100"></span>
@@ -78,6 +82,9 @@
 							Login
 						</button>
 					</div>
+					<span id="error" class="login100-form-title p-t-20 p-b-45" style="color: #ff7369">
+
+					</span>
 
 					<div class="text-center w-full p-t-25 p-b-230">
 					</div>

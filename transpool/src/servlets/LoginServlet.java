@@ -54,8 +54,13 @@ public class LoginServlet extends HttpServlet {
             allUsers = new LinkedList<>();
         }
 
-        if (allUsers.contains(userName)){
+        if (userName.length() == 0 ){
             jsonObject.addProperty("isValid", Boolean.FALSE);
+            resp.setStatus(403);
+        }
+        else if (allUsers.contains(userName)){
+            jsonObject.addProperty("isValid", Boolean.FALSE);
+            resp.setStatus(401);
         }
         else{
             jsonObject.addProperty("isValid", Boolean.TRUE);
