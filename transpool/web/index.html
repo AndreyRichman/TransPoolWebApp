@@ -7,26 +7,48 @@
         html { visibility:hidden; }
     </style>
     <script type="text/javascript" src="jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" run_ar>
+    <script type="text/javascript">
         $(function () {
             $.ajax({
                 url: "login",
-                success: function(r) {
-                    var resp = $.parseJSON(r);
-                    if(!resp.sessionExist){
-                        window.location = "pages/login/login.html";
-                    }
-                    else {
-                        document.getElementsByTagName("html")[0].style.visibility = "visible";
-                        $("#greeting h1").text("Hello " + resp.username + "!");
-                    }
+                type: "GET",
+                dataType: "json",
+                success: function(resp) {
+                    // var resp = $.parseJSON(r);
+                    // alert(resp)
+                    $("#greeting h1").text("Hello " + resp.name + "!");
+                    // $("#greeting h1").text("Hello " + resp.username + "!");
+                    document.getElementsByTagName("html")[0].style.visibility = "visible";
                 },
-                // error: function () {
-                //     console.error("Errorrrrrr");
-                // }
+                error: function(resp) {
+                    //var resp = $.parseJSON(r);
+                    // console.log(resp.responseJSON.redirect_to);
+                    // for (d in xhr) console.log(xhr[d]);
+                    // alert(xhr.toString());
+                    document.getElementsByTagName("html")[0].style.visibility = "hidden";
+                    window.location = resp.responseJSON.redirect_to;
+                }
             });
-            // window.location = "pages/login/login.html";
         });
+        // $(function () {
+        //     $.ajax({
+        //         url: "login",
+        //         success: function(r) {
+        //             var resp = $.parseJSON(r);
+        //             if(!resp.sessionExist){
+        //                 window.location = "pages/login/login.html";
+        //             }
+        //             else {
+        //                 document.getElementsByTagName("html")[0].style.visibility = "visible";
+        //                 $("#greeting h1").text("Hello " + resp.username + "!");
+        //             }
+        //         },
+        //         // error: function () {
+        //         //     console.error("Errorrrrrr");
+        //         // }
+        //     });
+        //     // window.location = "pages/login/login.html";
+        // });
         /////////////////////////////////
         $(function () {
             $("#test-btn").click(function(){
