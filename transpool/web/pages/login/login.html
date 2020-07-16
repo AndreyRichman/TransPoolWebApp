@@ -24,36 +24,36 @@
 <!--===============================================================================================-->
 	<script type="text/javascript" src="../../jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
-		$(function () {
-			$("#login-form").submit(function () {
-				var parameters = $(this).serialize();
-				$.ajax({
-					data: parameters,
-					url: "../../login",
-					timeout: 2000,
-					method:"POST",
-					error: function() {
-						console.log("Failed to submit");
-						// $("#result h1").text("Failed to get result from server");
-					},
-					statusCode: {
-						401 : function () {
-							$("#error").text("User already in use..");
-						}
-					},
-					success: function(r) {
-						var resp = $.parseJSON(r);
-						if (resp.isValid){
-							window.location = "../../index.html";
-						}
-						else
-						console.log(isValid);
-					}
-				});
-
-				return false;
-			});
-		});
+		// $(function () {
+		// 	$("#login-form").submit(function () {
+		// 		var parameters = $(this).serialize();
+		// 		$.ajax({
+		// 			data: parameters,
+		// 			url: "../../login",
+		// 			timeout: 2000,
+		// 			method:"POST",
+		// 			error: function() {
+		// 				console.log("Failed to submit");
+		// 				// $("#result h1").text("Failed to get result from server");
+		// 			},
+		// 			// statusCode: {
+		// 			// 	401 : function () {
+		// 			// 		$("#error").text("User already in use..");
+		// 			// 	}
+		// 			// },
+		// 			// success: function(r) {
+		// 			// 	var resp = $.parseJSON(r);
+		// 			// 	if (resp.isValid){
+		// 			// 		window.location = "../../index.html";
+		// 			// 	}
+		// 			// 	else
+		// 			// 	console.log(isValid);
+		// 			// }
+		// 		});
+		//
+		// 		// return false;
+		// 	});
+		// });
 	</script>
 </head>
 <body>
@@ -61,7 +61,7 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/img-01.jpg');">
 			<div class="wrap-login100 p-t-190 p-b-30">
-				<form id="login-form" class="login100-form validate-form" action="../../index.html" method="post">
+				<form id="login-form" class="login100-form validate-form" action="login" method="post">
 					<div class="login100-form-avatar">
 						<img src="images/avatar-01.jpg" alt="AVATAR">
 					</div>
