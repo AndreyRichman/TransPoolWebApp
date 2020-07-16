@@ -10,24 +10,28 @@
     <script type="text/javascript">
         $(function () {
             $.ajax({
-                url: "login",
+                url:  "login",
                 type: "GET",
                 dataType: "json",
-                success: function(resp) {
+                success: function(data) {
                     // var resp = $.parseJSON(r);
                     // alert(resp)
-                    $("#greeting h1").text("Hello " + resp.name + "!");
-                    // $("#greeting h1").text("Hello " + resp.username + "!");
-                    document.getElementsByTagName("html")[0].style.visibility = "visible";
+                    if ($.isEmptyObject(data)){
+                        window.location = "pages/login/login.html";
+                    }
+                    else {
+                        $("#greeting h1").text("Hello " + data.name + "!");
+                        document.getElementsByTagName("html")[0].style.visibility = "visible";
+                    }
                 },
-                error: function(resp) {
-                    //var resp = $.parseJSON(r);
-                    // console.log(resp.responseJSON.redirect_to);
-                    // for (d in xhr) console.log(xhr[d]);
-                    // alert(xhr.toString());
-                    document.getElementsByTagName("html")[0].style.visibility = "hidden";
-                    window.location = resp.responseJSON.redirect_to;
-                }
+                // error: function(resp) {
+                //     //var resp = $.parseJSON(r);
+                //     // console.log(resp.responseJSON.redirect_to);
+                //     // for (d in xhr) console.log(xhr[d]);
+                //     // alert(xhr.toString());
+                //     document.getElementsByTagName("html")[0].style.visibility = "hidden";
+                //     window.location = resp.responseJSON.redirect_to;
+                // }
             });
         });
         // $(function () {
