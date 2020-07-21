@@ -70,22 +70,22 @@ input[type=checkbox]:checked + label + .list-container {
     transform: scale(1, 1);
 }
 
-ul {
+#online-users ul {
     margin: 0;
     padding: 0;
     width: 100%;
     list-style: none;
 }
-ul li {
+#online-users ul li {
     width: 100%;
     background: white;
     border-bottom: solid 1px #ccc;
 }
-ul li:hover a {
+#online-users ul li:hover a {
     background: aliceblue;
     padding-left: 1.5rem;
 }
-ul li a {
+#online-users ul li a {
     display: block;
     padding: 0.5rem;
     color: #333;
