@@ -1,0 +1,141 @@
+@mixin visually-hidden {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+@mixin shadow {
+  box-shadow: 0 5px 15px 0 rgba(0,0,0,.2);
+}
+
+@mixin hide {
+  -webkit-transform: scale(1, 0);
+  -ms-transform: scale(1, 0);
+  transform: scale(1, 0);
+}
+
+@mixin show {
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+
+@mixin close-btn {
+  -webkit-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+@mixin origin-top {
+  -webkit-transform-origin: center top;
+  -ms-transform-origin: center top;
+  transform-origin: center top;
+}
+
+@mixin origin-center {
+  -webkit-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+}
+
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+.wrapper {
+  margin: 2rem auto;
+  width: 100px;
+  position: absolute;
+  //left: 50px;
+  top: 70px;
+}
+
+.list-container {
+  border: solid 1px white;
+  border-top: 0;
+  transition: all .3s;
+  overflow-y: auto;
+  @include hide;
+  @include origin-top;
+}
+
+label {
+  display: inline-block;
+  width: 100%;
+  background: #0096a0;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  border-radius: 3px;
+  font-size: 1.25rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+  @include shadow;
+
+  &::after {
+    content: '+';
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    font-weight: 700;
+    display: block;
+    transition: all .3s;
+    @include origin-center
+  }
+}
+
+#trigger-input{
+  background: url(user.png);
+  width: 40px;
+  height: 10px;
+
+  background-size: cover;
+}
+input[type=checkbox] {
+  @include visually-hidden;
+
+
+  &:checked + label  {
+    border-radius: 0 0 0 0;
+
+    &::after {
+      @include close-btn;
+    }
+
+    & + .list-container {
+      @include show;
+    }
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+
+  li {
+    width: 100%;
+    background: white;
+    border-bottom: solid 1px #ccc;
+
+    &:hover a {
+      background: aliceblue;
+      padding-left: 1.5rem;
+    }
+
+    a {
+      display: block;
+      padding: 0.5rem ;
+      color: #333;
+      font-weight: 700;
+      line-height: 1.4;
+      text-decoration: none;
+      transition: all .3s;
+    }
+  }
+}
