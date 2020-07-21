@@ -49,9 +49,9 @@
         <input type="checkbox" id="trigger">
         <label id="trigger-input" for="trigger"  ></label>
 
-        <div class="list-container">
+        <div id="online-users" class="list-container">
             <ul>
-                <li><a href="#">List Item</a></li>
+                <li><a href="#">Moshe</a></li>
                 <li><a href="#">List Item</a></li>
                 <li><a href="#">List Item</a></li>
 
@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="card-flap flap2">
                                     <div class="card-actions">
-                                        <a href="map/dashboard.html" class="btn" onclick="parent.location='map/map.html'; return false;">Enter</a>
+                                        <a href="map/map.html" class="btn" onclick="parent.location='map/map.html'; return false;">Enter</a>
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +261,7 @@
         });
 
 
-        $( setInterval(function() {toastr.success('Welcome!');}, 5000));
+        $( setInterval(function() {toastr.warning('Welcome!');}, 5000));
 
     </script>
 
