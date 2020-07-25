@@ -29,6 +29,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class LogicHandler {
+    private static int base_id = 1;
+
+    private final int id;
     private WorldMap map;
     private TrafficManager trafficManager;
     private Map<String, User> usersNameToObject;
@@ -40,9 +43,14 @@ public class LogicHandler {
     public LogicHandler() {
         trafficManager = new TrafficManager();
         usersNameToObject = new HashMap<>();
+        this.id = base_id++;
     }
 
-//    public void collectMetadata(SimpleStringProperty fileName, newXmlLoadController XmlLoadController){
+    public int getId() {
+        return id;
+    }
+
+    //    public void collectMetadata(SimpleStringProperty fileName, newXmlLoadController XmlLoadController){
 //
 //        //creates new task to load xml file
 //        currentRunningTask = new loadXmlFileTask(fileName.get(), this, XmlLoadController);
