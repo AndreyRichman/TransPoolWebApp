@@ -41,6 +41,7 @@ body {
     justify-content: space-between;
     padding: 0 16px;
     background-color: #648ca6;
+    z-index: 10;
 }
 
 /* Make room for the menu icon on mobile */
@@ -61,7 +62,8 @@ body {
     transition: all .6s ease-in-out;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     z-index: 2; /* Needs to sit above the hamburger menu icon */
-    background-color: #0096a0;
+    /*background-color: #0096a0;*/
+    background-color: #008ae6;
 }
 
 .sidenav.active {
@@ -96,7 +98,8 @@ body {
 
 .main {
     grid-area: main;
-    background-color: #8fd4d9;
+    /*background-color: #8fd4d9;*/
+    background-color: white;
     width: auto;
 }
 
@@ -123,10 +126,11 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    background-color: #d3d3;
+    /*background-color: #d3d3;*/
+    background-color: #008ae6; /* #0096a0;*/
 }
 .overviewcard:hover{
-    background-color: aqua;
+    background-color: #66c2ff;
 
 }
 
@@ -136,6 +140,15 @@ body {
     margin: 20px;
 }
 
+/*div.main-cards div:nth-child(1){*/
+/*    width: 66%;*/
+/*}*/
+/*div.main-cards div:nth-child(2){*/
+/*    width: 30%;*/
+/*}*/
+
+
+
 .card {
     /*display: block;*/
     display: flex;
@@ -143,7 +156,8 @@ body {
     align-items: center;
     /*width: 100%;*/
     /*width: 500px;*/
-    background-color: #82bef6;
+    /*background-color: #82bef6;*/
+    background-color: #008ae6;
     margin-bottom: 20px;
     -webkit-column-break-inside: avoid;
     padding: 24px;
@@ -153,16 +167,20 @@ body {
 /* Force varying heights to simulate dynamic content */
 .card:first-child {
     height: 485px;
+    width: 600px;
     /*column-span: 2;*/
     /*column-span: all;*/
 }
 
 .card:nth-child(2) {
-    height: 200px;
+    height: 485px;
+    left: 50%;
+    width: 300px;
+    /*height: 230px;*/
 }
 
 .card:nth-child(3) {
-    height: 265px;
+    height: 230px;
 }
 
 .footer {

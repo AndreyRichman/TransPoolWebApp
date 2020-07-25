@@ -60,7 +60,7 @@ g.selected:hover circle{
 
 path.link {
     fill: none;
-    stroke: #333;
+    stroke: white;
     stroke-width: 6px;
     cursor: default;
 }
@@ -82,5 +82,5 @@ path.link.selected {
 }
 
 path.link.selected-green {
-    stroke: #0096a0;
+    stroke: #80ff80;
 }

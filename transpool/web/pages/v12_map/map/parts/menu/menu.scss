@@ -1,0 +1,172 @@
+// Palette via Coolors:
+// http://app.coolors.co/e8aeb7-b8e1ff-a9fff7-94fbab-82aba1
+
+$border-radius: 10px;
+
+* {
+  box-sizing: border-box;
+}
+
+.ProductPicker-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.NavItem {
+  flex: 1 1 auto;
+}
+
+.ProductList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.Product,
+.Product-moreCTA {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Product {
+  flex: 0 1 10em;
+  min-height: 15em;
+}
+
+/*
+Everything below this is just visual sugar, Darlin' */
+
+.ProductPicker {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.ProductList {
+  margin: 0;
+  padding: 2em;
+  border-radius: 0 0 $border-radius $border-radius;
+  border-bottom: 4px solid #eee;
+  background: white;
+
+  li {
+    list-style: none;
+  }
+}
+
+.ProductList--is-hidden {
+  display: none;
+}
+
+.ProductList .Product {
+  margin-bottom: 1rem;
+}
+
+.Product {
+  padding: .5em;
+  text-align: left;
+}
+
+.Product-moreCTA {
+  text-decoration: none;
+}
+
+.Product-icon {
+  //margin: 0 0 .1em;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 10px;
+  color: #82ABA1;
+}
+
+.Product-name {
+  margin: 0;
+  font-size: 0.8em;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #82ABA1;
+}
+
+.Product-title {
+  text-align: center;
+  margin: 0;
+  font-size: 1em;
+  font-weight: normal;
+  color: #82ABA1;
+}
+
+.Product-price {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+  color: #E8AEB7;
+}
+
+.Product-buyCTA {
+  width: 100%;
+  padding: .5em .35em;
+  background: #B8E1FF;
+  border: none;
+  border-radius: $border-radius;
+  font-size: 1.25em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: darken(#B8E1FF, 30%);
+}
+
+.Product-buyCTA:hover{
+  background: #00c6fb;
+}
+
+/* Navigation */
+.NavItem {
+  padding: .8rem;
+  background: #94FBAB;
+  font-size: 1.1em;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  //color: darken(#94FBAB, 50%);
+  color: blue;
+  border-color: white;
+  //color: red;
+}
+
+.NavItem:hover{
+  background: #E8AEB7;
+}
+
+.NavItem:first-of-type {
+  border-radius: $border-radius 0 0 0;
+}
+
+.NavItem:last-of-type {
+  border-radius: 0 $border-radius 0 0;
+}
+
+.NavItem--is-active {
+  padding-top: 1.1rem;
+  background: #E8AEB7;
+  font-size: 1.2em;
+  color: white;
+
+  &,
+  &:first-of-type,
+  &:last-of-type {
+    border-radius: $border-radius $border-radius 0 0;
+  }
+}
+
+
+//body {
+//  padding: 2rem 1rem;
+//  background: url(https://subtlepatterns.com/patterns/debut_light.png);
+//  font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+//  font-size: 1em;
+//  color: #393939;
+//}
+
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700);
