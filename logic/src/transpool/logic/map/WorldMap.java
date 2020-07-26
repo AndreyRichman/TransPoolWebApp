@@ -124,5 +124,11 @@ public class WorldMap {
         return allRoads;
     }
 
+    public int getHeight() {
+        return height;
+    }
 
+    public int getWidth() {
+        return width;
+    }
 }

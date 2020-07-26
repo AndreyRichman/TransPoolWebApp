@@ -50,7 +50,7 @@ public class LogicHandler {
         return id;
     }
 
-    //    public void collectMetadata(SimpleStringProperty fileName, newXmlLoadController XmlLoadController){
+//        public void collectMetadata(SimpleStringProperty fileName,  XmlLoadController){
 //
 //        //creates new task to load xml file
 //        currentRunningTask = new loadXmlFileTask(fileName.get(), this, XmlLoadController);
@@ -99,7 +99,7 @@ public class LogicHandler {
             throw new FaildLoadingXMLFileException("Failed load XML due to invalid map Boundaries " + "(" + e.getWidth() + "," + e.getLength() + ")");
         }
 
-        //initRides(transPool);
+        initRides(transPool);
     }
 
     private void initRoads(TransPool transPool) throws FaildLoadingXMLFileException  {
@@ -192,8 +192,8 @@ public class LogicHandler {
 
         map = new WorldMap(width,Length);
 
-        //initStations(transPool);
-        //initRoads(transPool);
+        initStations(transPool);
+        initRoads(transPool);
     }
 
     private void checkMapBoundaries(int width, int Length) throws InvalidMapBoundariesException {

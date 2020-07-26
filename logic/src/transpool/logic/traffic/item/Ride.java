@@ -294,5 +294,4 @@ public class Ride {
         return this.allStations.get(this.allStations.size() - 1);
     }
 
-
 }
