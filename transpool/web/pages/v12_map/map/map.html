@@ -163,76 +163,9 @@
 
             <div class="ProductListWindow">
                 <ul id="Rides" class="ProductList">
-                    <li class="Product">
-                        <div class="Product-title"> 1274</div>
-                            <i class="Product-icon" ><img src="parts/menu/car.png" style="width: 70px; height: 40px"/> </i>
-                        <table class="Product-name">
-                            <tr>
-                                <td>From:</td> <td>Tel Aviv</td>
-                             </tr>
-                            <tr>
-                                <td>To:</td><td>Rishon</td>
-                            </tr>
-                            <tr>
-                                <td>PPK:</td><td>4$</td>
-                            </tr>
-                            <tr>
-                                <td>Capacity:</td><td>4</td>
-                            </tr>
-                        </table>
-
-<!--                        </a>-->
-                        <span class="Product-price"></span>
-                        <button class="Product-buyCTA">Show</button>
-                    </li>
-
-                    <li class="Product">
-                        <div class="Product-title"> 1274</div>
-                        <i class="Product-icon" ><img src="parts/menu/car.png" style="width: 70px; height: 40px"/> </i>
-                        <table class="Product-name">
-                            <tr>
-                                <td>From:</td> <td>Tel Aviv</td>
-                            </tr>
-                            <tr>
-                                <td>To:</td><td>Rishon</td>
-                            </tr>
-                            <tr>
-                                <td>PPK:</td><td>4$</td>
-                            </tr>
-                            <tr>
-                                <td>Capacity:</td><td>4</td>
-                            </tr>
-                        </table>
-
-                        <!--                        </a>-->
-                        <span class="Product-price"></span>
-                        <button class="Product-buyCTA">Show</button>
-                    </li>
-                    <li class="Product">
-                        <div class="Product-title"> 1274</div>
-                        <i class="Product-icon" ><img src="parts/menu/car.png" style="width: 70px; height: 40px"/> </i>
-                        <table class="Product-name">
-                            <tr>
-                                <td>From:</td> <td>Tel Aviv</td>
-                            </tr>
-                            <tr>
-                                <td>To:</td><td>Rishon</td>
-                            </tr>
-                            <tr>
-                                <td>PPK:</td><td>4$</td>
-                            </tr>
-                            <tr>
-                                <td>Capacity:</td><td>4</td>
-                            </tr>
-                        </table>
-
-                        <!--                        </a>-->
-                        <span class="Product-price"></span>
-                        <button class="Product-buyCTA">Show</button>
-                    </li>
-
-
                 </ul>
+
+
                 <ul id="Tremps" class="ProductList ProductList--is-hidden">
                     <li class="Product">
                         <div class="Product-title"> 1274</div>
@@ -303,7 +236,7 @@
 
                 </ul>
 
-                <ul id="Matches" class="ProductList ProductList--is-hidden">
+                <ul id="MatchesForTremp" class="ProductList ProductList--is-hidden">
                     <li class="Product">
                         <div class="Product-title"> 1274</div>
                         <i class="Product-icon" ><img src="parts/menu/trempMatch.png" style="width: 60px; height: 50px"/> </i>
@@ -444,26 +377,14 @@
 
     <div id="dummyRide" style="display: none;">
     <li class="Product" >
-        <div class="Product-title"> 1274</div>
+        <div class="Product-title"></div>
         <i class="Product-icon" ><img src="parts/menu/car.png" style="width: 70px; height: 40px"/> </i>
-        <table class="Product-name">
-            <tr>
-                <td>From:</td> <td class="from-station">Tel Aviv</td>
-            </tr>
-            <tr>
-                <td>To:</td><td class="to">Rishon</td>
-            </tr>
-            <tr>
-                <td>PPK:</td><td class="ppk" >4$</td>
-            </tr>
-            <tr>
-                <td>Capacity:</td><td class="capacity">4</td>
-            </tr>
+        <table id="Ride-table" class="Product-name">
         </table>
 
         <!--                        </a>-->
         <span class="Product-price"></span>
-        <button class="Product-buyCTA">Show</button>
+        <button id="" class="Product-buyCTA" onclick="clickedRide(this.id)" >Show</button>
     </li>
     </div>
 
@@ -471,7 +392,7 @@
     <li class="Product">
         <div class="Product-title"> 1274</div>
         <i class="Product-icon" ><img src="parts/menu/tremp.png" style="width: 40px; height: 40px"/> </i>
-        <table class="Product-name">
+        <table id="Tremp-table" class="Product-name">
             <tr>
                 <td>From:</td> <td>Tel Aviv</td>
             </tr>
@@ -495,7 +416,7 @@
         <li class="Product">
             <div class="Product-title"> 1274</div>
             <i class="Product-icon" ><img src="parts/menu/trempMatch.png" style="width: 60px; height: 50px"/> </i>
-            <table class="Product-name">
+            <table id="Match-table" class="Product-name">
                 <tr>
                     <td>From:</td> <td>Tel Aviv</td>
                 </tr>

@@ -192,7 +192,7 @@ GRAPH = null;
         BACKSPACE_KEY: 8,
         DELETE_KEY: 46,
         ENTER_KEY: 13,
-        nodeRadius: 30
+        nodeRadius: 15
     };
 
     /* PROTOTYPE FUNCTIONS */
@@ -683,8 +683,8 @@ function createGraph(columns, rows, nodes, edges){
     COLUMNS = columns;
     ROWS = rows;
     var mapElement = $("#map-container")[0];
-    var width = mapElement.clientWidth * 0.9,
-        height = mapElement.clientHeight * 0.9;
+    var width = mapElement.clientWidth * 0.95,
+        height = mapElement.clientHeight * 0.95;
 
     initEdgesAndNodes(edges, nodes, width, height, columns, rows);
 

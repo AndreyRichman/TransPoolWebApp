@@ -14,6 +14,13 @@ public class RideWrapper {
     private Schedule schedule;
     private List<StationWrapper> stations;
     private List<PartOfRideWrapper> partsOfRide;
+    private final int ppk;
+    private final double avgFuel;
+    private final double duration;
+    private final StationWrapper fromStation;
+    private final StationWrapper toStation;
+    private final int numOfStations;
+
 
     public RideWrapper(Ride ride) {
         this.rideID = ride.getID();
@@ -21,5 +28,11 @@ public class RideWrapper {
         this.schedule = ride.getSchedule();
         this.stations = ride.getAllStations().stream().map(StationWrapper::new).collect(Collectors.toList());
         this.partsOfRide = ride.getPartsOfRide().stream().map(PartOfRideWrapper::new).collect(Collectors.toList());
+        this.ppk = ride.getPricePerKilometer();
+        this.avgFuel = ride.getAverageFuelUsage();
+        this.duration = ride.getTotalTimeOfRide();
+        this.fromStation = new StationWrapper(ride.getStartStation());
+        this.toStation = new StationWrapper(ride.getEndStation());
+        this.numOfStations = ride.getAllStations().size();
     }
 }

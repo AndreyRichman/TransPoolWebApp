@@ -47,6 +47,17 @@ g.conceptG:hover circle{
     fill: rgb(200, 238, 241);
 }
 
+g.conceptG text{
+    visibility: hidden;
+}
+
+g.conceptG:hover text{
+    visibility: visible;
+    color: #ff7369;
+    font-weight: bold;
+}
+
+
 g.selected circle{
     fill: #ff7369;
 }
