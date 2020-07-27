@@ -39,7 +39,7 @@ body {
     /*display: flex;*/
     align-items: center;
     justify-content: space-between;
-    padding: 0 16px;
+    padding: 0 10px;
     background-color: #648ca6;
     z-index: 10;
 }
@@ -55,7 +55,7 @@ body {
     /*display: flex;*/
     /*flex-direction: column;*/
     height: 100%;
-    width: 240px;
+    width: 200px;
     position: fixed;
     overflow-y: auto;
     /*transform: translateX(-245px);*/
@@ -87,7 +87,7 @@ body {
 }
 
 .sidenav__list-item {
-    padding: 20px 20px 20px 40px;
+    padding: 20px 20px 20px 20px;
     color: #ddd;
 }
 
@@ -196,7 +196,7 @@ body {
 @media only screen and (min-width: 46.875em) {
     /* Show the sidenav */
     .grid-container {
-        grid-template-columns: 240px 1fr;
+        grid-template-columns: 200px 1fr;
         grid-template-areas:
                 "sidenav header"
                 "sidenav main"
