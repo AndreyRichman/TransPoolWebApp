@@ -10,7 +10,7 @@ import jaxb.schema.generated.Stop;
 import jaxb.schema.generated.TransPool;
 import jaxb.schema.generated.TransPoolTrip;
 //import main.window.newxmlload.newXmlLoadController;
-import tasks.loadFile.loadXmlFileTask;
+//import tasks.loadFile.loadXmlFileTask;
 import transpool.logic.map.WorldMap;
 import transpool.logic.map.structure.Road;
 import transpool.logic.traffic.TrafficManager;
@@ -22,6 +22,7 @@ import transpool.logic.user.User;
 import transpool.logic.map.structure.Coordinate;
 
 import javax.management.InstanceAlreadyExistsException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
@@ -64,32 +65,32 @@ public class LogicHandler {
 //
 //    }
 
-    public void fetchFile(String pathToFile) throws FaildLoadingXMLFileException {
-        transPool = (new XMLHandler(pathToFile)).LoadXML();
-    }
+//    public void fetchFile(String pathToFile) throws FaildLoadingXMLFileException {
+//        transPool = (new XMLHandler(pathToFile)).LoadXML();
+//    }
+//
+//    public void loadWorld() throws FaildLoadingXMLFileException {
+//        try {
+//            initWorldMap(transPool);
+//        } catch (InvalidMapBoundariesException e) {
+//            throw new FaildLoadingXMLFileException("Failed load XML due to invalid map Boundaries " + "(" + e.getWidth() + "," + e.getLength() + ")");
+//        }
+//    }
+//
+//    public void loadStations() throws FaildLoadingXMLFileException {
+//        initStations(transPool);
+//    }
+//
+//    public void loadRoads() throws FaildLoadingXMLFileException {
+//        initRoads(transPool);
+//    }
+//
+//    public void loadRides() throws FaildLoadingXMLFileException {
+//        initRides(transPool);
+//    }
 
-    public void loadWorld() throws FaildLoadingXMLFileException {
-        try {
-            initWorldMap(transPool);
-        } catch (InvalidMapBoundariesException e) {
-            throw new FaildLoadingXMLFileException("Failed load XML due to invalid map Boundaries " + "(" + e.getWidth() + "," + e.getLength() + ")");
-        }
-    }
 
-    public void loadStations() throws FaildLoadingXMLFileException {
-        initStations(transPool);
-    }
-
-    public void loadRoads() throws FaildLoadingXMLFileException {
-        initRoads(transPool);
-    }
-
-    public void loadRides() throws FaildLoadingXMLFileException {
-        initRides(transPool);
-    }
-
-
-    public void loadXMLFile(String pathToFile) throws FaildLoadingXMLFileException {
+    public void loadXMLFile(InputStream pathToFile) throws FaildLoadingXMLFileException {
 
         TransPool transPool = (new XMLHandler(pathToFile)).LoadXML();
 

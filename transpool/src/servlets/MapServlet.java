@@ -47,18 +47,20 @@ public class MapServlet extends HttpServlet {
 
             EngineHandler engineHandler =  ServletUtils.getEngineHandler(req.getServletContext());
             Collection<Part> parts = req.getParts();
-            StringBuilder fileContent = new StringBuilder();
-
+//            StringBuilder fileContent = new StringBuilder();
+            InputStream inputStream = null;
+            
             for (Part part : parts) {
-                fileContent.append(readFromInputStream(part.getInputStream()));
+//                fileContent.append(readFromInputStream(part.getInputStream()));
+                inputStream = part.getInputStream();
             }
 
-            int logicId = engineHandler.createNewLogicFromXml("c:/temp/ex1-small.xml");
+            int logicId = engineHandler.createNewLogicFromXml(inputStream);
 
             LogicHandler logicHandler = engineHandler.getLogicHandlerById(logicId);
             Gson gson = new Gson();
             MapDataWrapper wrapper = new MapDataWrapper(logicHandler);
-            response = gson.toJson(logicId);
+            response = gson.toJson(wrapper);
 
             //RETURN to client object with {Map, NumOfTremps, NumOfRides}
         } catch (FaildLoadingXMLFileException e) {
@@ -70,8 +72,8 @@ public class MapServlet extends HttpServlet {
         }
     }
 
-    private String readFromInputStream(InputStream inputStream) {
-        return new Scanner(inputStream).useDelimiter("\\Z").next();
-    }
+//    private String readFromInputStream(InputStream inputStream) {
+//        return new Scanner(inputStream).useDelimiter("\\Z").next();
+//    }
 
 }

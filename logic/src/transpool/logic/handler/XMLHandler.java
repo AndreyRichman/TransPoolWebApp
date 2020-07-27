@@ -6,28 +6,29 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.InputStream;
 
 public class XMLHandler {
-    String path;
+    InputStream path;
     private final static String JAXB_XML_GAME_PACKAGE_NAME = "jaxb.schema.generated";
 
-    public XMLHandler(String XMLpath) {
+    public XMLHandler(InputStream XMLpath) {
         path = XMLpath;
     }
 
     public TransPool LoadXML() throws FaildLoadingXMLFileException {
 
-        File file = new File((path));
+        //File file = new File((path));
 
-        if(!file.exists())
-            throw new FaildLoadingXMLFileException("No File Found In Path ");
+        //if(!file.exists())
+        //    throw new FaildLoadingXMLFileException("No File Found In Path ");
 
-        if (!getFileType(path).equalsIgnoreCase(".xml"))
-            throw new FaildLoadingXMLFileException("File type is" +  getFileType(path) + " and not .xml type");
+       // if (!getFileType(path).equalsIgnoreCase(".xml"))
+       //     throw new FaildLoadingXMLFileException("File type is" +  getFileType(path) + " and not .xml type");
 
         TransPool transPool;
         try {
-            transPool = deserializeFrom(file);
+            transPool = deserializeFrom(path);
         } catch (JAXBException e) {
             throw new FaildLoadingXMLFileException("Unmarshaller Failed");
         }
@@ -36,7 +37,7 @@ public class XMLHandler {
     }
 
 
-    private static TransPool deserializeFrom(File file) throws JAXBException {
+    private static TransPool deserializeFrom(InputStream file) throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(JAXB_XML_GAME_PACKAGE_NAME);
         Unmarshaller u = jc.createUnmarshaller();
         return (TransPool) u.unmarshal(file);
