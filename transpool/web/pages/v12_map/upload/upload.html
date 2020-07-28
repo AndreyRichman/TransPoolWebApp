@@ -6,35 +6,29 @@
     <link rel="stylesheet" type="text/css" href="upload.scss">
     <script type="text/javascript" src="../../../jquery-3.5.1.min.js"></script>
     <script type="text/javascript" language="javascript">
-        // let's start the jQuery while I wait.
-        // step 1: onload - capture the submit event on the form.
-        $(function() { // onload...do
+        $(function() {
             $("#uploadForm").submit(function() {
 
                 var file1 = this[0].files[0];
-
                 var formData = new FormData();
-                formData.append("file1", file1);
 
+                formData.append("file1", file1);
 
                 $.ajax({
                     method:'POST',
                     data: formData,
                     url: this.action,
-                    processData: false, // Don't process the files
-                    contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                    processData: false,
+                    contentType: false,
                     timeout: 4000,
                     error: function(e) {
                         console.error("Failed to submit");
                         $("#result").text("Failed to get result from server " + e);
                     },
                     success: function(r) {
-                        // $("#result").text(r);
+                         $("#result").text(r);
                     }
                 });
-
-                // return value of the submit operation
-                // by default - we'll always return false so it doesn't redirect the user.
                 return false;
             })
         })
