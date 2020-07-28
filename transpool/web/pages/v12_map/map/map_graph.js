@@ -737,7 +737,9 @@ function clearAllNodes(){
 
 function colorEdgeInRed(x1, y1, x2, y2){
     var coord_key = "M" + x1 + "," + y1 + "L" + x2 + "," + y2;
-    EDGES_OBJECTS_DICT[coord_key].classList.add("selected");
+    if (coord_key in EDGES_OBJECTS_DICT) {
+        EDGES_OBJECTS_DICT[coord_key].classList.add("selected");
+    }
 }
 
 function colorEdgeInGreen(x1, y1, x2, y2){
@@ -758,5 +760,24 @@ function colorEdgesInGreen(coordEdges) {
     coordEdges.forEach(function (edge) {
         colorEdgeInGreen(edge.source.x_coord, edge.source.y_coord, edge.target.x_coord, edge.target.y_coord);
     });
+}
+
+function graphShowRide(ride){
+    clearAllEdges();
+    clearAllNodes();
+
+    var parts = ride.partsOfRide;
+
+    parts.forEach(function (part) {
+        var x1 = part.road.fromCoordinate.x;
+        var y1 = part.road.fromCoordinate.y;
+        var x2 = part.road.toCoordinate.x;
+        var y2 = part.road.toCoordinate.y;
+        colorEdgeInRed(x1, y1, x2, y2);
+        colorEdgeInRed(x2, y2, x1, y1);
+    });
+
+
+
 }
 

@@ -30,11 +30,13 @@ public class Ride {
     private LinkedHashMap<Station, PartOfRide> mapFromStationToRoad;
     private Schedule schedule;
     TrempistsManager allTrempistsManager;
+    private int carCapacity;
 
     private Ride(User rideOwner, List<Road> allRoads, int carCapacity) {
         this.id = unique_id++;
         this.rideOwner = new Driver(rideOwner);
         this.allTrempistsManager = new TrempistsManager();
+        this.carCapacity = carCapacity;
         initDataStructures(allRoads, carCapacity);
     }
 
@@ -51,6 +53,10 @@ public class Ride {
             this.mapFromStationToRoad.put(road.getStartStation(), partOfRide);
         });
 
+    }
+
+    public int getCarCapacity() {
+        return carCapacity;
     }
 
     public boolean isTrempsAssignedToRide(int onDay) {

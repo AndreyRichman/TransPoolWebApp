@@ -37,7 +37,7 @@ function addRides(rides){
         // "<tr><td>To:</td><td>" + ride.toStation.name + "</td></tr>" +
         $(rideNode).find("#Ride-table").append(htmlNodeToAdd);
         // $(rideNode).attr("item-id", ride.rideID);
-        $(rideNode).find(".Product-buyCTA").attr("id", ride.rideID);
+        $(rideNode).find(".Product-buyCTA").attr("id", "ride-s:" +ride.rideID);
         $("#Rides").append(rideNode);
     });
 }
@@ -57,6 +57,9 @@ function addTremps(tremps){
         // "<tr><td>To:</td><td>" + ride.toStation.name + "</td></tr>" +
         // "<tr><td>To:</td><td>" + ride.toStation.name + "</td></tr>" +
         $(trempNode).find("#Tremp-table").append(htmlNodeToAdd);
+        $(trempNode).find(".first-btn").attr("id", "tremp-s:" +ride.rideID);
+        $(trempNode).find(".second-btn").attr("id", "tremp-f:" +ride.rideID);
+
         $("#Tremps").append(trempNode);
     });
 }
@@ -78,6 +81,8 @@ function addMatchesForTremp(matchesForTremp){
         // "<tr><td>To:</td><td>" + ride.toStation.name + "</td></tr>" +
         // "<tr><td>To:</td><td>" + ride.toStation.name + "</td></tr>" +
         $(matchNode).find("#Match-table").append(htmlNodeToAdd);
+        $(matchNode).find(".first-btn").attr("id", "match-s:" +ride.rideID);
+        $(matchNode).find(".second-btn").attr("id", "match-f:" +ride.rideID);
         $("#MatchesForTremp").append(matchNode);
     });
 }

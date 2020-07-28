@@ -45,7 +45,24 @@ function initializeMap(mapData){
 //     });
 // }
 
+var ALL_RIDES = {};
+var ALL_TREMPS = {};
 
+function saveLocalCopyOfMapData(data){
+    ALL_RIDES = {};
+    ALL_TREMPS = {};
+
+    data.allRides.forEach(function (ride) {
+        var rideID = ride.rideID;
+        ALL_RIDES[rideID] = ride;
+    });
+
+    data.allTrempRequests.forEach(function (tremp) {
+        var trempID = tremp.rideID;
+        ALL_TREMPS[trempID] = tremp;
+    });
+
+}
 
 $(function () {
     $.ajax({
@@ -55,6 +72,8 @@ $(function () {
         dataType: "json",
         success: function (data){
             // MAP_OBJ = data;
+            saveLocalCopyOfMapData(data);
+
             initializeMap(data);
             // initRides(data.allRides);
             addRides(data.allRides);
@@ -65,6 +84,28 @@ $(function () {
         });
     });
 
-function clickedRide(id){
+function showRide(idStr){
+    var id = parseInt(idStr.split(":")[1]);
+    timelineShowRide(ALL_RIDES[id]);
+    graphShowRide(ALL_RIDES[id]);
+}
+
+function showTremp(idStr){
+    var id = parseInt(idStr.split(":")[1]);
+    //timelineShowTremp(ALL_TREMPS[id]);
+}
+
+function showMatchRide(idStr){
+    var id = parseInt(idStr.split(":")[1]);
+    alert(id);
+}
+
+function assignRide(idStr){
+    var id = parseInt(idStr.split(":")[1]);
+    alert(id);
+}
+
+function findMatchedForTremp(idStr) {
+    var id = idStr.split(":")[1];
     alert(id);
 }

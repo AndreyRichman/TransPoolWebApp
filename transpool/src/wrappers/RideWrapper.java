@@ -20,7 +20,7 @@ public class RideWrapper {
     private final StationWrapper fromStation;
     private final StationWrapper toStation;
     private final int numOfStations;
-
+    private AllPartsStationsWrapper partStations;
 
     public RideWrapper(Ride ride) {
         this.rideID = ride.getID();
@@ -34,5 +34,6 @@ public class RideWrapper {
         this.fromStation = new StationWrapper(ride.getStartStation());
         this.toStation = new StationWrapper(ride.getEndStation());
         this.numOfStations = ride.getAllStations().size();
+        this.partStations = new AllPartsStationsWrapper(ride);
     }
 }
