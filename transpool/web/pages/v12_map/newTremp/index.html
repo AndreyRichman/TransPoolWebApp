@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Tremp</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <h2>Add New Tremp</h2>
+    <div id="error_message"></div>
+    <form id="myform" onsubmit="return validate();">
+        <div class="selection-handle" id="fromStation">
+            <select>
+                <option disabled selected>add Station:</option>
+                <option value="1">Tel Aviv</option>
+            </select>
+        </div>
+        <div class="selection-handle" id="destStation">
+            <select>
+                <option disabled selected>remove Station</option>
+                <option value="1">Tel Aviv</option>
+            </select>
+        </div>
+        <div class="input_field">
+            <input type="text" placeholder="Day" id="day">
+        </div>
+        <div class="input_field">
+            <input type="text" placeholder="Time(HH:MM)" id="time">
+        </div>
+        <div class="selection-handle" id="arrOrDept">
+            <select>
+                <option disabled selected>Depature</option>
+                <option value="1">Arrivle</option>
+            </select>
+        </div>
+        <div class="input_field">
+            <input type="text" placeholder="Time of deviation(MM)" id="deviation">
+        </div>
+        <div class="btn">
+            <input type="submit">
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
