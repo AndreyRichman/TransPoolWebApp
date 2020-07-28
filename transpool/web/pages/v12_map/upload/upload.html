@@ -14,7 +14,7 @@
                 var file1 = this[0].files[0];
 
                 var formData = new FormData();
-                formData.append("fake-key-1", file1);
+                formData.append("file1", file1);
 
 
                 $.ajax({
@@ -29,7 +29,7 @@
                         $("#result").text("Failed to get result from server " + e);
                     },
                     success: function(r) {
-                        $("#result").text(r);
+                        // $("#result").text(r);
                     }
                 });
 
