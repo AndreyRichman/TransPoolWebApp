@@ -60,7 +60,12 @@
                             </div>
                         </div>
                         <div class="timeline-item__content">
-                            Joinin:, Leaving:
+                            <div>
+                                Joinin:
+                            </div>
+                            <div>
+                                Leaving:
+                            </div>
                         </div>
                     </li>
                     <li class="timeline-item">
@@ -356,19 +361,24 @@
             <div class="timeline-item__timestamp">
                 <div class="dot"></div>
                 <time>08:30</time>
-                <div>Tel Aviv</div>
+                <div class="station-title">Tel Aviv</div>
             </div>
         </li>
         <li class="timeline-item yes-data">
             <div class="timeline-item__timestamp">
                 <div class="dot"></div>
                 <time>09:30</time>
-                <div>
+                <div class="station-title">
                     AAAAAAAAA
                 </div>
             </div>
             <div class="timeline-item__content">
-                Joinin:, Leaving:
+                <div class="pick-data">
+                Joinin:
+                </div>
+                <div class="drop-data">
+                    Leaving:
+                </div>
             </div>
         </li>
 
@@ -384,7 +394,7 @@
 
         <!--                        </a>-->
         <span class="Product-price"></span>
-        <button id="" class="Product-buyCTA" onclick="clickedRide(this.id)" >Show</button>
+        <button id="dummyRideID" class="Product-buyCTA first-btn" onclick="showRide(this.id)" >Show</button>
     </li>
     </div>
 
@@ -409,7 +419,8 @@
 
         <!--                        </a>-->
         <span class="Product-price"></span>
-        <button class="Product-buyCTA">Show</button>
+        <button id="dummyTrempID" class="Product-buyCTA first-btn" onclick="showTremp(this.id)">Show</button>
+        <button id="f-1" class="Product-buyCTA second-btn" onclick="findMatchedForTremp(this.id)">Find Tremps</button>
     </li>
     </div>
     <div id="dummyMatch" style="display: none;">
@@ -433,8 +444,8 @@
 
             <!--                        </a>-->
             <span class="Product-price">20$</span>
-            <button class="Product-buyCTA">Show</button>
-            <button class="Product-buyCTA">Match</button>
+            <button id="dummyMatchID" class="Product-buyCTA first-btn" onclick="showMatchRide(this.id)">Show</button>
+            <button id="m-1" class="Product-buyCTA second-btn" onclick="assignRide(this.id)">Assign Tremp</button>
         </li>
 
     </div>
