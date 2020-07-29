@@ -36,6 +36,8 @@ public class LogicHandler {
     private WorldMap map;
     private TrafficManager trafficManager;
     private Map<String, User> usersNameToObject;
+    private User mapOwner;
+    private String mapName;
 
     //new UI attributes
     private Task<Boolean> currentRunningTask;
@@ -51,7 +53,23 @@ public class LogicHandler {
         return id;
     }
 
-//        public void collectMetadata(SimpleStringProperty fileName,  XmlLoadController){
+    public void setMapOwner(User mapOwner) {
+        this.mapOwner = mapOwner;
+    }
+
+    public User getMapOwner() {
+        return mapOwner;
+    }
+
+    public void setMapName(String mapName) {
+        this.mapName = mapName;
+    }
+
+    public String getMapName() {
+        return mapName;
+    }
+
+    //        public void collectMetadata(SimpleStringProperty fileName,  XmlLoadController){
 //
 //        //creates new task to load xml file
 //        currentRunningTask = new loadXmlFileTask(fileName.get(), this, XmlLoadController);

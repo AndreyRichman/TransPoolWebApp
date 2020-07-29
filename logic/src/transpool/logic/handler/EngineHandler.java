@@ -2,10 +2,10 @@ package transpool.logic.handler;
 
 import exception.FaildLoadingXMLFileException;
 import transpool.logic.map.WorldMap;
+import transpool.logic.user.User;
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class EngineHandler {
     Map<Integer, LogicHandler> idToLogic;
@@ -16,9 +16,11 @@ public class EngineHandler {
 
 
     //TODO: MATAN please handle thie implementation here
-    public synchronized Integer createNewLogicFromXml(InputStream pathToXmlFile) throws FaildLoadingXMLFileException {
+    public synchronized Integer createNewLogicFromXml(InputStream pathToXmlFile, User owner, String mapName) throws FaildLoadingXMLFileException {
         LogicHandler newLogicHandler = new LogicHandler();
         newLogicHandler.loadXMLFile(pathToXmlFile);
+        newLogicHandler.setMapName(mapName);
+        newLogicHandler.setMapOwner(owner);
 
 
         int logicId = newLogicHandler.getId();
@@ -35,4 +37,7 @@ public class EngineHandler {
         return idToLogic.get(logicHandlerId).getMap();
     }
 
+    public List<LogicHandler> getAllMaps() {
+        return new ArrayList<>(idToLogic.values());
+    }
 }

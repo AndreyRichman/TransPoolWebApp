@@ -32,4 +32,8 @@ public class TrempRequestWrapper {
         RideForTremp matchedTremp = trempRequest.getSelectedRide();
         this.selectedRide = matchedTremp != null ? new RideForTrempWrapper(matchedTremp) : null;
     }
+
+    public boolean trempIsNotMatched(){
+        return this.selectedRide == null;
+    }
 }

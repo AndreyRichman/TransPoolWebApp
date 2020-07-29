@@ -4,12 +4,12 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
+
     <title>Transpool</title>
-        
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	
+
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300,200' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="demo/css/normalize.css">
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="online/online.css" />
     <link rel="stylesheet" type="text/css" href="online/online.scss">
 </head>
-    
+
 <body>
 
 <!--        Start of Menu Options-->
@@ -49,9 +49,9 @@
         <input type="checkbox" id="trigger">
         <label id="trigger-input" for="trigger"  ></label>
 
-        <div class="list-container">
+        <div id="online-users" class="list-container">
             <ul>
-                <li><a href="#">List Item</a></li>
+                <li><a href="#">Moshe</a></li>
                 <li><a href="#">List Item</a></li>
                 <li><a href="#">List Item</a></li>
 
@@ -63,16 +63,16 @@
 
 <!--    Start of cards-->
     <div class="container" style="z-index: 100;">
-        
+
         <div class="row">
-            
+
             <div class="col-md-12">
-                
+
                 <div class="text-center" style="top: 10px">
-                    
+
                     <h2>Maps</h2>
 
-                    <div class="cards">
+                    <div class="cards" id="cards-container">
 
                         <div class="card">
                             <div class="card__image-holder" style="background: white">
@@ -101,95 +101,13 @@
                             </div>
                         </div>
 
-                        <div class="card">
-                            <div class="card__image-holder">
-                                <img class="card__image" src="cards/map_icon.jpg" style="width: 300px; height: 264px;" alt="beach" />
-                            </div>
-                            <div class="card-title">
-                                <a href="#" class="toggle-info btn">
-                                    <span class="left"></span>
-                                    <span class="right"></span>
-                                </a>
-                                <h2>
-                                    Tel Aviv
-                                    <small>Created by Andrey</small>
-                                </h2>
-                            </div>
-                            <div class="card-flap flap1">
-                                <div class="card-description">
-                                    <div>Rides: 2</div>
-                                    <div>Matched tremps: 2/4</div>
-                                    <div>Created on bla bla bla</div>
-                                </div>
-                                <div class="card-flap flap2">
-                                    <div class="card-actions">
-                                        <a href="map/map.html" class="btn" onclick="parent.location='map/map.html'; return false;">Enter</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card__image-holder">
-                                <img class="card__image" src="cards/map_icon.jpg" style="width: 300px; height: 264px;"  alt="beach" />
-                            </div>
-                            <div class="card-title">
-                                <a href="#" class="toggle-info btn">
-                                    <span class="left"></span>
-                                    <span class="right"></span>
-                                </a>
-                                <h2>
-                                    Jerusalem
-                                    <small>Created by Moshe</small>
-                                </h2>
-                            </div>
-                            <div class="card-flap flap1">
-                                <div class="card-description">
-                                    <div>Rides: 2</div>
-                                    <div>Matched tremps: 2/4</div>
-                                    <div>Created on bla bla bla</div>
-                                </div>
-                                <div class="card-flap flap2">
-                                    <div class="card-actions">
-                                        <a href="#" class="btn">Enter</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card__image-holder">
-                                <img class="card__image" src="cards/map_icon.jpg" style="width: 300px; height: 264px;" alt="beach" />
-                            </div>
-                            <div class="card-title">
-                                <a href="#" class="toggle-info btn">
-                                    <span class="left"></span>
-                                    <span class="right"></span>
-                                </a>
-                                <h2>
-                                    Bat Yam
-                                    <small>Created by David</small>
-                                </h2>
-                            </div>
-                            <div class="card-flap flap1">
-                                <div class="card-description">
-                                    <div>Rides: 2</div>
-                                    <div>Matched tremps: 2/4</div>
-                                    <div>Created on bla bla bla</div>
-                                </div>
-                                <div class="card-flap flap2">
-                                    <div class="card-actions">
-                                        <a href="#" class="btn">Enter</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
             </div>
-            
+
         </div>
-        
+
     </div>
 
     <!--    End of cards-->
@@ -223,6 +141,35 @@
     <!-- End of .chatbox -->
 
 
+<!--DUMMY DATA STARTS HERE-->
+<div class="dummyMapCard" style="display: none;">
+    <div class="card map-card">
+        <div class="card__image-holder">
+            <img class="card__image" src="cards/map_icon.jpg" style="width: 300px; height: 264px;" alt="beach" />
+        </div>
+        <div class="card-title">
+            <a href="#" class="toggle-info btn">
+                <span class="left"></span>
+                <span class="right"></span>
+            </a>
+            <h2 class="map-name">
+                <span class="map-name">Tel Aviv </span>
+                <small class="created-by">Created by Andrey</small>
+            </h2>
+        </div>
+        <div class="card-flap flap1">
+            <div class="card-description">
+            </div>
+            <div class="card-flap flap2">
+                <div class="card-actions">
+                    <a class="btn" data-id="17">Enter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--DUMMY DATA ENDS HERE-->
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="dist/jquery.fatNav.min.js"></script>
@@ -243,7 +190,10 @@
             iframe: true,
             iframeHeight: 418,
             width: 418,
-            iframeURL: "upload/upload.html"
+            iframeURL: "upload/upload.html",
+            onClosed: function () {
+                updateMapCards();
+            }
         });
 
         $("#import-money-modal").iziModal({
@@ -261,10 +211,86 @@
         });
 
 
-        $( setInterval(function() {toastr.success('Welcome!');}, 5000));
+        $( setInterval(function() {toastr.warning('Welcome!');}, 5000));
+
+    </script>
+
+    <script>
+
+        function clearMapCards() {
+
+        }
+
+        function addMapCard(mapObj) {
+            var mapNode = $("div.dummyMapCard div.map-card")[0].cloneNode(true);
+
+            $(mapNode).find("h2.map-name span.map-name").text(mapObj.mapName);
+            $(mapNode).find("h2.map-name small.created-by").text("Created by " + mapObj.mapOwner.name);
+
+            var htmlNodeToAdd = "<div>Rides: " + mapObj.numOfRides + "</div>" +
+                "<div>Matched tremps: " + mapObj.numOfMatchedTremps + "/" + mapObj.numOfTremps + "</div>" +
+                "<div>Size :" + mapObj.width + "x" + mapObj.height + "</div>";
+
+            $(mapNode).find("div.card-description").append(htmlNodeToAdd);
+
+            $(mapNode).find("div.card-actions a").attr("data-id", mapObj.id);
+            // $(mapNode).click(function(e){
+            //     exposeCardData(e);
+            // });
+            $("#cards-container").append(mapNode);
+
+
+            initCardClicks();
+            initAllCardsClickThrough();
+        }
+
+        function createMapCards(mapsArray){
+            mapsArray.forEach(function(map){
+                addMapCard(map);
+            });
+        }
+        function updateMapCards(){
+
+
+            $.ajax({
+                url: "/transpool_war_exploded/map",
+                timeout: 2000,
+                method: "GET",
+                dataType: "json",
+                success: function (data){
+                    if (data !== null) {
+                        createMapCards(data);
+                    }
+                },
+                error: function (data) {
+                    alert(data);
+                }
+            });
+        }
+        // create map cards
+        $(function () {
+            updateMapCards();
+            initAllCardsClickThrough();
+        });
+
+
+        // function goToMapPage(id) {
+        //     alert(id);
+        //     parent.location='map/map.html' + "?mapID=" + id;
+        //
+        // }
+
+        // $(function () {
+        //     $("div.map-card div.card-actions a.btn").click(function () {
+        //         var id = $(this).data("id");
+        //         goToMapPage(id);
+        //     });
+        // });
+
+
 
     </script>
 
 </body>
-    
+
 </html>

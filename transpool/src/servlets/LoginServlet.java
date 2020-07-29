@@ -118,7 +118,7 @@ public class LoginServlet extends HttpServlet {
 //            getServletContext().setAttribute("allUsers", allUsers);
             req.getSession(true).setAttribute(Constants.USER_OBJ,
                     ServletUtils.getUserManager(getServletContext()).getUser(userName));
-            resp.sendRedirect(req.getContextPath() + "/index.html");
+            resp.sendRedirect(req.getContextPath() + "/pages/mainpage/mainpage.html");
         }
         //check if user already exist in the list
 //        try (PrintWriter out = resp.getWriter()){

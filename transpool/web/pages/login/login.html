@@ -32,7 +32,7 @@
 				dataType: "json",
 				success: function (data){
 					if (!$.isEmptyObject(data)) {
-						window.location = "../../index.html";
+						window.location = "../mainpage/mainpage.html";
 					}
 				}
 			});
@@ -47,7 +47,7 @@
 					timeout: 2000,
 					method:"POST",
 					success: function(){
-						window.location = "../../index.html";
+						window.location = "../mainpage/mainpage.html";
 					},
 					error: function() {
 						$("#error h3").text("User already logged in..");
