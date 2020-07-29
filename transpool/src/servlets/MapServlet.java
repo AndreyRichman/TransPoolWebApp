@@ -5,7 +5,9 @@ import exception.FaildLoadingXMLFileException;
 import transpool.logic.handler.EngineHandler;
 import transpool.logic.handler.LogicHandler;
 import transpool.logic.map.WorldMap;
+import transpool.logic.user.User;
 import utils.ServletUtils;
+import utils.SessionUtils;
 import wrappers.MapDataWrapper;
 
 import javax.servlet.ServletException;
@@ -19,7 +21,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "MapServlet", urlPatterns = { "/map"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
@@ -28,11 +32,28 @@ public class MapServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         EngineHandler engineHandler =  ServletUtils.getEngineHandler(req.getServletContext());
-        int mapId = (Integer) req.getAttribute("id");
-        WorldMap map =  engineHandler.getMap(mapId);
+        String responseStr = "";
         Gson gson = new Gson();
+
+        Object specificIdParameter = req.getParameter("id");
+        //return all maps
+        if (specificIdParameter == null){
+            List<MapDataWrapper> allMaps =  engineHandler.getAllMaps().stream().map(MapDataWrapper::new)
+                    .collect(Collectors.toList());
+            responseStr = gson.toJson(allMaps);
+        }
+        else { //return specific map
+            String idStr = (String) specificIdParameter;
+            int logicId = Integer.parseInt(idStr);
+            LogicHandler logicHandler = engineHandler.getLogicHandlerById(logicId);
+
+            MapDataWrapper wrapper = new MapDataWrapper(logicHandler);
+            responseStr = gson.toJson(wrapper);
+        }
+
+
         try (PrintWriter out = resp.getWriter()) {
-            out.print(gson.toJson(map));
+            out.print(responseStr);
         }
     }
 
@@ -49,13 +70,22 @@ public class MapServlet extends HttpServlet {
             Collection<Part> parts = req.getParts();
 //            StringBuilder fileContent = new StringBuilder();
             InputStream inputStream = null;
+            String mapName = "";
             
             for (Part part : parts) {
-//                fileContent.append(readFromInputStream(part.getInputStream()));
+////                fileContent.append(readFromInputStream(part.getInputStream()));
+
                 inputStream = part.getInputStream();
+                mapName = part.getName();
             }
 
-            int logicId = engineHandler.createNewLogicFromXml(inputStream);
+
+//            inputStream = parts[0].getInputStream();
+
+//            Object mapNameObj = req.getAttribute("mapName");
+//            String mapName = mapNameObj != null ? (String) mapNameObj : "Missing Name :(";
+            User user = SessionUtils.getUser(req);
+            int logicId = engineHandler.createNewLogicFromXml(inputStream, user, mapName);
 
             LogicHandler logicHandler = engineHandler.getLogicHandlerById(logicId);
             Gson gson = new Gson();

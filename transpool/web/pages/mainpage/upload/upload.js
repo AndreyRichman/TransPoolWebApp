@@ -50,3 +50,4 @@ function startUpload() {
 function showDone() {
     $button.html('Done');
 }
+

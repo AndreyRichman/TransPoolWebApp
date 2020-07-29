@@ -65,10 +65,16 @@ function saveLocalCopyOfMapData(data){
 }
 
 $(function () {
+
+    var searchParams = new URLSearchParams(window.location.search);
+    var mapIDParam = searchParams.get('mapID');
+
+    alert(mapIDParam);
     $.ajax({
         url: "/transpool_war_exploded/map",
+        data: {id: mapIDParam},
         timeout: 2000,
-        method: "POST",
+        method: "GET",
         dataType: "json",
         success: function (data){
             // MAP_OBJ = data;
