@@ -7,6 +7,11 @@
     <link rel="stylesheet" type="text/css" href="map_graph.css" />
     <link rel="stylesheet" type="text/css" href="parts/menu/menu.scss"/>
     <link rel="stylesheet" type="text/css" href="parts/timeline/timeline.css"/>
+
+
+    <link rel="stylesheet" type="text/css" href="../mainpage/modal/css/iziModal.css"/>
+
+
 </head>
 <body>
 <div class="grid-container">
@@ -24,15 +29,27 @@
             <i class="fas fa-times sidenav__brand-close"></i>
         </div>
         <ul class="sidenav__list">
-            <li class="sidenav__list-item">Add Ride</li>
-            <li class="sidenav__list-item">Add Tremp Request</li>
-            <li class="sidenav__list-item">Item Three</li>
-            <li class="sidenav__list-item">Item Four</li>
-            <li class="sidenav__list-item"> < Go Back to All Maps</li>
+            <li href="#" class="trigger sidenav__list-item" data-izimodal-open="#newride-modal" data-izimodal-transitionin="fadeInDown">Add Ride</li>
+            <li class="sidenav__list-item" data-izimodal-open="#newtremp-modal" data-izimodal-transitionin="fadeInDown">Add Tremp Request</li>
+<!--            <li class="sidenav__list-item">Add Ride</li>-->
+<!--            <li class="sidenav__list-item">Add Tremp Request</li>-->
+<!--            <li class="sidenav__list-item">Item Three</li>-->
+<!--            <li class="sidenav__list-item">Item Four</li>-->
+            <li class="sidenav__list-item" onclick="goToMainPage()"> < Go Back to All Maps</li>
         </ul>
     </aside>
 
     <main class="main">
+
+
+<!--        MODALS START-->
+        <div id="newride-modal" data-iziModal-fullscreen="false"  data-iziModal-title="Upload Map" >
+        </div>
+
+        <div id="newtremp-modal" data-iziModal-fullscreen="false"  data-iziModal-title="Upload Map" >
+        </div>
+<!--        MODALS END-->
+
 
         <div class="main-cards">
             <div id="map-container" class="card">Map
@@ -459,12 +476,46 @@
         <div class="footer__signature">Made with love by pure genius</div>
     </footer>
 </div>
-<script type="text/javascript" src="../../../jquery-3.5.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="../../jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="map.js"></script>
 <script src="//d3js.org/d3.v3.js" charset="utf-8"></script>
 <script type="text/javascript" src="map_graph.js"></script>
 <script type="text/javascript" src="parts/menu/menu.js"></script>
 <script type="text/javascript" src="parts/timeline/timeline.js"></script>
 
+<script type="text/javascript" src="../mainpage/modal/js/iziModal.js"></script>
+
+<script>
+    $("#newride-modal").iziModal({
+        iframe: true,
+        iframeHeight: 600,
+        width: 600,
+        iframeURL: "../newRide/newRide.html",
+        onClosed: function () {
+            // updateMapCards();
+        }
+    });
+
+    $("#newtremp-modal").iziModal({
+        iframe: true,
+        iframeHeight: 600,
+        width: 600,
+        iframeURL: "../newTremp/newTremp.html",
+        onClosed: function () {
+            // updateMapCards();
+        }
+    });
+
+    function goToMainPage(){
+        parent.location='../mainpage/mainpage.html'
+    }
+
+
+
+</script>
 </body>
 </html>

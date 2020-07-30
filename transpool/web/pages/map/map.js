@@ -69,7 +69,7 @@ $(function () {
     var searchParams = new URLSearchParams(window.location.search);
     var mapIDParam = searchParams.get('mapID');
 
-    alert(mapIDParam);
+    // alert(mapIDParam);
     $.ajax({
         url: "/transpool_war_exploded/map",
         data: {id: mapIDParam},
