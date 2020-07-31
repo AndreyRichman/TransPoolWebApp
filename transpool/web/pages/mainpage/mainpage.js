@@ -1,16 +1,17 @@
 var $users = $('#online-users');
 var refreshRate = 2000;
-// $(function () {
-//     $.ajax({
-//         type: 'GET',
-//         url: '/transpool_war_exploded/UsersList',
-//         success: function (data) {
-//             $.each(data, function (i, username) {
-//                 $users.append('<li><a href="#">' + username.name + '</a></li>' )
-//             })
-//         }
-//     });
-// });
+
+$(function () {
+    $.ajax({
+        type: 'GET',
+        url: '/transpool_war_exploded/UsersList',
+        success: function (data) {
+            $.each(data, function (i, username) {
+                $users.append('<li><a href="#">' + username.name + '</a></li>' )
+            })
+        }
+    });
+});
 
 function ajaxUsersList() {
     $.ajax({
@@ -40,4 +41,15 @@ $(function() {
     setInterval(ajaxUsersList, refreshRate);
 });
 
-//TODO:: need to add ONLINE users. right now its just showing who's in RIGHT NOW. need to refresh uppon changes
+
+// window.addEventListener("beforeunload", function (e) {
+//     console.log("im here");
+//     $.ajax({
+//         url: '/transpool_war_exploded/logout',
+//         success: function(users) {
+//             refreshUsersList(users);
+//         }
+//     });
+// });
+
+//TODO::
