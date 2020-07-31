@@ -15,6 +15,10 @@ public class UserManager {
         this.allUsers.put(userName, new User(userName));
     }
 
+    public synchronized void removeUser(String username) {
+        this.allUsers.remove(username);
+    }
+
     public synchronized User getUser(String userName){
         return this.allUsers.get(userName);
     }
