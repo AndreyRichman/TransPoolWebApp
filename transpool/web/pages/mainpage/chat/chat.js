@@ -2,7 +2,27 @@ const toggleChatboxBtn = document.querySelector(".js-chatbox-toggle");
 const chatbox = document.querySelector(".js-chatbox");
 const chatboxMsgDisplay = document.querySelector(".js-chatbox-display");
 const chatboxForm = document.querySelector(".js-chatbox-form");
+var charHistory;
+var chatVersion;
 
+function getCharHistory() {
+    $.ajax({
+        url: CHAT_LIST_URL,
+        data: "chatversion=" + chatVersion,
+        dataType: 'json',
+        success: function(data) {
+            console.log("Server chat version: " + data.version + ", Current chat version: " + chatVersion);
+            if (data.version !== chatVersion) {
+                chatVersion = data.version;
+                charHistory = data;
+            }
+            // triggerAjaxChatContent();
+        },
+        error: function(error) {
+
+        }
+    });
+}
 // Use to create chat bubble when user submits text
 // Appends to display
 const createChatBubble = input => {
