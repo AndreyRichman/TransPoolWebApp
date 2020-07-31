@@ -11,3 +11,5 @@ $(function () {
         }
     });
 });
+
+//TODO:: need to add ONLINE users. right now its just showing who's in RIGHT NOW. need to refresh uppon changes
