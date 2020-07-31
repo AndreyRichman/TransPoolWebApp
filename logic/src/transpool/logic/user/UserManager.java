@@ -15,8 +15,8 @@ public class UserManager {
         this.allUsers.put(userName, new User(userName));
     }
 
-    public synchronized void removeUser(String username) {
-        this.allUsers.remove(username);
+    public synchronized void removeUser(User username) {
+        this.allUsers.remove(username.getName());
     }
 
     public synchronized User getUser(String userName){

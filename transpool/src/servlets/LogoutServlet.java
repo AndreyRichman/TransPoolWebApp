@@ -1,5 +1,7 @@
 package servlets;
 
+import com.google.gson.Gson;
+import transpool.logic.user.User;
 import transpool.logic.user.UserManager;
 import utils.ServletUtils;
 import utils.SessionUtils;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Map;
 
 @WebServlet(name = "LogoutServlet", urlPatterns = {"/logout"})
 public class LogoutServlet extends HttpServlet {
@@ -17,15 +21,15 @@ public class LogoutServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usernameFromSession = SessionUtils.getUsername(request);
+
+        User usernameFromSession = SessionUtils.getUser(request);
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
 
         if (usernameFromSession != null) {
             System.out.println("Clearing session for " + usernameFromSession);
             userManager.removeUser(usernameFromSession);
             SessionUtils.clearSession(request);
-
-            response.sendRedirect(request.getContextPath() + "/transpool_war_exploded/index.html");
+            response.sendRedirect(request.getContextPath() + "/pages/login/login.html");
         }
     }
 
