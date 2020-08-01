@@ -64,16 +64,13 @@ function saveLocalCopyOfMapData(data){
 
 }
 
-$(function () {
-
+function updateMapWindow(){
     var searchParams = new URLSearchParams(window.location.search);
     var mapIDParam = searchParams.get('mapID');
-
-    // alert(mapIDParam);
     $.ajax({
         url: "/transpool_war_exploded/map",
         data: {id: mapIDParam},
-        timeout: 2000,
+        // timeout: 2000,
         method: "GET",
         dataType: "json",
         success: function (data){
@@ -81,14 +78,36 @@ $(function () {
             saveLocalCopyOfMapData(data);
 
             initializeMap(data);
-            // initRides(data.allRides);
             addRides(data.allRides);
-            },
+        },
         error: function (data) {
             alert(data);
         }
-        });
     });
+}
+
+
+$(function () {
+   updateMapWindow();
+});
+
+function updateRideAndTrempInfo(){
+    var searchParams = new URLSearchParams(window.location.search);
+    var mapIDParam = searchParams.get('mapID');
+    $.ajax({
+        url: "/transpool_war_exploded/map",
+        data: {id: mapIDParam},
+        method: "GET",
+        dataType: "json",
+        success: function (data){
+            saveLocalCopyOfMapData(data);
+            addRides(data.allRides);
+        },
+        error: function (data) {
+            alert(data);
+        }
+    });
+}
 
 function showRide(idStr){
     var id = parseInt(idStr.split(":")[1]);

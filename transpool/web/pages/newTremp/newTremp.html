@@ -3,48 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Add New Tremp</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
+    <link rel="stylesheet" href="newTremp.css">
 </head>
 <body>
 
 <div class="wrapper">
     <h2>Add New Tremp</h2>
     <div id="error_message"></div>
-    <form id="myform" onsubmit="return validate();">
+<!--    <form id="myform" onsubmit="closeModal();">-->
+    <form id="myform">
         <div class="selection-handle" id="fromStation">
-            <select>
-                <option disabled selected>add Station:</option>
-                <option value="1">Tel Aviv</option>
+            <select class="add-input stations-list" id="start-station">
+                <option disabled selected>Select Start Station</option>
             </select>
         </div>
         <div class="selection-handle" id="destStation">
-            <select>
-                <option disabled selected>remove Station</option>
-                <option value="1">Tel Aviv</option>
+
+            <select class="add-input stations-list" id="end-station">
+                <option disabled selected>Select End Station</option>
+
             </select>
         </div>
         <div class="input_field">
-            <input type="text" placeholder="Day" id="day">
+                <span>Choose time</span> <span id="day-title">Choose Day</span>
+                <div class="time-date__input">
+                    <input name="etime" id="time" type="time" value="10:30" step="600">
+                    <input name="eday" id="day" type="number" value="1" step="1" min="1">
+                </div>
+
         </div>
+
+
         <div class="input_field">
-            <input type="text" placeholder="Time(HH:MM)" id="time">
         </div>
         <div class="selection-handle" id="arrOrDept">
-            <select>
-                <option disabled selected>Depature</option>
-                <option value="1">Arrivle</option>
+            <select class="add-input stations-list" id="arrive-depart">
+                <option>DEPART</option>
+                <option>ARRIVE</option>
             </select>
+
         </div>
-        <div class="input_field">
-            <input type="text" placeholder="Time of deviation(MM)" id="deviation">
+        <div class="selection-handle" id="time-diff">
+            <span>The time can differate by at most</span>
+                <input type="number" value="0" id="deviation" min="0">
+            <span>minutes</span>
         </div>
+
+        <div class="selection-handle" id="switched-div">
+            <span>Accept up to</span><br>
+            <input type="number" value="0" id="max-switches" min="0">
+            <span>connections</span>
+        </div>
+
+
         <div class="btn">
-            <input type="submit">
+            <input type="submit" id="add-ride-btn">
         </div>
 
     </form>
 </div>
+
+<script type="text/javascript" src="../../jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="newTremp.js"></script>
 
 </body>
 </html>

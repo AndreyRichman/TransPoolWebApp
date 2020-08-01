@@ -29,7 +29,7 @@
             <i class="fas fa-times sidenav__brand-close"></i>
         </div>
         <ul class="sidenav__list">
-            <li href="#" class="trigger sidenav__list-item" data-izimodal-open="#newride-modal" data-izimodal-transitionin="fadeInDown">Add Ride</li>
+            <li href="#" class="trigger sidenav__list-item" data-izimodal-open="#newride-modal" id="99" data-izimodal-transitionin="fadeInDown">Add Ride</li>
             <li class="sidenav__list-item" data-izimodal-open="#newtremp-modal" data-izimodal-transitionin="fadeInDown">Add Tremp Request</li>
 <!--            <li class="sidenav__list-item">Add Ride</li>-->
 <!--            <li class="sidenav__list-item">Add Tremp Request</li>-->
@@ -43,10 +43,10 @@
 
 
 <!--        MODALS START-->
-        <div id="newride-modal" data-iziModal-fullscreen="false"  data-iziModal-title="Upload Map" >
+        <div id="newride-modal" data-iziModal-fullscreen="false"  data-iziModal-title="Add New Ride" >
         </div>
 
-        <div id="newtremp-modal" data-iziModal-fullscreen="false"  data-iziModal-title="Upload Map" >
+        <div id="newtremp-modal" data-iziModal-fullscreen="false"  data-iziModal-title="Add New Tremp Request" >
         </div>
 <!--        MODALS END-->
 
@@ -490,13 +490,16 @@
 <script type="text/javascript" src="../mainpage/modal/js/iziModal.js"></script>
 
 <script>
+    var searchParams = new URLSearchParams(window.location.search);
+    var mapIDParam = searchParams.get('mapID');
+
     $("#newride-modal").iziModal({
         iframe: true,
         iframeHeight: 600,
-        width: 600,
-        iframeURL: "../newRide/newRide.html",
+        width: 800,
+        iframeURL: "../newRide/newRide.html?mapID=" + mapIDParam,
         onClosed: function () {
-            // updateMapCards();
+            updateRideAndTrempInfo();
         }
     });
 
@@ -504,9 +507,15 @@
         iframe: true,
         iframeHeight: 600,
         width: 600,
-        iframeURL: "../newTremp/newTremp.html",
+        iframeURL: "../newTremp/newTremp.html?mapID=" + mapIDParam,
+        // afterRender: function(){
+        //     $("#add-ride-btn").click(function () {
+        //         // $('[data-izimodal-close]')[0].click();
+        //         alert("pleaseee");
+        //     });
+        // },
         onClosed: function () {
-            // updateMapCards();
+            updateRideAndTrempInfo();
         }
     });
 

@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body{
+  background: #fece0c;
+}
+
+.wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  max-width: 350px;
+  width: 100%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 4px 4px 2px rgba(254,236,164,1);
+}
+
+.wrapper h2{
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #332902;
+}
+
+.wrapper .input_field{
+  margin-bottom: 10px;
+}
+
+.wrapper .input_field input[type="text"],
+.wrapper textarea,
+.wrapper .selection-handle
+{
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  padding: 10px;
+}
+
+.wrapper textarea{
+  resize: none;
+  height: 80px;
+}
+
+.wrapper .selection-handle {
+  margin-bottom: 10px;
+}
+
+.wrapper .btn input[type="submit"]{
+  border: 0px;
+  margin-top: 15px;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  background: #fece0c;
+  color: #332902;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+#error_message{
+  margin-bottom: 20px;
+  background: #fe8b8e;
+  padding: 0px;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.5s ease;
+}
+
+
+/*STATION CSS STARTS HERE*/
+
+.select-title {
+  font-size: 1rem;
+  padding-bottom: 10px;
+  line-height: 0;
+  color: #6C75A6;
+  font-weight: 100;
+}
+
+.fa {
+  margin-top: 25px;
+  color: rgba(0,0,0,0.15);
+}
+
+/*ul {*/
+.list {
+  margin-top: 25px;
+  padding: 0 20px;
+}
+
+li {
+  list-style: none;
+  font-size: 1.2rem;
+  line-height: 3rem;
+  border-bottom: 1px solid #ccc;
+  color: #616161;
+  max-width: 300px;
+}
+
+li:hover {
+  color: red;
+  /*text-decoration: line-through;*/
+  cursor: pointer;
+}
+
+/*button {*/
+.add-btn {
+  display: none;
+  font-weight: 300;
+  margin: 20px 0;
+  line-height: 2.5rem;
+  font-size: 1.7rem;
+  width: 2.5rem;
+  background-color: #8888AC;
+  border: none;
+  color: #ffffff;
+  border-radius: 50%;
+}
+
+/*button:hover {*/
+.add-btn:hover {
+  background-color: #70708C;
+  cursor: pointer;
+}
+
+/*button:focus {*/
+.add-btn:focus {
+  outline-width: 0;
+}
+
+/*input {*/
+.add-input {
+  line-height: 2rem;
+  font-size: 1.2rem;
+  padding: 0 10px;
+  border-top: none;
+  border-bottom: 1px solid #ccc;
+  border-left: none;
+  border-right: none;
+  background-color: transparent;
+  color: #616161;
+  width: 100%;
+  /*width: 300px;*/
+}
+
+.add-input option {
+  width: 100%;
+  /*width: 300px;*/
+}
+
+/*input:focus {*/
+.add-input:focus {
+  border-bottom: 1px solid #8888AC;
+  outline-width: 0;
+
+}
+
+/*STATION CSS ENDS HERE*/
+
+
+
+
+
+/*TIME START HERE*/
+.time-date {
+  margin-bottom: 10px;
+}
+.time-date__input {
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.time-date__input input {
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+.time-date__input input#day {
+  margin-bottom: 5px;
+  margin-left: 80px;
+  width: 60px;
+  height: 20px;
+  font-weight: 400;
+}
+
+span#day-title {
+  margin-left: 60px;
+}
+/*TIME END HERE*/
+
