@@ -2,27 +2,9 @@ const toggleChatboxBtn = document.querySelector(".js-chatbox-toggle");
 const chatbox = document.querySelector(".js-chatbox");
 const chatboxMsgDisplay = document.querySelector(".js-chatbox-display");
 const chatboxForm = document.querySelector(".js-chatbox-form");
-var charHistory;
-var chatVersion;
+var chatVersion = 0;
 
-function getCharHistory() {
-    $.ajax({
-        url: CHAT_LIST_URL,
-        data: "chatversion=" + chatVersion,
-        dataType: 'json',
-        success: function(data) {
-            console.log("Server chat version: " + data.version + ", Current chat version: " + chatVersion);
-            if (data.version !== chatVersion) {
-                chatVersion = data.version;
-                charHistory = data;
-            }
-            // triggerAjaxChatContent();
-        },
-        error: function(error) {
 
-        }
-    });
-}
 // Use to create chat bubble when user submits text
 // Appends to display
 const createChatBubble = input => {
@@ -50,8 +32,70 @@ toggleChatboxBtn.addEventListener("click", () => {
 chatboxForm.addEventListener("submit", e => {
     const chatInput = document.querySelector(".js-chatbox-input").value;
 
-    createChatBubble(chatInput);
+    $.ajax({
+        url: '/transpool_war_exploded/sendchat',
+        data: chatInput,
+        timeout: 2000,
+        error: function() {
+            console.error("Failed to submit");
+        },
+        success: function(r) {
+            console.log("INPUT: " + chatInput);
+        }
+    });
+
+    // createChatBubble(chatInput);
 
     e.preventDefault();
     chatboxForm.reset();
+});
+
+function appendToChatArea(entries) {
+
+    // add the relevant entries
+    $.each(entries || [], appendChatEntry);
+
+
+    chatboxForm.reset();
+
+}
+
+function appendChatEntry(index, entry){
+
+    const chatSection = document.createElement("p");
+    chatSection.textContent = entry.username + entry.chatString;
+    chatSection.classList.add("chatbox__display-chat");
+
+    chatboxMsgDisplay.appendChild(chatSection);
+}
+
+function ajaxChatContent() {
+    $.ajax({
+        url: '/transpool_war_exploded/chat',
+        data: "chatversion=" + chatVersion,
+        dataType: 'json',
+        success: function(data) {
+            // console.log("Server chat version: " + data.version + ", Current chat version: " + chatVersion);
+            if (data.version !== chatVersion) {
+                chatVersion = data.version;
+                appendToChatArea(data.entries);
+            }
+            triggerAjaxChatContent();
+        },
+        error: function(error) {
+            triggerAjaxChatContent();
+        }
+    });
+}
+
+function triggerAjaxChatContent() {
+    setTimeout(ajaxChatContent, refreshRate);
+}
+
+//activate the timer calls after the page is loaded
+$(function() {
+
+    //The chat content is refreshed only once (using a timeout) but
+    //on each call it triggers another execution of itself later (1 second later)
+    triggerAjaxChatContent();
 });

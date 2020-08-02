@@ -4,11 +4,13 @@ import chat.ChatManager;
 import chat.SingleChatEntry;
 import com.google.gson.Gson;
 import constants.Constants;
+import transpool.logic.user.User;
 import utils.ServletUtils;
 import utils.SessionUtils;
 
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+@WebServlet(name = "chatServlet", urlPatterns = {"/chat"})
 public class ChatServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -23,16 +26,20 @@ public class ChatServlet extends HttpServlet {
         
         response.setContentType("application/json");
         ChatManager chatManager = ServletUtils.getChatManager(getServletContext());
-        String username = SessionUtils.getUsername(request);
+        User user = SessionUtils.getUser(request);
+        String username = user.getName();
         if (username == null) {
             response.sendRedirect(request.getContextPath() + "/index.html");
         }
+
+
 
         /*
         verify chat version given from the user is a valid number. if not it is considered an error and nothing is returned back
         Obviously the UI should be ready for such a case and handle it properly
          */
         int chatVersion = ServletUtils.getIntParameter(request, Constants.CHAT_VERSION_PARAMETER);
+
         if (chatVersion == Constants.INT_PARAMETER_ERROR) {
             return;
         }
