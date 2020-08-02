@@ -31,7 +31,7 @@ function refreshUsersList(users) {
 
     // rebuild the list of users: scan all users and add them to the list of users
     $.each(users || [], function(index, username) {
-        console.log("Adding user # " + index + " : " + username.name);
+        // console.log("Adding user # " + index + " : " + username.name);
         $userslist2.push(username.name);
 
         if ($userslist1.includes(username.name) === false ){
@@ -40,7 +40,8 @@ function refreshUsersList(users) {
 
         //create a new <option> tag with a value in it and
         //appeand it to the #userslist (div with id=userslist) element
-        $users.append('<li><a href="#">' + username.name + '</a></li>' )
+        $users.append('<li><a href="#">' + username.name + '</a></li>' );
+        console.log($users);
     });
 
     $userslist1 = $userslist2;
