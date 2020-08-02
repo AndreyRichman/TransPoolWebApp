@@ -23,7 +23,8 @@ public class ChatServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        logServerMessage("im in chatServlet: /chat");
+
         response.setContentType("application/json");
         ChatManager chatManager = ServletUtils.getChatManager(getServletContext());
         User user = SessionUtils.getUser(request);
@@ -39,6 +40,7 @@ public class ChatServlet extends HttpServlet {
         Obviously the UI should be ready for such a case and handle it properly
          */
         int chatVersion = ServletUtils.getIntParameter(request, Constants.CHAT_VERSION_PARAMETER);
+        logServerMessage("chatVersion:" + chatVersion);
 
         if (chatVersion == Constants.INT_PARAMETER_ERROR) {
             return;
@@ -59,8 +61,8 @@ public class ChatServlet extends HttpServlet {
         ChatAndVersion cav = new ChatAndVersion(chatEntries, chatManagerVersion);
         Gson gson = new Gson();
         String jsonResponse = gson.toJson(cav);
-        logServerMessage("Server Chat version: " + chatManagerVersion + ", User '" + username + "' Chat version: " + chatVersion);
-        logServerMessage(jsonResponse);
+//        logServerMessage("Server Chat version: " + chatManagerVersion + ", User '" + username + "' Chat version: " + chatVersion);
+//        logServerMessage(jsonResponse);
 
         try (PrintWriter out = response.getWriter()) {
             out.print(jsonResponse);

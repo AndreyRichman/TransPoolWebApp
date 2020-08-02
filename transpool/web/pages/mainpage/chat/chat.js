@@ -32,9 +32,11 @@ toggleChatboxBtn.addEventListener("click", () => {
 chatboxForm.addEventListener("submit", e => {
     const chatInput = document.querySelector(".js-chatbox-input").value;
 
+    // console.log(chatInput);
+
     $.ajax({
         url: '/transpool_war_exploded/sendchat',
-        data: chatInput,
+        data: "userstring=" + chatInput,
         timeout: 2000,
         error: function() {
             console.error("Failed to submit");
@@ -63,7 +65,7 @@ function appendToChatArea(entries) {
 function appendChatEntry(index, entry){
 
     const chatSection = document.createElement("p");
-    chatSection.textContent = entry.username + entry.chatString;
+    chatSection.textContent = entry.username +": " + entry.chatString;
     chatSection.classList.add("chatbox__display-chat");
 
     chatboxMsgDisplay.appendChild(chatSection);
