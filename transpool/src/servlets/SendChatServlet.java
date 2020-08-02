@@ -3,6 +3,7 @@ package servlets;
 
 import chat.ChatManager;
 import constants.Constants;
+import transpool.logic.user.User;
 import utils.ServletUtils;
 import utils.SessionUtils;
 
@@ -12,8 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet(name = "chatServlet", urlPatterns = {"/chat"})
+@WebServlet(name = "sendChatServlet", urlPatterns = {"/sendchat"})
 public class SendChatServlet extends HttpServlet {
 
     /**
@@ -27,18 +29,27 @@ public class SendChatServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ChatManager chatManager = ServletUtils.getChatManager(getServletContext());
-        String username = SessionUtils.getUsername(request);
+        User user = SessionUtils.getUser(request);
+        String username = user.getName();
         if (username == null) {
             response.sendRedirect(request.getContextPath() + "/index.html");
         }
 
         String userChatString = request.getParameter(Constants.CHAT_PARAMETER);
+
+        try (PrintWriter out = response.getWriter()) {
+            out.print(userChatString);
+            out.flush();
+        }
+
         if (userChatString != null && !userChatString.isEmpty()) {
             logServerMessage("Adding chat string from " + username + ": " + userChatString);
             synchronized (getServletContext()) {
                 chatManager.addChatString(userChatString, username);
             }
         }
+
+
     }
 
     private void logServerMessage(String message) {
