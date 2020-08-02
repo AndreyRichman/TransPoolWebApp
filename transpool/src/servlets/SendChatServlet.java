@@ -28,6 +28,7 @@ public class SendChatServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        logServerMessage("im in sendChatServlet: /sendchat");
         ChatManager chatManager = ServletUtils.getChatManager(getServletContext());
         User user = SessionUtils.getUser(request);
         String username = user.getName();
@@ -36,6 +37,7 @@ public class SendChatServlet extends HttpServlet {
         }
 
         String userChatString = request.getParameter(Constants.CHAT_PARAMETER);
+//        logServerMessage("userChatString:"+ userChatString);
 
         try (PrintWriter out = response.getWriter()) {
             out.print(userChatString);

@@ -41,7 +41,7 @@ $("input:file").change(function (){
 function startUpload() {
 
     var formData = new FormData();
-    formData.append("Matan kochavi", file);
+    formData.append(fileName, file);
 
     $.ajax({
         type: 'POST',
