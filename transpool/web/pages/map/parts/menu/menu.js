@@ -22,7 +22,30 @@ $('.NavItem').click(function(evt) {
 // $("button").click(function(){
 //     $("p").append("<b>Appended text</b>");
 // });
-function addRides(rides){
+
+function updateTrempsCards(tremps){
+    clearTrempList();
+    tremps.forEach(function (tremp) {
+
+        var trempNode = $("#dummyTremp li.Product")[0].cloneNode(true);
+        $(trempNode).find(".Product-title").text(tremp.id);
+
+        var htmlNodeToAdd =  "<tr><td>User:</td><td>" + tremp.user.name + "</td></tr>" +
+
+            "<tr><td>From:</td><td>" + tremp.startStation.name + "</td></tr>" +
+            "<tr><td>To:</td><td>" + tremp.endStation.name + "</td></tr>" +
+            "<tr><td>Want to:</td><td>" + tremp.desiredTimeType + "</td></tr>" +
+            "<tr><td>At:</td><td>" + tremp.desiredTime + "</td></tr>" +
+            "<tr><td>Max Swaps:</td><td>" + tremp.maxNumberOfConnections + "</td></tr>" ;
+
+        $(trempNode).find("#Tremp-table").append(htmlNodeToAdd);
+        $(trempNode).find(".Product-buyCTA").attr("id", "tremp-s:" +tremp.id);
+        $("#Tremps").append(trempNode);
+    });
+
+
+}
+function updateRidesList(rides){
     clearRideList();
     rides.forEach(function (ride) {
         var rideNode = $("#dummyRide li.Product")[0].cloneNode(true);
@@ -42,27 +65,27 @@ function addRides(rides){
     });
 }
 
-function addTremps(tremps){
-    clearTrempList();
-    tremps.forEach(function (tremp) {
-        var trempNode = $("#dummyTremp li.Product")[0].cloneNode(true);
-        $(trempNode).find(".Product-title").text(tremp.id);
-
-        var htmlNodeToAdd = "<tr><td>User:</td><td>" + tremp.user.name + "</td></tr>" +
-            "<tr><td>From:</td><td>" + tremp.startStation.name + "</td></tr>" +
-            "<tr><td>To:</td><td>" + tremp.endStation.name + "</td></tr>" +
-            "<tr><td>" + tremp.desiredTimeType + ":</td><td>" + tremp.desiredTime + "</td></tr>"
-        "<tr><td># Switches:</td><td>" + tremp.maxNumberOfConnections + "</td></tr>" ;
-        // "<tr><td>To:</td><td>" + ride.toStation.name + "</td></tr>" +
-        // "<tr><td>To:</td><td>" + ride.toStation.name + "</td></tr>" +
-        // "<tr><td>To:</td><td>" + ride.toStation.name + "</td></tr>" +
-        $(trempNode).find("#Tremp-table").append(htmlNodeToAdd);
-        $(trempNode).find(".first-btn").attr("id", "tremp-s:" +ride.rideID);
-        $(trempNode).find(".second-btn").attr("id", "tremp-f:" +ride.rideID);
-
-        $("#Tremps").append(trempNode);
-    });
-}
+// function addTremps(tremps){
+//     clearTrempList();
+//     tremps.forEach(function (tremp) {
+//         var trempNode = $("#dummyTremp li.Product")[0].cloneNode(true);
+//         $(trempNode).find(".Product-title").text(tremp.id);
+//
+//         var htmlNodeToAdd = "<tr><td>User:</td><td>" + tremp.user.name + "</td></tr>" +
+//             "<tr><td>From:</td><td>" + tremp.startStation.name + "</td></tr>" +
+//             "<tr><td>To:</td><td>" + tremp.endStation.name + "</td></tr>" +
+//             "<tr><td>" + tremp.desiredTimeType + ":</td><td>" + tremp.desiredTime + "</td></tr>"
+//         "<tr><td># Switches:</td><td>" + tremp.maxNumberOfConnections + "</td></tr>" ;
+//         // "<tr><td>To:</td><td>" + ride.toStation.name + "</td></tr>" +
+//         // "<tr><td>To:</td><td>" + ride.toStation.name + "</td></tr>" +
+//         // "<tr><td>To:</td><td>" + ride.toStation.name + "</td></tr>" +
+//         $(trempNode).find("#Tremp-table").append(htmlNodeToAdd);
+//         $(trempNode).find(".first-btn").attr("id", "tremp-s:" +ride.rideID);
+//         $(trempNode).find(".second-btn").attr("id", "tremp-f:" +ride.rideID);
+//
+//         $("#Tremps").append(trempNode);
+//     });
+// }
 
 
 //TODO: choose correct fields - currently same as tremp

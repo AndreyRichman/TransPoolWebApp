@@ -71,6 +71,31 @@ function timelineShowRide(ride) {
     });
 }
 
+function timelineShowTremp(tremp){
+
+    var startStationName = tremp.startStation.name;
+    var endStationName = tremp.endStation.name;
+    clearTimeLineList();
+
+    var leavingTime = "?";
+    var arriveTime = "?";
+
+    var desiredTime = tremp.desiredTime;
+
+    if (tremp.schedule.maxDiffInMinutes > 0){
+        desiredTime = desiredTime + "(+/- " + tremp.schedule.maxDiffInMinutes +" minutes)";
+    }
+
+    if (tremp.desiredTimeType === "ARRIVE"){
+        arriveTime = desiredTime;
+    } else {
+        leavingTime = desiredTime;
+    }
+
+    addBlueTimelineNode(leavingTime, startStationName);
+    addBlueTimelineNode(arriveTime, endStationName);
+}
+
 
 // function addRide(ride) {
 //     var rideNode = $("#dummyRide li.Product")[0].cloneNode(true);

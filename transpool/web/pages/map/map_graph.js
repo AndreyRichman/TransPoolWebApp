@@ -762,6 +762,8 @@ function colorEdgesInGreen(coordEdges) {
     });
 }
 
+
+
 function graphShowRide(ride){
     clearAllEdges();
     clearAllNodes();
@@ -777,7 +779,25 @@ function graphShowRide(ride){
         colorEdgeInRed(x2, y2, x1, y1);
     });
 
+    var x1 = ride.fromStation.coordinate.x;
+    var y1 = ride.fromStation.coordinate.y;
+    var x2 = ride.toStation.coordinate.x;
+    var y2 = ride.toStation.coordinate.y;
 
+    colorNodeInGreen(x1, y1);
+    colorNodeInRed(x2, y2);
 
+}
+
+function graphShowTremp(tremp){
+    clearAllEdges();
+    clearAllNodes();
+
+    var x1 = tremp.startStation.coordinate.x;
+    var y1 = tremp.startStation.coordinate.y;
+    var x2 = tremp.endStation.coordinate.x;
+    var y2 = tremp.endStation.coordinate.y;
+    colorNodeInGreen(x1, y1);
+    colorNodeInRed(x2, y2);
 }
 

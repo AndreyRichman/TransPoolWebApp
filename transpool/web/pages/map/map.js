@@ -58,7 +58,7 @@ function saveLocalCopyOfMapData(data){
     });
 
     data.allTrempRequests.forEach(function (tremp) {
-        var trempID = tremp.rideID;
+        var trempID = tremp.id;
         ALL_TREMPS[trempID] = tremp;
     });
 
@@ -78,7 +78,8 @@ function updateMapWindow(){
             saveLocalCopyOfMapData(data);
 
             initializeMap(data);
-            addRides(data.allRides);
+            updateRidesList(data.allRides);
+            updateTrempsCards(data.allTrempRequests);
         },
         error: function (data) {
             alert(data);
@@ -101,7 +102,8 @@ function updateRideAndTrempInfo(){
         dataType: "json",
         success: function (data){
             saveLocalCopyOfMapData(data);
-            addRides(data.allRides);
+            updateRidesList(data.allRides);
+            updateTrempsCards(data.allTrempRequests);
         },
         error: function (data) {
             alert(data);
@@ -117,7 +119,8 @@ function showRide(idStr){
 
 function showTremp(idStr){
     var id = parseInt(idStr.split(":")[1]);
-    //timelineShowTremp(ALL_TREMPS[id]);
+    timelineShowTremp(ALL_TREMPS[id]);
+    graphShowTremp(ALL_TREMPS[id]);
 }
 
 function showMatchRide(idStr){
