@@ -14,9 +14,11 @@ public class TrempRequestWrapper {
 //    private String userName;
     private int maxNumberOfConnections;
     private RideForTrempWrapper selectedRide = null;
+    private boolean rideAssigned = false;
     private RequestSchedule schedule;
     private String desiredTimeType;
     private String desiredTime;
+    private int matchID;
 
     public TrempRequestWrapper(TrempRequest trempRequest) {
         this.id = trempRequest.getID();
@@ -30,7 +32,11 @@ public class TrempRequestWrapper {
         this.desiredTimeType = trempRequest.getSchedule().getDesiredTimeType().name();
         this.desiredTime = trempRequest.getSchedule().getDesiredDateTimeAccordingToTimeType().toLocalTime().toString();
         RideForTremp matchedTremp = trempRequest.getSelectedRide();
-        this.selectedRide = matchedTremp != null ? new RideForTrempWrapper(matchedTremp) : null;
+        if (matchedTremp != null)
+            this.selectedRide = new RideForTrempWrapper(matchedTremp);
+        this.rideAssigned = matchedTremp != null;
+        this.matchID = trempRequest.getSelectedRide() != null ? trempRequest.getSelectedRide().getID() : 0;
+
     }
 
     public boolean trempIsNotMatched(){

@@ -159,7 +159,7 @@ $("#myform").submit(function () {
   var searchParams = new URLSearchParams(window.location.search);
   var mapIDParam = parseInt(searchParams.get('mapID'));
 
-  requestData = {
+  var requestData = {
     time: time,
     day: day,
     startStation: startStation,
@@ -170,17 +170,19 @@ $("#myform").submit(function () {
     connections: connections
   };
 
-  alert("sending request with data" + JSON.stringify(requestData));
+  // alert("sending request with data" + JSON.stringify(requestData));
   $.ajax({
     url: "/transpool_war_exploded/tremp",
     method: "POST",
     data: requestData,
     dataType: "json",
     success: function (data){
-      alert(JSON.stringify(data));
+      $("div#visibleHandler").css("visibility", "hidden").css("display", "none");
+      $("div#showMe").css("visibility", "visible").css("display", "inline-block");
+      // alert(JSON.stringify(data));
     },
     error: function (data) {
-      alert(JSON.stringify(data));
+      // alert(JSON.stringify(data));
     }
   });
 

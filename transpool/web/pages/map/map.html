@@ -19,11 +19,6 @@
         <i class="fas fa-bars header__menu"></i>
     </div>
 
-    <header class="header">
-        <div class="header__search">Search...</div>
-        <div class="header__avatar">Your face</div>
-    </header>
-
     <aside class="sidenav">
         <div class="sidenav__close-icon">
             <i class="fas fa-times sidenav__brand-close"></i>
@@ -31,10 +26,7 @@
         <ul class="sidenav__list">
             <li href="#" class="trigger sidenav__list-item" data-izimodal-open="#newride-modal" id="99" data-izimodal-transitionin="fadeInDown">Add Ride</li>
             <li class="sidenav__list-item" data-izimodal-open="#newtremp-modal" data-izimodal-transitionin="fadeInDown">Add Tremp Request</li>
-<!--            <li class="sidenav__list-item">Add Ride</li>-->
-<!--            <li class="sidenav__list-item">Add Tremp Request</li>-->
-<!--            <li class="sidenav__list-item">Item Three</li>-->
-<!--            <li class="sidenav__list-item">Item Four</li>-->
+
             <li class="sidenav__list-item" onclick="goToMainPage()"> < Go Back to All Maps</li>
         </ul>
     </aside>
@@ -60,127 +52,19 @@
 
 
                 <ul id="timeline-list" class="timeline">
-<!--                    <li class="timeline-line"></li>-->
-<!--                    <li class="timeline-item">-->
-<!--                        <div class="timeline-item__timestamp">-->
-<!--                            <div class="dot"></div>-->
-<!--                            <time>08:30</time>-->
-<!--                            <div>Tel Aviv</div>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="timeline-item">-->
-<!--                        <div class="timeline-item__timestamp">-->
-<!--                            <div class="dot"></div>-->
-<!--                            <time>09:30</time>-->
-<!--                            <div>-->
-<!--                                AAAAAAAAA-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="timeline-item__content">-->
-<!--                            <div>-->
-<!--                                Joinin:-->
-<!--                            </div>-->
-<!--                            <div>-->
-<!--                                Leaving:-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="timeline-item">-->
-<!--                        <div class="timeline-item__timestamp">-->
-<!--                            <div class="dot"></div>-->
-<!--                            <time>09:30</time>-->
-<!--                            <div>-->
-<!--                                AAAAAAAAA-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="timeline-item__content">-->
-<!--                            Joinin:, Leaving:-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="timeline-item">-->
-<!--                        <div class="timeline-item__timestamp">-->
-<!--                            <div class="dot"></div>-->
-<!--                            <time>09:30</time>-->
-<!--                            <div>-->
-<!--                                AAAAAAAAA-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="timeline-item__content">-->
-<!--                            Joinin:, Leaving:-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="timeline-item">-->
-<!--                        <div class="timeline-item__timestamp">-->
-<!--                            <div class="dot"></div>-->
-<!--                            <time>09:30</time>-->
-<!--                            <div>-->
-<!--                                AAAAAAAAA-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="timeline-item__content">-->
-<!--                            Joinin:, Leaving:-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="timeline-item">-->
-<!--                        <div class="timeline-item__timestamp">-->
-<!--                            <div class="dot"></div>-->
-<!--                            <time>09:30</time>-->
-<!--                            <div>-->
-<!--                                AAAAAAAAA-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="timeline-item__content">-->
-<!--                            Joinin:, Leaving:-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="timeline-item">-->
-<!--                        <div class="timeline-item__timestamp">-->
-<!--                            <div class="dot"></div>-->
-<!--                            <time>09:30</time>-->
-<!--                            <div>-->
-<!--                                AAAAAAAAA-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="timeline-item__content">-->
-<!--                            Joinin:, Leaving:-->
-<!--                        </div>-->
-<!--                    </li>-->
+
                 </ul>
 
-
-
-
-
-
             </div>
-<!--            <div class="card">Card</div>-->
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         <div class="ProductPicker">
             <nav class="ProductPicker-nav">
-<!--                <a href="#Rides" class="NavItem NavItem&#45;&#45;is-active">Rides</a>-->
-<!--                <a href="#Tremps" class="NavItem">Tremps</a>-->
-<!--                <a href="#Matches" class="NavItem" style="background: white">Find Match</a>-->
-                <button class="NavItem NavItem&#45;&#45;is-active" >Rides</button>
-                <button class="NavItem" >Tremps</button>
-                <button class="NavItem" >Find Match</button>
+
+                <button id="nav-rides" class="NavItem NavItem&#45;&#45;is-active" >Rides</button>
+                <button id="nav-tremps"  class="NavItem" >Tremps</button>
+                <button id="nav-matches" class="NavItem" disabled>Select A Tremp</button>
             </nav>
 
             <div class="ProductListWindow">
@@ -193,115 +77,12 @@
                 </ul>
 
                 <ul id="MatchesForTremp" class="ProductList ProductList--is-hidden">
-                    <li class="Product">
-                        <div class="Product-title"> 1274</div>
-                        <i class="Product-icon" ><img src="parts/menu/trempMatch.png" style="width: 60px; height: 50px"/> </i>
-                        <table class="Product-name">
-                            <tr>
-                                <td>From:</td> <td>Tel Aviv</td>
-                            </tr>
-                            <tr>
-                                <td>To:</td><td>Rishon</td>
-                            </tr>
-                            <tr>
-                                <td>PPK:</td><td>4$</td>
-                            </tr>
-                            <tr>
-                                <td>Capacity:</td><td>4</td>
-                            </tr>
-                        </table>
 
-                        <!--                        </a>-->
-                        <span class="Product-price">30$</span>
-                        <button class="Product-buyCTA">Show</button>
-                        <button class="Product-buyCTA">Match</button>
-                    </li>
-                    <li class="Product">
-                        <div class="Product-title"> 1274</div>
-                        <i class="Product-icon" ><img src="parts/menu/trempMatch.png" style="width: 60px; height: 50px"/> </i>
-                        <table class="Product-name">
-                            <tr>
-                                <td>From:</td> <td>Tel Aviv</td>
-                            </tr>
-                            <tr>
-                                <td>To:</td><td>Rishon</td>
-                            </tr>
-                            <tr>
-                                <td>PPK:</td><td>4$</td>
-                            </tr>
-                            <tr>
-                                <td>Capacity:</td><td>4</td>
-                            </tr>
-                        </table>
-
-                        <!--                        </a>-->
-                        <span class="Product-price">20$</span>
-                        <button class="Product-buyCTA">Show</button>
-                        <button class="Product-buyCTA">Match</button>
-                    </li>
-                    <li class="Product">
-                        <div class="Product-title"> 1274</div>
-                        <i class="Product-icon" ><img src="parts/menu/trempMatch.png" style="width: 60px; height: 50px"/> </i>
-                        <table class="Product-name">
-                            <tr>
-                                <td>From:</td> <td>Tel Aviv</td>
-                            </tr>
-                            <tr>
-                                <td>To:</td><td>Rishon</td>
-                            </tr>
-                            <tr>
-                                <td>PPK:</td><td>4$</td>
-                            </tr>
-                            <tr>
-                                <td>Capacity:</td><td>4</td>
-                            </tr>
-                        </table>
-
-                        <!--                        </a>-->
-                        <span class="Product-price">10$</span>
-                        <button class="Product-buyCTA">Show</button>
-                        <button class="Product-buyCTA">Match</button>
-                    </li>
 
                 </ul>
             </div>
         </div>
-<!--</div>-->
 
-
-
-
-
-
-
-
-<div class="main-overview">
-    <div class="overviewcard">
-        <div class="overviewcard__icon">Overview</div>
-        <div class="overviewcard__info">Card</div>
-    </div>
-    <div class="overviewcard">
-        <div class="overviewcard__icon">Overview</div>
-        <div class="overviewcard__info">Card</div>
-    </div>
-    <div class="overviewcard">
-        <div class="overviewcard__icon">Overview</div>
-        <div class="overviewcard__info">Card</div>
-    </div>
-    <div class="overviewcard">
-        <div class="overviewcard__icon">Overview</div>
-        <div class="overviewcard__info">Card</div>
-    </div>
-    <div class="overviewcard">
-        <div class="overviewcard__icon">Overview</div>
-        <div class="overviewcard__info">Card</div>
-    </div>
-</div>
-
-<div class="main-header">
-    <div class="main-header__heading">Hello User</div>
-    <div class="main-header__updates">Recent Items</div>
-</div>
 
     </main>
 
@@ -311,24 +92,23 @@
         <li class="timeline-item no-data">
             <div class="timeline-item__timestamp">
                 <div class="dot"></div>
-                <time>08:30</time>
-                <div class="station-title">Tel Aviv</div>
+                <time></time>
+                <div class="station-title"></div>
             </div>
         </li>
         <li class="timeline-item yes-data">
             <div class="timeline-item__timestamp">
                 <div class="dot"></div>
-                <time>09:30</time>
+                <time></time>
                 <div class="station-title">
-                    AAAAAAAAA
                 </div>
             </div>
             <div class="timeline-item__content">
                 <div class="pick-data">
-                Joinin:
+
                 </div>
                 <div class="drop-data">
-                    Leaving:
+
                 </div>
             </div>
         </li>
@@ -357,33 +137,32 @@
         </table>
 
         <span class="Product-price"></span>
-        <button id="dummyTrempID" class="Product-buyCTA first-btn" onclick="showTremp(this.id)">Show</button>
-        <button id="f-1" class="Product-buyCTA second-btn" onclick="findMatchedForTremp(this.id)">Find Tremps</button>
+        <button class="Product-buyCTA first-btn" onclick="showTremp(this.id)">Show</button>
+        <button  class="Product-buyCTA second-btn" onclick="findMatchedForTremp(this.id)">Find Tremps</button>
     </li>
+    </div>
+    <div id="dummyAssignedTremp" style="display: none;">
+        <li class="Product">
+            <div class="Product-title"></div>
+            <i class="Product-icon" ><img src="parts/menu/assigned.png" style="width: 60px; height: 50px"/> </i>
+            <table id="Assigned-Tremp-table" class="Product-name">
+            </table>
+
+            <span class="Product-price"></span>
+            <button class="Product-buyCTA first-btn" onclick="showAssigendTremp(this.id)">Show</button>
+        </li>
     </div>
     <div id="dummyMatch" style="display: none;">
         <li class="Product">
-            <div class="Product-title"> 1274</div>
+            <div class="Product-title"> </div>
             <i class="Product-icon" ><img src="parts/menu/trempMatch.png" style="width: 60px; height: 50px"/> </i>
             <table id="Match-table" class="Product-name">
-                <tr>
-                    <td>From:</td> <td>Tel Aviv</td>
-                </tr>
-                <tr>
-                    <td>To:</td><td>Rishon</td>
-                </tr>
-                <tr>
-                    <td>PPK:</td><td>4$</td>
-                </tr>
-                <tr>
-                    <td>Capacity:</td><td>4</td>
-                </tr>
             </table>
 
             <!--                        </a>-->
-            <span class="Product-price">20$</span>
+            <span class="Product-price"></span>
             <button id="dummyMatchID" class="Product-buyCTA first-btn" onclick="showMatchRide(this.id)">Show</button>
-            <button id="m-1" class="Product-buyCTA second-btn" onclick="assignRide(this.id)">Assign Tremp</button>
+            <button id="m-1" class="Product-buyCTA second-btn" onclick="assignRide(this.id, this.value)">Assign Tremp</button>
         </li>
 
     </div>
@@ -391,11 +170,6 @@
 
     <!--    DUMMY STAFF ENDS HERE-->
 
-
-    <footer class="footer">
-        <div class="footer__copyright">&copy; 2018 MTH</div>
-        <div class="footer__signature">Made with love by pure genius</div>
-    </footer>
 </div>
 
 

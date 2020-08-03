@@ -5,15 +5,18 @@ import enums.DesiredTimeType;
 import enums.RepeatType;
 import exception.NoPathExistBetweenStationsException;
 import exception.NoRoadBetweenStationsException;
+import exception.TrempRequestNotExist;
 import transpool.logic.handler.EngineHandler;
 import transpool.logic.handler.LogicHandler;
 import transpool.logic.map.structure.Road;
 import transpool.logic.map.structure.Station;
 import transpool.logic.traffic.item.Ride;
+import transpool.logic.traffic.item.RideForTremp;
 import transpool.logic.traffic.item.TrempRequest;
 import transpool.logic.user.User;
 import utils.ServletUtils;
 import utils.SessionUtils;
+import wrappers.RideForTrempWrapper;
 import wrappers.RideWrapper;
 import wrappers.TrempRequestWrapper;
 
@@ -26,14 +29,41 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
-@WebServlet(name = "RideServlet", urlPatterns = { "/tremp"})
+@WebServlet(name = "TrempServlet", urlPatterns = { "/tremp"})
 public class TrempServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        resp.setContentType("application/json;charset=UTF-8");
+        String responseStr = "";
+        Gson gson = new Gson();
+
+        int logicId = Integer.parseInt(req.getParameter("mapID"));
+        int trempId =  Integer.parseInt(req.getParameter("trempID"));
+        int rideForTrempId = Integer.parseInt(req.getParameter("matchID"));
+
+        EngineHandler engineHandler =  ServletUtils.getEngineHandler(req.getServletContext());
+        LogicHandler logicHandler = engineHandler.getLogicHandlerById(logicId);
+
+        try {
+            TrempRequest trempRequest = logicHandler.getTrempRequestById(trempId);
+            RideForTremp chosenRide = logicHandler.getRideForTrempById(rideForTrempId);
+
+            trempRequest.assignRides(chosenRide);
+            chosenRide.assignTrempRequest(trempRequest);
+
+            responseStr = gson.toJson(new TrempRequestWrapper(trempRequest));
+
+        } catch (TrempRequestNotExist trempRequestNotExist) {
+            trempRequestNotExist.printStackTrace();
+        }
+
+        try (PrintWriter out = resp.getWriter()) {
+            out.print(responseStr);
+        }
     }
 
     @Override

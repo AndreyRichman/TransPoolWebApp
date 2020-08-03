@@ -4,14 +4,19 @@ import com.google.gson.Gson;
 import enums.RepeatType;
 import exception.NoRoadBetweenStationsException;
 import exception.NotSupportedRideRepeatTimeException;
+import exception.TrempRequestNotExist;
 import transpool.logic.handler.EngineHandler;
 import transpool.logic.handler.LogicHandler;
 import transpool.logic.map.structure.Road;
 import transpool.logic.traffic.item.Ride;
+import transpool.logic.traffic.item.RideForTremp;
+import transpool.logic.traffic.item.TrempRequest;
 import transpool.logic.user.User;
 import utils.ServletUtils;
 import utils.SessionUtils;
+import wrappers.RideForTrempWrapper;
 import wrappers.RideWrapper;
+import wrappers.TrempRequestWrapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,21 +26,80 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "RideServlet", urlPatterns = { "/ride"})
 public class RideServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        resp.setContentType("application/json;charset=UTF-8");
+        String responseStr = "";
+        List<RideForTrempWrapper> rideOptions = new LinkedList<>();
+        Gson gson = new Gson();
+
+        int logicId = Integer.parseInt(req.getParameter("mapID"));
+        int trempId =  Integer.parseInt(req.getParameter("trempID"));
+
+        EngineHandler engineHandler =  ServletUtils.getEngineHandler(req.getServletContext());
+        LogicHandler logicHandler = engineHandler.getLogicHandlerById(logicId);
+
+        try {
+            TrempRequest trempRequest = logicHandler.getTrempRequestById(trempId);
+
+            List<RideForTremp> allTremps = logicHandler.getAllPossibleTrempsForTrempRequest(trempRequest);
+
+            if (allTremps.size() > 0){
+                allTremps = allTremps.stream().limit(10).collect(Collectors.toList());
+                rideOptions = allTremps.stream().map(RideForTrempWrapper::new).collect(Collectors.toList());
+            } else {
+                rideOptions = new ArrayList<>();
+            }
+
+        } catch (TrempRequestNotExist trempRequestNotExist) {
+            trempRequestNotExist.printStackTrace();
+            rideOptions = new ArrayList<>();
+        }
+
+        responseStr = gson.toJson(rideOptions);
+
+        try (PrintWriter out = resp.getWriter()) {
+            out.print(responseStr);
+        }
+
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+//        resp.setContentType("application/json;charset=UTF-8");
+//        String responseStr = "";
+//        List<RideForTrempWrapper> rideOptions = new LinkedList<>();
+//        Gson gson = new Gson();
+//
+//        int logicId = Integer.parseInt(req.getParameter("mapID"));
+//        int trempId =  Integer.parseInt(req.getParameter("trempID"));
+//        int rideForTrempId = Integer.parseInt(req.getParameter("matchID"));
+//
+//        EngineHandler engineHandler =  ServletUtils.getEngineHandler(req.getServletContext());
+//        LogicHandler logicHandler = engineHandler.getLogicHandlerById(logicId);
+//
+//        try {
+//            TrempRequest trempRequest = logicHandler.getTrempRequestById(trempId);
+//            RideForTremp chosenRide = logicHandler.getRideForTrempById(rideForTrempId);
+//
+//            trempRequest.assignRides(chosenRide);
+//            chosenRide.assignTrempRequest(trempRequest);
+//
+//            responseStr = gson.toJson(new TrempRequestWrapper(trempRequest));
+//
+//        } catch (TrempRequestNotExist trempRequestNotExist) {
+//            trempRequestNotExist.printStackTrace();
+//        }
+//
+//        try (PrintWriter out = resp.getWriter()) {
+//            out.print(responseStr);
+//        }
     }
 
     @Override

@@ -23,24 +23,89 @@ $('.NavItem').click(function(evt) {
 //     $("p").append("<b>Appended text</b>");
 // });
 
+function addCardOfNotAssignedTremp(tremp){
+    var trempNode = $("#dummyTremp li.Product")[0].cloneNode(true);
+    $(trempNode).find(".Product-title").text(tremp.id);
+
+    // alert(JSON.stringify(tremp));
+
+    var htmlNodeToAdd =  "<tr><td>User:</td><td>" + tremp.user.name + "</td></tr>" +
+
+        "<tr><td>From:</td><td>" + tremp.startStation.name + "</td></tr>" +
+        "<tr><td>To:</td><td>" + tremp.endStation.name + "</td></tr>" +
+        "<tr><td>Want to:</td><td>" + tremp.desiredTimeType + "</td></tr>" +
+        "<tr><td>At:</td><td>" + tremp.desiredTime + "</td></tr>" +
+        "<tr><td>Max Swaps:</td><td>" + tremp.maxNumberOfConnections + "</td></tr>" +
+        "<tr><td>Status:</td><td>NOT-ASSIGNED</td></tr>" ;
+
+    $(trempNode).find("#Tremp-table").append(htmlNodeToAdd);
+    $(trempNode).find(".Product-buyCTA").attr("id", "tremp-s:" +tremp.id);
+    $("#Tremps").append(trempNode);
+}
+
+function removeTrempCard(tremp){
+    var id = tremp.id;
+
+    $("ul#Tremps li div.Product-title:contains(" + id + ")").parent().remove();
+}
+
+function addCardOfAssignedTremp(tremp){
+    var trempNode = $("#dummyAssignedTremp li.Product")[0].cloneNode(true);
+    $(trempNode).find(".Product-title").text(tremp.id);
+
+    var htmlNodeToAdd =  "<tr><td>User:</td><td>" + tremp.user.name + "</td></tr>" +
+
+        "<tr><td>From:</td><td>" + tremp.startStation.name + "</td></tr>" +
+        "<tr><td>To:</td><td>" + tremp.endStation.name + "</td></tr>" +
+        "<tr><td>Want to:</td><td>" + tremp.desiredTimeType + "</td></tr>" +
+        "<tr><td>At:</td><td>" + tremp.desiredTime + "</td></tr>" +
+        "<tr><td>Max Swaps:</td><td>" + tremp.maxNumberOfConnections + "</td></tr>" +
+        "<tr><td>Status:</td><td>ASSIGNED</td></tr>" ;
+
+    $(trempNode).find("#Assigned-Tremp-table").append(htmlNodeToAdd);
+    $(trempNode).find(".Product-buyCTA").attr("id", "tremp-s:" +tremp.id).attr("value", tremp.matchID);
+    $("#Tremps").append(trempNode);
+}
+
+function updateRidesForTrempCards(matches, trempID) {
+    clearMatchesForTrempList();
+
+    var LAST_FETCHED_MATCHES = {};
+
+    matches.forEach(function (match) {
+        LAST_FETCHED_MATCHES[match.id] = match;
+
+        var matchNode = $("#dummyMatch li.Product")[0].cloneNode(true);
+
+
+        $(matchNode).find(".Product-title").text(match.id);
+        var htmlNodeToAdd =  "<tr><td>Pickup Time:</td><td>" + match.startTime + "</td></tr>" +
+            "<tr><td>Arrive Time:</td><td>" + match.endTime + "</td></tr>" +
+            "<tr><td>Swaps:</td><td>" + match.stationSwaps + "</td></tr>" +
+            "<tr><td>AVG Fuel:</td><td>" + match.averageFuel + "</td></tr>" +
+            "<tr><td>AVG Rank:</td><td>" + match.averageRank + "</td></tr>";
+
+
+        $(matchNode).find("#Match-table").append(htmlNodeToAdd);
+        $(matchNode).find("span.Product-price").text(match.totalPrice);
+        $(matchNode).find("button.Product-buyCTA.first-btn").attr("id", "match-s:" + match.id).attr("value", trempID);
+        $(matchNode).find("button.Product-buyCTA.second-btn").attr("id", "match-a:" + match.id).attr("value", trempID);
+        $("#MatchesForTremp").append(matchNode);
+
+    });
+
+    return LAST_FETCHED_MATCHES;
+}
+
 function updateTrempsCards(tremps){
     clearTrempList();
     tremps.forEach(function (tremp) {
 
-        var trempNode = $("#dummyTremp li.Product")[0].cloneNode(true);
-        $(trempNode).find(".Product-title").text(tremp.id);
-
-        var htmlNodeToAdd =  "<tr><td>User:</td><td>" + tremp.user.name + "</td></tr>" +
-
-            "<tr><td>From:</td><td>" + tremp.startStation.name + "</td></tr>" +
-            "<tr><td>To:</td><td>" + tremp.endStation.name + "</td></tr>" +
-            "<tr><td>Want to:</td><td>" + tremp.desiredTimeType + "</td></tr>" +
-            "<tr><td>At:</td><td>" + tremp.desiredTime + "</td></tr>" +
-            "<tr><td>Max Swaps:</td><td>" + tremp.maxNumberOfConnections + "</td></tr>" ;
-
-        $(trempNode).find("#Tremp-table").append(htmlNodeToAdd);
-        $(trempNode).find(".Product-buyCTA").attr("id", "tremp-s:" +tremp.id);
-        $("#Tremps").append(trempNode);
+        if (tremp.rideAssigned){
+            addCardOfAssignedTremp(tremp);  //TODO add Assigned Tremp Card
+        } else {
+            addCardOfNotAssignedTremp(tremp);
+        }
     });
 
 

@@ -47,6 +47,8 @@ function initializeMap(mapData){
 
 var ALL_RIDES = {};
 var ALL_TREMPS = {};
+var LAST_FETCHED_MATCHES = {};
+// var ALL_ASSIGNED_MATCHES = {};
 
 function saveLocalCopyOfMapData(data){
     ALL_RIDES = {};
@@ -123,17 +125,83 @@ function showTremp(idStr){
     graphShowTremp(ALL_TREMPS[id]);
 }
 
-function showMatchRide(idStr){
-    var id = parseInt(idStr.split(":")[1]);
-    alert(id);
+function showAssigendTremp(idOfTremp) {
+    var id = parseInt(idOfTremp.split(":")[1]);
+    var selectedRide = ALL_TREMPS[id].selectedRide;
+
+    graphShowTremp(ALL_TREMPS[id]);
+    timelineShowMatch(selectedRide);
+    graphShowMatch(selectedRide);
+
 }
 
-function assignRide(idStr){
+function showMatchRide(idStr){
     var id = parseInt(idStr.split(":")[1]);
-    alert(id);
+    timelineShowMatch(LAST_FETCHED_MATCHES[id]);
+    graphShowMatch(LAST_FETCHED_MATCHES[id]);
+    // alert(id);
+}
+
+function assignRide(matchIdStr, requestID){
+    var matchID = parseInt(matchIdStr.split(":")[1]);
+    var searchParams = new URLSearchParams(window.location.search);
+    var mapIDParam = searchParams.get('mapID');
+
+    // ALL_ASSIGNED_MATCHES[matchID] = LAST_FETCHED_MATCHES[matchID];
+
+    $.ajax({
+        url: "/transpool_war_exploded/tremp",
+        data: {mapID: mapIDParam, trempID: requestID, matchID: matchID},
+        method: "GET",
+        dataType: "json",
+        success: function (data){
+
+            //DELETE TREMPCARD
+            // removeTrempCard(ALL_TREMPS[requestID]);
+
+            // addCardOfAssignedTremp(ALL_TREMPS[requestID]);
+
+            updateRideAndTrempInfo();
+
+            //ADD MATCHED TREMPCARD
+            $("#nav-tremps").click();
+
+        },
+        error: function (data) {
+            alert(JSON.stringify(data));
+        }
+    });
+
+    // assignMatchToTremp(LAST_FETCHED_MATCHES[matchID], ALL_TREMPS[requestID]);
+
 }
 
 function findMatchedForTremp(idStr) {
     var id = idStr.split(":")[1];
-    alert(id);
+    var searchParams = new URLSearchParams(window.location.search);
+    var mapIDParam = searchParams.get('mapID');
+    $.ajax({
+        url: "/transpool_war_exploded/ride",
+        data: {mapID: mapIDParam, trempID: id},
+        //method: "GET",
+        dataType: "json",
+        success: function (data){
+            // alert(JSON.stringify(data));
+            // MAP_OBJ = data;
+            // saveLocalCopyOfMapData(data);
+
+            // initializeMap(data);
+            // updateRidesList(data.allRides);
+            // updateTrempsCards(data.allTrempRequests);
+            LAST_FETCHED_MATCHES = updateRidesForTrempCards(data, id);
+            $("#nav-matches").click();
+
+        },
+        error: function (data) {
+            alert(JSON.stringify(data));
+        }
+    });
+
+
+    // alert(id);
 }
