@@ -26,12 +26,18 @@ public class TrafficManager {
     Map<Integer, Ride> mapIdToRide;
     Map<Integer, TrempRequest> mapIdToTrempReuqest;
 
+    private Map<Integer, List<RideForTremp>> cachedRidesForTremp;
+    private Map<Integer, RideForTremp> id2TrempOption;
+
     public TrafficManager() {
 
         this.allRides = new ArrayList<>();
         this.allTrempRequests = new ArrayList<>();
         this.mapIdToRide = new HashMap<>();
         this.mapIdToTrempReuqest = new HashMap<>();
+
+        this.cachedRidesForTremp = new HashMap<>();
+        this.id2TrempOption = new HashMap<>();
     }
 
     public List<Ride> getAllRides() {
@@ -49,6 +55,7 @@ public class TrafficManager {
     public void addRide(Ride ride){
         this.allRides.add(ride);
         this.mapIdToRide.put(ride.getID(), ride);
+        this.cachedRidesForTremp.clear();
     }
 
     public List<TrempRequest> getAllTrempRequests() {
@@ -439,11 +446,28 @@ public class TrafficManager {
 //        return allRideOptions;
 //    }
 
+    private void storeTrempOptions(int trempRequestID, List<RideForTremp> foundOptions){
+        cachedRidesForTremp.put(trempRequestID, foundOptions);
+
+        if (foundOptions.size() > 0){
+            foundOptions.forEach(rideForTremp -> id2TrempOption.put(rideForTremp.getID(), rideForTremp));
+        }
+    }
+
+    public RideForTremp getRideForTrempById(int idOfRideForTremp){
+        return id2TrempOption.get(idOfRideForTremp);
+    }
+
     public List<RideForTremp> getAllPossibleTrempsForTrempRequest(TrempRequest trempRequest){
 
+        if (cachedRidesForTremp.containsKey(trempRequest.getID())){
+            return cachedRidesForTremp.get(trempRequest.getID());
+        } else {
+
+
 //        List<RideForTremp> relevantByRouteOptions = getRideOptions(maxNumberOfConnections, start, end, dayOfTrempRequest);
-        List<RideForTremp> relevantByRouteOptions = getAllRideOptions(trempRequest);//getRideOptions(trempRequest);
-        relevantByRouteOptions.sort(Comparator.comparingInt(RideForTremp::getNumOfParts));
+            List<RideForTremp> relevantByRouteOptions = getAllRideOptions(trempRequest);//getRideOptions(trempRequest);
+            relevantByRouteOptions.sort(Comparator.comparingInt(RideForTremp::getNumOfParts));
 
 
 //        Function<RideForTremp, LocalDateTime> rideCorrectTimeGetter = trempRequest.getDesiredTimeType() == DesiredTimeType.DEPART ?
@@ -452,7 +476,9 @@ public class TrafficManager {
 //        return relevantByRouteOptions.stream()
 //                .filter(rideForTremp -> rideCorrectTimeGetter.apply(rideForTremp).equals(trempRequest.getDesiredTime()))
 //                .collect(Collectors.toList());
-        return relevantByRouteOptions;
+            storeTrempOptions(trempRequest.getID(), relevantByRouteOptions);
+            return relevantByRouteOptions;
+        }
     }
 
     public List<Ride> getAllRidesRunningOn(LocalDateTime currentDateTime) {

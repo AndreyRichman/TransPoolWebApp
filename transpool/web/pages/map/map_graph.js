@@ -99,28 +99,28 @@ GRAPH = null;
         // svg.on("mouseup", function(d){thisGraph.svgMouseUp.call(thisGraph, d);});
 
         // listen for dragging
-        var dragSvg = d3.behavior.zoom()
-            .on("zoom", function(){
-                if (d3.event.sourceEvent.shiftKey){
-                    // TODO  the internal d3 state is still changing
-                    return false;
-                } else{
-                    thisGraph.zoomed.call(thisGraph);
-                }
-                return true;
-            })
-            .on("zoomstart", function(){
-                var ael = d3.select("#" + thisGraph.consts.activeEditId).node();
-                if (ael){
-                    ael.blur();
-                }
-                if (!d3.event.sourceEvent.shiftKey) d3.select('body').style("cursor", "move");
-            })
-            .on("zoomend", function(){
-                d3.select('body').style("cursor", "auto");
-            });
-
-        svg.call(dragSvg).on("dblclick.zoom", null);
+        // var dragSvg = d3.behavior.zoom()
+        //     .on("zoom", function(){
+        //         if (d3.event.sourceEvent.shiftKey){
+        //             // TODO  the internal d3 state is still changing
+        //             return false;
+        //         } else{
+        //             thisGraph.zoomed.call(thisGraph);
+        //         }
+        //         return true;
+        //     })
+        //     .on("zoomstart", function(){
+        //         var ael = d3.select("#" + thisGraph.consts.activeEditId).node();
+        //         if (ael){
+        //             ael.blur();
+        //         }
+        //         if (!d3.event.sourceEvent.shiftKey) d3.select('body').style("cursor", "move");
+        //     })
+        //     .on("zoomend", function(){
+        //         d3.select('body').style("cursor", "auto");
+        //     });
+        //
+        // svg.call(dragSvg).on("dblclick.zoom", null);
 
         // listen for resize
         // window.onresize = function(){thisGraph.updateWindow(svg);};
@@ -762,6 +762,8 @@ function colorEdgesInGreen(coordEdges) {
     });
 }
 
+
+
 function graphShowRide(ride){
     clearAllEdges();
     clearAllNodes();
@@ -777,7 +779,58 @@ function graphShowRide(ride){
         colorEdgeInRed(x2, y2, x1, y1);
     });
 
+    var x1 = ride.fromStation.coordinate.x;
+    var y1 = ride.fromStation.coordinate.y;
+    var x2 = ride.toStation.coordinate.x;
+    var y2 = ride.toStation.coordinate.y;
 
+    colorNodeInGreen(x1, y1);
+    colorNodeInRed(x2, y2);
 
+}
+
+function colorPartsOfRideInRed(parts){
+    parts.forEach(function (part) {
+        var x1 = part.road.fromCoordinate.x;
+        var y1 = part.road.fromCoordinate.y;
+        var x2 = part.road.toCoordinate.x;
+        var y2 = part.road.toCoordinate.y;
+
+        colorEdgeInRed(x1, y1, x2, y2);
+    });
+}
+function colorPartsOfRideInGreen(parts){
+    parts.forEach(function (part) {
+        var x1 = part.road.fromCoordinate.x;
+        var y1 = part.road.fromCoordinate.y;
+        var x2 = part.road.toCoordinate.x;
+        var y2 = part.road.toCoordinate.y;
+
+        colorEdgeInGreen(x1, y1, x2, y2);
+    });
+}
+
+function graphShowMatch(match) {
+    clearAllEdges();
+    var isRed = true;
+    match.subRides.forEach(function (subRide) {
+        if (isRed) {
+            colorPartsOfRideInRed(subRide.selectedPartsOfRide);
+            isRed = false;
+        } else {
+            colorPartsOfRideInGreen(subRide.selectedPartsOfRide);
+        }
+    });
+}
+function graphShowTremp(tremp){
+    clearAllEdges();
+    clearAllNodes();
+
+    var x1 = tremp.startStation.coordinate.x;
+    var y1 = tremp.startStation.coordinate.y;
+    var x2 = tremp.endStation.coordinate.x;
+    var y2 = tremp.endStation.coordinate.y;
+    colorNodeInGreen(x1, y1);
+    colorNodeInRed(x2, y2);
 }
 

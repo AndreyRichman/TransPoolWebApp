@@ -36,7 +36,7 @@ public enum RepeatType {
             return 1;
         }
     },
-    BIDAIILY {
+    BIDAILY {
         @Override
         int getDevider() {
             return 2;
@@ -84,7 +84,7 @@ public enum RepeatType {
                 break;
             }
             case "BiDaily" : {
-                type = RepeatType.BIDAIILY;
+                type = RepeatType.BIDAILY;
                 break;
             }
             case "Weekly" : {

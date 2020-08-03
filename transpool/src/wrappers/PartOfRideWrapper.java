@@ -17,6 +17,8 @@ public class PartOfRideWrapper {
     private String endTime;
     private List<Trempist> joinedTrempists;
     private List<Trempist> leavingTrempists;
+    private String fromStation;
+    private String toStation;
 
     public PartOfRideWrapper(PartOfRide partOfRide) {
         this.road = new RoadWrapper(partOfRide.getRoad());
@@ -27,5 +29,7 @@ public class PartOfRideWrapper {
         this.endTime = partOfRide.getSchedule().getEndTime().toString();
 //        this.joinedTrempists = partOfRide.getTrempistsManager().getJustJoinedTrempistsAllDays();
 //        partOfRide.getTrempistsManager().getJustJoinedTrempistsAllDays()
+        this.fromStation = partOfRide.getRoad().getStartStation().getName();
+        this.toStation = partOfRide.getRoad().getEndStation().getName();
     }
 }

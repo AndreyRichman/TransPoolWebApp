@@ -10,11 +10,9 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 50px 1fr 50px;
+    grid-template-rows: 1fr;
     grid-template-areas:
-            'header'
-            'main'
-            'footer';
+            'main';
     height: 100vh;
     /*width: 1000px;*/
 }
@@ -100,7 +98,8 @@ body {
     grid-area: main;
     /*background-color: #8fd4d9;*/
     background-color: white;
-    width: auto;
+    width: 1200px;
+    /*width: auto;*/
 }
 
 .main-header {
@@ -137,7 +136,7 @@ body {
 .main-cards {
     column-count: 2;
     column-gap: 20px;
-    margin: 20px;
+    margin: 10px;
 }
 
 /*div.main-cards div:nth-child(1){*/
@@ -166,16 +165,16 @@ body {
 
 /* Force varying heights to simulate dynamic content */
 .card:first-child {
-    height: 485px;
-    width: 600px;
+    height: 480px;
+    width: 700px;
     /*column-span: 2;*/
     /*column-span: all;*/
 }
 
 .card:nth-child(2) {
-    height: 485px;
+    height: 480px;
     left: 50%;
-    width: 300px;
+    width: 200px;
     /*height: 230px;*/
 }
 

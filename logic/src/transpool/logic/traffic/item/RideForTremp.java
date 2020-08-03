@@ -55,6 +55,7 @@ public class RideForTremp {
         return this.subRides.stream().mapToDouble(SubRide::getAverageFuelUsage).average().orElse(0);
     }
 
+
     public double getTotalDistance(){
         return this.subRides.stream().mapToDouble(SubRide::getTotalDistance).sum();
     }

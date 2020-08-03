@@ -229,6 +229,10 @@ public class LogicHandler {
         return trafficManager.getAllPossibleTrempsForTrempRequest(trempRequest);
     }
 
+    public RideForTremp getRideForTrempById(int id){
+        return trafficManager.getRideForTrempById(id);
+    }
+
     public void addRide(Ride rideToAdd){
         this.trafficManager.addRide(rideToAdd);
     }
