@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transpool</title>
+    <link rel="stylesheet" type="text/css" href="map.css">
+    <link rel="stylesheet" type="text/css" href="map_graph.css" />
+    <link rel="stylesheet" type="text/css" href="parts/menu/menu.scss"/>
+    <link rel="stylesheet" type="text/css" href="parts/timeline/timeline.css"/>
+
+
+    <link rel="stylesheet" type="text/css" href="../mainpage/modal/css/iziModal.css"/>
+
+
+</head>
+<body>
+<div class="grid-container">
+    <div class="menu-icon">
+        <i class="fas fa-bars header__menu"></i>
+    </div>
+
+    <aside class="sidenav">
+        <div class="sidenav__close-icon">
+            <i class="fas fa-times sidenav__brand-close"></i>
+        </div>
+        <ul class="sidenav__list">
+            <li href="#" class="trigger sidenav__list-item" data-izimodal-open="#newride-modal" id="99" data-izimodal-transitionin="fadeInDown">Add Ride</li>
+            <li class="sidenav__list-item" data-izimodal-open="#newtremp-modal" data-izimodal-transitionin="fadeInDown">Add Tremp Request</li>
+
+            <li class="sidenav__list-item" onclick="goToMainPage()"> < Go Back to All Maps</li>
+        </ul>
+    </aside>
+
+    <main class="main">
+
+
+<!--        MODALS START-->
+        <div id="newride-modal" data-iziModal-fullscreen="false"  data-iziModal-title="Add New Ride" >
+        </div>
+
+        <div id="newtremp-modal" data-iziModal-fullscreen="false"  data-iziModal-title="Add New Tremp Request" >
+        </div>
+<!--        MODALS END-->
+
+
+        <div class="main-cards">
+            <div id="map-container" class="card">Map
+                <div id="world-map"></div>
+            </div>
+
+            <div id="timeline-container" class="card" style="overflow: auto;">Route
+
+
+                <ul id="timeline-list" class="timeline">
+
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="ProductPicker">
+            <nav class="ProductPicker-nav">
+
+                <button id="nav-rides" class="NavItem NavItem&#45;&#45;is-active" >Rides</button>
+                <button id="nav-tremps"  class="NavItem" >Tremps</button>
+                <button id="nav-matches" class="NavItem" disabled>Select A Tremp</button>
+            </nav>
+
+            <div class="ProductListWindow">
+                <ul id="Rides" class="ProductList">
+                </ul>
+
+
+                <ul id="Tremps" class="ProductList ProductList--is-hidden">
+
+                </ul>
+
+                <ul id="MatchesForTremp" class="ProductList ProductList--is-hidden">
+
+
+                </ul>
+            </div>
+        </div>
+
+
+    </main>
+
+<!--    DUMMY STAFF STARTS HERE-->
+
+    <div id="dummyTimelineNode" style="display: none;">
+        <li class="timeline-item no-data">
+            <div class="timeline-item__timestamp">
+                <div class="dot"></div>
+                <time></time>
+                <div class="station-title"></div>
+            </div>
+        </li>
+        <li class="timeline-item yes-data">
+            <div class="timeline-item__timestamp">
+                <div class="dot"></div>
+                <time></time>
+                <div class="station-title">
+                </div>
+            </div>
+            <div class="timeline-item__content">
+                <div class="pick-data">
+
+                </div>
+                <div class="drop-data">
+
+                </div>
+            </div>
+        </li>
+
+        <li class="timeline-line"></li>
+    </div>
+
+    <div id="dummyRide" style="display: none;">
+    <li class="Product" >
+        <div class="Product-title"></div>
+        <i class="Product-icon" ><img src="parts/menu/car.png" style="width: 70px; height: 40px"/> </i>
+        <table id="Ride-table" class="Product-name">
+        </table>
+
+        <!--                        </a>-->
+        <span class="Product-price"></span>
+        <button id="dummyRideID" class="Product-buyCTA first-btn" onclick="showRide(this.id)" >Show</button>
+    </li>
+    </div>
+
+    <div id="dummyTremp" style="display: none;">
+    <li class="Product">
+        <div class="Product-title"></div>
+        <i class="Product-icon" ><img src="parts/menu/tremp.png" style="width: 40px; height: 40px"/> </i>
+        <table id="Tremp-table" class="Product-name">
+        </table>
+
+        <span class="Product-price"></span>
+        <button class="Product-buyCTA first-btn" onclick="showTremp(this.id)">Show</button>
+        <button  class="Product-buyCTA second-btn" onclick="findMatchedForTremp(this.id)">Find Tremps</button>
+    </li>
+    </div>
+    <div id="dummyAssignedTremp" style="display: none;">
+        <li class="Product">
+            <div class="Product-title"></div>
+            <i class="Product-icon" ><img src="parts/menu/assigned.png" style="width: 60px; height: 50px"/> </i>
+            <table id="Assigned-Tremp-table" class="Product-name">
+            </table>
+
+            <span class="Product-price"></span>
+            <button class="Product-buyCTA first-btn" onclick="showAssigendTremp(this.id)">Show</button>
+        </li>
+    </div>
+    <div id="dummyMatch" style="display: none;">
+        <li class="Product">
+            <div class="Product-title"> </div>
+            <i class="Product-icon" ><img src="parts/menu/trempMatch.png" style="width: 60px; height: 50px"/> </i>
+            <table id="Match-table" class="Product-name">
+            </table>
+
+            <!--                        </a>-->
+            <span class="Product-price"></span>
+            <button id="dummyMatchID" class="Product-buyCTA first-btn" onclick="showMatchRide(this.id)">Show</button>
+            <button id="m-1" class="Product-buyCTA second-btn" onclick="assignRide(this.id, this.value)">Assign Tremp</button>
+        </li>
+
+    </div>
+
+
+    <!--    DUMMY STAFF ENDS HERE-->
+
+</div>
+
+
+
+
+<script type="text/javascript" src="../../jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="map.js"></script>
+<script src="//d3js.org/d3.v3.js" charset="utf-8"></script>
+<script type="text/javascript" src="map_graph.js"></script>
+<script type="text/javascript" src="parts/menu/menu.js"></script>
+<script type="text/javascript" src="parts/timeline/timeline.js"></script>
+
+<script type="text/javascript" src="../mainpage/modal/js/iziModal.js"></script>
+
+<script>
+    var searchParams = new URLSearchParams(window.location.search);
+    var mapIDParam = searchParams.get('mapID');
+
+    $("#newride-modal").iziModal({
+        iframe: true,
+        iframeHeight: 600,
+        width: 800,
+        iframeURL: "../newRide/newRide.html?mapID=" + mapIDParam,
+        onClosed: function () {
+            updateRideAndTrempInfo();
+        }
+    });
+
+    $("#newtremp-modal").iziModal({
+        iframe: true,
+        iframeHeight: 600,
+        width: 600,
+        iframeURL: "../newTremp/newTremp.html?mapID=" + mapIDParam,
+        // afterRender: function(){
+        //     $("#add-ride-btn").click(function () {
+        //         // $('[data-izimodal-close]')[0].click();
+        //         alert("pleaseee");
+        //     });
+        // },
+        onClosed: function () {
+            updateRideAndTrempInfo();
+        }
+    });
+
+    function goToMainPage(){
+        parent.location='../mainpage/mainpage.html'
+    }
+
+
+
+</script>
+</body>
+</html>

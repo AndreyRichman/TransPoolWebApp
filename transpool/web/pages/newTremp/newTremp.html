@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Tremp</title>
+    <link rel="stylesheet" href="newTremp.css">
+</head>
+<body>
+
+<div class="wrapper" style="max-height: 500px">
+    <div id="showMe" style="visibility: hidden; display: none;">
+        <img src="done.jpg" width="300" height="200" >
+    </div>
+
+    <div id="visibleHandler" style="visibility: visible;" >
+
+
+    <h2>Add New Tremp</h2>
+    <div id="error_message"></div>
+<!--    <form id="myform" onsubmit="closeModal();">-->
+    <form id="myform">
+        <div class="selection-handle" id="fromStation">
+            <select class="add-input stations-list" id="start-station">
+                <option disabled selected>Select Start Station</option>
+            </select>
+        </div>
+        <div class="selection-handle" id="destStation">
+
+            <select class="add-input stations-list" id="end-station">
+                <option disabled selected>Select End Station</option>
+
+            </select>
+        </div>
+        <div class="input_field">
+                <span>Choose time</span> <span id="day-title">Choose Day</span>
+                <div class="time-date__input">
+                    <input name="etime" id="time" type="time" value="10:30" step="600">
+                    <input name="eday" id="day" type="number" value="1" step="1" min="1">
+                </div>
+
+        </div>
+
+
+        <div class="input_field">
+        </div>
+        <div class="selection-handle" id="arrOrDept">
+            <select class="add-input stations-list" id="arrive-depart">
+                <option>DEPART</option>
+                <option>ARRIVE</option>
+            </select>
+
+        </div>
+        <div class="selection-handle" id="time-diff">
+            <span>The time can differate by at most</span>
+                <input type="number" value="0" id="deviation" min="0">
+            <span>minutes</span>
+        </div>
+
+        <div class="selection-handle" id="switched-div">
+            <span>Accept up to</span><br>
+            <input type="number" value="1" id="max-switches" min="1">
+            <span>connections</span>
+        </div>
+
+
+        <div class="btn">
+            <input type="submit" id="add-ride-btn">
+        </div>
+
+    </form>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="newTremp.js"></script>
+
+</body>
+</html>
