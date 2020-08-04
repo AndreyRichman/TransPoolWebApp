@@ -4,10 +4,10 @@ $(function () {
     $.ajax({
         url: '/transpool_war_exploded/transaction',
         success: function (data) {
-            $.each(data, function (i, item) {
+            $.each(data.walet.transactions, function (i, item) {
                 $table.append('<tr>');
                 $table.append('<td class="text-left">'+ item.actionType +'</td>' );
-                $table.append('<td class="text-left">'+ 'User' +'</td>' );
+                $table.append('<td class="text-left">'+ data.name +'</td>' );
                 $table.append('<td class="text-left">'+ item.amount  +'</td>' );
                 $table.append('<td class="text-left">'+ item.beforeBalance +'</td>' );
                 $table.append('<td class="text-left">'+ item.afterBalance +'</td>' );

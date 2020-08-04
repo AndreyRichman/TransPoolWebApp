@@ -41,7 +41,8 @@ public class TransactionServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             Gson gson = new Gson();
             User user = SessionUtils.getUser(request);
-            String json = gson.toJson(user.getWalet().getTransactions());
+
+            String json = gson.toJson(user);
             out.println(json);
             out.flush();
         }

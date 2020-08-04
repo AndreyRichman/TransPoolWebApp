@@ -4,29 +4,6 @@ const INPUT = 'input';
 const MAX_ROTATION = 35;
 const SOFTEN_FACTOR = 3;
 
-$('#submit').on('click', function(){
-
-    var tran = {
-        date: 1,
-        amount: parseInt(document.querySelector('.output').value),
-        actionType: "import"
-    };
-
-
-
-    $.ajax({
-        type: 'POST',
-        url: '/transpool_war_exploded/transaction',
-        data: tran,
-        success: function () {
-            alert("Hey!");
-        },
-        error: function () {
-            alert("NOOO!");
-        }
-    });
-});
-
 class RangeInput {
 
     constructor(el) {
@@ -108,4 +85,26 @@ class RangeInput {
 
 
 new RangeInput(document.querySelector('.range'));
+
+$('#submit').on('click', function(){
+
+    var tran = {
+        date: 1,
+        amount: parseInt(document.querySelector('.output').value),
+        actionType: "import"
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '/transpool_war_exploded/transaction',
+        data: tran,
+        success: function () {
+
+        },
+        error: function () {
+
+        }
+    });
+    return false;
+});
 
