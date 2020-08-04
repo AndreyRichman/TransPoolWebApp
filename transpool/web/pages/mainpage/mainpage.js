@@ -1,4 +1,4 @@
-var $users = $('#online-users');
+var $users = $('#os');
 var $userslist1 = [];
 var $userslist2 = [];
 var refreshRate = 5000;
