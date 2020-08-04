@@ -8,10 +8,12 @@ import exception.NoRoadBetweenStationsException;
 import exception.TrempRequestNotExist;
 import transpool.logic.handler.EngineHandler;
 import transpool.logic.handler.LogicHandler;
+import transpool.logic.handler.NotificationsHandler;
 import transpool.logic.map.structure.Road;
 import transpool.logic.map.structure.Station;
 import transpool.logic.traffic.item.Ride;
 import transpool.logic.traffic.item.RideForTremp;
+import transpool.logic.traffic.item.SubRide;
 import transpool.logic.traffic.item.TrempRequest;
 import transpool.logic.user.Driver;
 import transpool.logic.user.User;
@@ -58,8 +60,8 @@ public class TrempServlet extends HttpServlet {
 
             responseStr = gson.toJson(new TrempRequestWrapper(trempRequest));
 
-            List<User> drivers = chosenRide.getDriversUsers();
-            notifyAboutAMatch(req, drivers, chosenRide.getID(), "{MAP NAME}");
+            String mapName = logicHandler.getMapName();
+            transferMoneyAndNotifyUsers(req, trempRequest, chosenRide, mapName);
 
         } catch (TrempRequestNotExist trempRequestNotExist) {
             trempRequestNotExist.printStackTrace();
@@ -68,6 +70,36 @@ public class TrempServlet extends HttpServlet {
         try (PrintWriter out = resp.getWriter()) {
             out.print(responseStr);
         }
+    }
+
+    private void transferMoneyAndNotifyUsers(HttpServletRequest req, TrempRequest trempRequest, RideForTremp chosenRide, String mapName) {
+        User trempist = trempRequest.getUser();
+        List<SubRide> subRides = chosenRide.getSubRides();
+        NotificationsHandler notificator =  ServletUtils.getNotificationsHandler(req.getServletContext());
+
+        List<String> subRidesJoined = new LinkedList<>();
+
+        subRides.forEach(subRide -> {
+            int subRideID = subRide.getOriginalRide().getID();
+            double moneyToTransfer = subRide.getTotalCost();
+            User subRideOwner = subRide.getOriginalRide().getRideOwner().getUser();
+            subRidesJoined.add(String.valueOf(subRideID));
+
+             //Transfer Money
+            transferMoneyBetweenUsers(trempist, subRideOwner, moneyToTransfer);
+
+            //Notify
+            String driverMsg = "User " + trempist.getName() + " joined your ride "+ subRideID + " in Map " + mapName;
+            notificator.addPrivateMessage(driverMsg, subRideOwner);
+        });
+
+        String trempistMsg = "You joined Tremps " + String.join(",", subRidesJoined) + " in Map" + mapName;
+        notificator.addPrivateMessage(trempistMsg, trempist);
+    }
+
+    private void transferMoneyBetweenUsers(User from, User to, double amount) {
+        //TODO MATAN transfer money here
+        //EXAMPLE:     from.transferMoneyTo(to, amount);
     }
 
     @Override
@@ -101,7 +133,8 @@ public class TrempServlet extends HttpServlet {
             newTrempRequest.setMaxDiffMinutes(diffMintues);
             logicHandler.addTrempRequest(newTrempRequest);
 
-            notifyNewTremp(req, "{MAP NAME}");
+            String mapName = logicHandler.getMapName();
+            notifyNewTremp(req, mapName);
             responseStr = gson.toJson(new TrempRequestWrapper(newTrempRequest));
 
         } catch (NoPathExistBetweenStationsException e) {
@@ -119,20 +152,6 @@ public class TrempServlet extends HttpServlet {
             String allMsg = user.getName() + ": Added new Tremp request to map " + mapName;
             String privateMsg = "Your Tremp request was added to map";
             ServletUtils.getNotificationsHandler(req.getServletContext()).addPublicAndPrivateMessage(allMsg, privateMsg, user);
-        }
-    }
-
-    private void notifyAboutAMatch(HttpServletRequest req, List<User> drivers, int rideID, String mapName) {
-        User user = SessionUtils.getUser(req);
-        if (user != null) {
-            String trempistMsg = "You joined the ride " + rideID + " in Map " + mapName;
-            ServletUtils.getNotificationsHandler(req.getServletContext()).addPrivateMessage(trempistMsg, user);
-
-            drivers.forEach(driver -> {
-                String driverMsg = "User " + user.getName() + " joined your ride in Map " + mapName;
-                ServletUtils.getNotificationsHandler(req.getServletContext()).addPrivateMessage(driverMsg, driver);
-
-            });
         }
     }
 }
