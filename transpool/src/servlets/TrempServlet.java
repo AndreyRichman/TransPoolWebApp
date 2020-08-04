@@ -107,9 +107,9 @@ public class TrempServlet extends HttpServlet {
 
         String stringTime = day + "," + time;
 
-        from.getWalet().addTransaction("pay", stringTime, amount);
+        from.getWalet().addTransaction("pay", stringTime, amount, to.getName());
 
-        to.getWalet().addTransaction("recive", stringTime, amount);
+        to.getWalet().addTransaction("recive", stringTime, amount, from.getName());
 
 
     }

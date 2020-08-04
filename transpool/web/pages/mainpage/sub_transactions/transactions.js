@@ -7,7 +7,8 @@ $(function () {
             $.each(data.walet.transactions, function (i, item) {
                 $table.append('<tr>');
                 $table.append('<td class="text-left">'+ item.actionType +'</td>' );
-                $table.append('<td class="text-left">'+ data.name +'</td>' );
+                $table.append('<td class="text-left">'+ 'Date' +'</td>' );
+                $table.append('<td class="text-left">'+ item.user +'</td>' );
                 $table.append('<td class="text-left">'+ item.amount  +'</td>' );
                 $table.append('<td class="text-left">'+ item.beforeBalance +'</td>' );
                 $table.append('<td class="text-left">'+ item.afterBalance +'</td>' );

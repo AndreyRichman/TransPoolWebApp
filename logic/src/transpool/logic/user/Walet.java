@@ -17,7 +17,7 @@ public class Walet {
         this.transactions = new ArrayList<>();
     }
 
-    public void addTransaction(String actionType, String date, double amount){
+    public void addTransaction(String actionType, String date, double amount, String user){
         double before = balance;
         double after = 0;
 
@@ -34,7 +34,7 @@ public class Walet {
             balance = after;
         }
         this.balance = after;
-        this.transactions.add(new WaletUtils(actionType, date, amount, before, after));
+        this.transactions.add(new WaletUtils(actionType, date, amount, before, after, user));
     }
 
     public List<WaletUtils> getTransactions() {

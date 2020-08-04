@@ -7,14 +7,16 @@ public class WaletUtils {
     private double beforeBalance;
     private double afterBalance;
     private String actionType;
+    private String user;
 
     public WaletUtils(String actionType, String date, double amount,
-                      double beforeBalance, double afterBalance ){
+                      double beforeBalance, double afterBalance, String user ){
         this.afterBalance = afterBalance;
         this.amount = amount;
         this.beforeBalance = beforeBalance;
         this.date = date;
         this.actionType = actionType;
+        this.user = user;
     }
 
 }
