@@ -116,13 +116,28 @@ public class LoginServlet extends HttpServlet {
             ServletUtils.getUserManager(getServletContext()).addUser(userName);
 //            allUsers.add(userName);
 //            getServletContext().setAttribute("allUsers", allUsers);
-            req.getSession(true).setAttribute(Constants.USER_OBJ,
-                    ServletUtils.getUserManager(getServletContext()).getUser(userName));
+
+            User user = ServletUtils.getUserManager(getServletContext()).getUser(userName);
+            req.getSession(true).setAttribute(Constants.USER_OBJ, user);
+
+
+            ServletUtils.getNotificationsHandler(req.getServletContext()).addUser(user);
+            addLoginNotifications(req);
+
             resp.sendRedirect(req.getContextPath() + "/pages/mainpage/mainpage.html");
         }
         //check if user already exist in the list
 //        try (PrintWriter out = resp.getWriter()){
 //            out.print(jsonObject);
 //        }
+    }
+
+    private void addLoginNotifications(HttpServletRequest req) {
+        User user = SessionUtils.getUser(req);
+        if (user != null) {
+            String allMsg = "User " + user.getName() + " Just Logged In";
+            String privateMsg = "Hello  " + user.getName() + "! Welcome to Transpool";
+            ServletUtils.getNotificationsHandler(req.getServletContext()).addPublicAndPrivateMessage(allMsg, privateMsg, user);
+        }
     }
 }

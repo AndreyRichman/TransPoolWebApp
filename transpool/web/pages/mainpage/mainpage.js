@@ -1,7 +1,9 @@
 var $users = $('#online-users');
 var $userslist1 = [];
 var $userslist2 = [];
-var refreshRate = 2000;
+var refreshRate = 5000;
+var PRIVATE_NOTIFICATIONS_TIME_INTERVAL = 8000;
+var PUBLIC_NOTIFICATIONS_TIME_INTERVAL = 6000;
 
 $(function () {
     $.ajax({
@@ -34,9 +36,9 @@ function refreshUsersList(users) {
         // console.log("Adding user # " + index + " : " + username.name);
         $userslist2.push(username.name);
 
-        if ($userslist1.includes(username.name) === false ){
-            toastr.success("Welcome!: " + username.name);
-        }
+        // if ($userslist1.includes(username.name) === false ){
+        //     toastr.success("Welcome!: " + username.name);
+        // }
 
         //create a new <option> tag with a value in it and
         //appeand it to the #userslist (div with id=userslist) element
@@ -48,10 +50,41 @@ function refreshUsersList(users) {
     $userslist2 = [];
 }
 
+function getPublicNotifications(){
+    $.ajax({
+        url: "/transpool_war_exploded/notifications",
+        method: "GET",
+        data: {notificationType: "PUBLIC"},
+        dataType: "json",
+        success: function (data){
+            data.forEach(function (publicMessage) {
+                toastr.warning(publicMessage);
+            });
+        }
+    });
+}
+
+function getPrivateNotifications(){
+    $.ajax({
+        url: "/transpool_war_exploded/notifications",
+        method: "GET",
+        data: {notificationType: "PRIVATE"},
+        dataType: "json",
+        success: function (data){
+            data.forEach(function (publicMessage) {
+                toastr.success(publicMessage);
+            });
+        }
+    });
+}
+
 $(function() {
 
     //The users list is refreshed automatically every second
     setInterval(ajaxUsersList, refreshRate);
+
+    setInterval(getPrivateNotifications, PRIVATE_NOTIFICATIONS_TIME_INTERVAL);
+    setInterval(getPublicNotifications, PUBLIC_NOTIFICATIONS_TIME_INTERVAL);
 });
 
 

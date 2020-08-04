@@ -71,38 +71,6 @@ public class RideServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        resp.setContentType("application/json;charset=UTF-8");
-//        String responseStr = "";
-//        List<RideForTrempWrapper> rideOptions = new LinkedList<>();
-//        Gson gson = new Gson();
-//
-//        int logicId = Integer.parseInt(req.getParameter("mapID"));
-//        int trempId =  Integer.parseInt(req.getParameter("trempID"));
-//        int rideForTrempId = Integer.parseInt(req.getParameter("matchID"));
-//
-//        EngineHandler engineHandler =  ServletUtils.getEngineHandler(req.getServletContext());
-//        LogicHandler logicHandler = engineHandler.getLogicHandlerById(logicId);
-//
-//        try {
-//            TrempRequest trempRequest = logicHandler.getTrempRequestById(trempId);
-//            RideForTremp chosenRide = logicHandler.getRideForTrempById(rideForTrempId);
-//
-//            trempRequest.assignRides(chosenRide);
-//            chosenRide.assignTrempRequest(trempRequest);
-//
-//            responseStr = gson.toJson(new TrempRequestWrapper(trempRequest));
-//
-//        } catch (TrempRequestNotExist trempRequestNotExist) {
-//            trempRequestNotExist.printStackTrace();
-//        }
-//
-//        try (PrintWriter out = resp.getWriter()) {
-//            out.print(responseStr);
-//        }
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json;charset=UTF-8");
         String responseStr = "";
@@ -127,6 +95,8 @@ public class RideServlet extends HttpServlet {
             newRide.setPricePerKilometer(ppk);
 
             logicHandler.addRide(newRide);
+
+            notifyNewRide(req, "{MAP NAME}");
             responseStr = gson.toJson(new RideWrapper(newRide));
 
         } catch (NoRoadBetweenStationsException e) {
@@ -135,6 +105,15 @@ public class RideServlet extends HttpServlet {
 
         try (PrintWriter out = resp.getWriter()) {
             out.print(responseStr);
+        }
+    }
+
+    private void notifyNewRide(HttpServletRequest req, String mapName) {
+        User user = SessionUtils.getUser(req);
+        if (user != null) {
+            String allMsg = user.getName() + ": added new Ride to map " + mapName;
+            String privateMsg = "Your Ride was added to map";
+            ServletUtils.getNotificationsHandler(req.getServletContext()).addPublicAndPrivateMessage(allMsg, privateMsg, user);
         }
     }
 

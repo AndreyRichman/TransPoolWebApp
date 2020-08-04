@@ -100,4 +100,8 @@ public class RideForTremp {
     public List<String> getDrivers(){
         return this.subRides.stream().map( subRide -> subRide.getOriginalRide().getRideOwner().getUser().getName()).distinct().collect(Collectors.toList());
     }
+
+    public List<User> getDriversUsers(){
+        return this.subRides.stream().map( subRide -> subRide.getOriginalRide().getRideOwner().getUser()).distinct().collect(Collectors.toList());
+    }
 }
