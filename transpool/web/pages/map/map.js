@@ -2,6 +2,9 @@ const menuIconEl = $('.menu-icon');
 const sidenavEl = $('.sidenav');
 const sidenavCloseEl = $('.sidenav__close-icon');
 
+var PRIVATE_NOTIFICATIONS_TIME_INTERVAL = 8000;
+var PUBLIC_NOTIFICATIONS_TIME_INTERVAL = 6000;
+
 // Add and remove provided class names
 function toggleClassName(el, className) {
     if (el.hasClass(className)) {
@@ -205,3 +208,39 @@ function findMatchedForTremp(idStr) {
 
     // alert(id);
 }
+
+
+function getPublicNotifications(){
+    $.ajax({
+        url: "/transpool_war_exploded/notifications",
+        method: "GET",
+        data: {notificationType: "PUBLIC"},
+        dataType: "json",
+        success: function (data){
+            data.forEach(function (publicMessage) {
+                toastr.warning(publicMessage);
+            });
+        }
+    });
+}
+
+function getPrivateNotifications(){
+    $.ajax({
+        url: "/transpool_war_exploded/notifications",
+        method: "GET",
+        data: {notificationType: "PRIVATE"},
+        dataType: "json",
+        success: function (data){
+            data.forEach(function (publicMessage) {
+                toastr.success(publicMessage);
+            });
+        }
+    });
+}
+
+
+$(function() {
+
+    setInterval(getPrivateNotifications, PRIVATE_NOTIFICATIONS_TIME_INTERVAL);
+    setInterval(getPublicNotifications, PUBLIC_NOTIFICATIONS_TIME_INTERVAL);
+});

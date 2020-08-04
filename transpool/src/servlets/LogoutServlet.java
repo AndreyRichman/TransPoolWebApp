@@ -25,11 +25,21 @@ public class LogoutServlet extends HttpServlet {
         User usernameFromSession = SessionUtils.getUser(request);
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
 
+        addLogoutMessage(request);
+
         if (usernameFromSession != null) {
             System.out.println("Clearing session for " + usernameFromSession);
             userManager.removeUser(usernameFromSession);
             SessionUtils.clearSession(request);
             response.sendRedirect(request.getContextPath() + "/pages/login/login.html");
+        }
+    }
+
+    private void addLogoutMessage(HttpServletRequest req) {
+        User user = SessionUtils.getUser(req);
+        if (user != null) {
+            String allMsg = "User " + user.getName() + " Just Logged In";
+            ServletUtils.getNotificationsHandler(req.getServletContext()).addPublicMessageExceptUser(allMsg, user);
         }
     }
 

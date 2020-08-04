@@ -90,6 +90,7 @@ public class MapServlet extends HttpServlet {
             LogicHandler logicHandler = engineHandler.getLogicHandlerById(logicId);
             Gson gson = new Gson();
             MapDataWrapper wrapper = new MapDataWrapper(logicHandler);
+            notifyMapUploaded(req, "");
             response = gson.toJson(wrapper);
 
             //RETURN to client object with {Map, NumOfTremps, NumOfRides}
@@ -102,8 +103,14 @@ public class MapServlet extends HttpServlet {
         }
     }
 
-//    private String readFromInputStream(InputStream inputStream) {
-//        return new Scanner(inputStream).useDelimiter("\\Z").next();
-//    }
+
+    private void notifyMapUploaded(HttpServletRequest req, String mapName) {
+        User user = SessionUtils.getUser(req);
+        if (user != null) {
+            String allMsg = "User " + user.getName() + " uploaded a new Map: " + mapName;
+            String privateMsg = "Map " + mapName + " was created successfully";
+            ServletUtils.getNotificationsHandler(req.getServletContext()).addPublicAndPrivateMessage(allMsg, privateMsg, user);
+        }
+    }
 
 }
