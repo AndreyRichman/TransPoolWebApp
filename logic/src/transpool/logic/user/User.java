@@ -10,7 +10,7 @@ public class User {
     public User(String name) {
         this.id = uniqueID++;
         this.name = name;
-        this.walet = new Walet(0);
+        this.walet = new Walet();
     }
 
     public Walet getWalet() {
