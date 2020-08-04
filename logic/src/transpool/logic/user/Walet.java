@@ -37,6 +37,10 @@ public class Walet {
         this.transactions.add(new WaletUtils(actionType, date, amount, before, after));
     }
 
+    public List<WaletUtils> getTransactions() {
+        return transactions;
+    }
+
     public int getBalance() {
         return balance;
     }

@@ -2,8 +2,6 @@ package transpool.logic.user;
 
 public class WaletUtils {
 
-
-
     private int date;
     private int amount;
     private int beforeBalance;
