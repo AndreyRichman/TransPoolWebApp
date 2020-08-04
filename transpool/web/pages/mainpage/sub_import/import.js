@@ -12,17 +12,15 @@ $('#submit').on('click', function(){
         actionType: "import"
     };
 
-
-
     $.ajax({
         type: 'POST',
         url: '/transpool_war_exploded/transaction',
         data: tran,
         success: function () {
-            alert("Hey!");
+
         },
         error: function () {
-            alert("NOOO!");
+
         }
     });
 });
