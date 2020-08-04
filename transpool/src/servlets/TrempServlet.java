@@ -13,6 +13,7 @@ import transpool.logic.map.structure.Station;
 import transpool.logic.traffic.item.Ride;
 import transpool.logic.traffic.item.RideForTremp;
 import transpool.logic.traffic.item.TrempRequest;
+import transpool.logic.user.Driver;
 import transpool.logic.user.User;
 import utils.ServletUtils;
 import utils.SessionUtils;
@@ -57,6 +58,9 @@ public class TrempServlet extends HttpServlet {
 
             responseStr = gson.toJson(new TrempRequestWrapper(trempRequest));
 
+            List<User> drivers = chosenRide.getDriversUsers();
+            notifyAboutAMatch(req, drivers, chosenRide.getID(), "{MAP NAME}");
+
         } catch (TrempRequestNotExist trempRequestNotExist) {
             trempRequestNotExist.printStackTrace();
         }
@@ -97,6 +101,7 @@ public class TrempServlet extends HttpServlet {
             newTrempRequest.setMaxDiffMinutes(diffMintues);
             logicHandler.addTrempRequest(newTrempRequest);
 
+            notifyNewTremp(req, "{MAP NAME}");
             responseStr = gson.toJson(new TrempRequestWrapper(newTrempRequest));
 
         } catch (NoPathExistBetweenStationsException e) {
@@ -105,6 +110,29 @@ public class TrempServlet extends HttpServlet {
 
         try (PrintWriter out = resp.getWriter()) {
             out.print(responseStr);
+        }
+    }
+
+    private void notifyNewTremp(HttpServletRequest req, String mapName) {
+        User user = SessionUtils.getUser(req);
+        if (user != null) {
+            String allMsg = user.getName() + ": Added new Tremp request to map " + mapName;
+            String privateMsg = "Your Tremp request was added to map";
+            ServletUtils.getNotificationsHandler(req.getServletContext()).addPublicAndPrivateMessage(allMsg, privateMsg, user);
+        }
+    }
+
+    private void notifyAboutAMatch(HttpServletRequest req, List<User> drivers, int rideID, String mapName) {
+        User user = SessionUtils.getUser(req);
+        if (user != null) {
+            String trempistMsg = "You joined the ride " + rideID + " in Map " + mapName;
+            ServletUtils.getNotificationsHandler(req.getServletContext()).addPrivateMessage(trempistMsg, user);
+
+            drivers.forEach(driver -> {
+                String driverMsg = "User " + user.getName() + " joined your ride in Map " + mapName;
+                ServletUtils.getNotificationsHandler(req.getServletContext()).addPrivateMessage(driverMsg, driver);
+
+            });
         }
     }
 }
