@@ -3,6 +3,7 @@ var fileName = '';
 var file;
 var $dropzone = $('.dropzone');
 var $button = $('.upload-btn');
+var $result = $('.result');
 var uploading = false;
 var $syncing = $('.syncing');
 var $done = $('.done');
@@ -71,5 +72,9 @@ function startUpload() {
 
 function showDone() {
     $button.html('Done');
+    document.getElementById("upload-btn").style.display = "none";
+    $result.html('DONE')
 }
+
+
 
