@@ -9,7 +9,7 @@ public class Walet {
     private static final String RECEIVE_MONEY = "receive";
     private static final String PAY_MONEY = "pay";
 
-    private int balance;
+    private double balance;
     private List<WaletUtils> transactions;
 
     public Walet(){
@@ -17,9 +17,9 @@ public class Walet {
         this.transactions = new ArrayList<>();
     }
 
-    public void addTransaction(String actionType, int date, int amount){
-        int before = balance;
-        int after = 0;
+    public void addTransaction(String actionType, String date, double amount){
+        double before = balance;
+        double after = 0;
 
         if(actionType.equals(IMPORT_MONEY)){
             after = balance + amount;
@@ -41,7 +41,7 @@ public class Walet {
         return transactions;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 

@@ -64,7 +64,7 @@ public class TransactionServlet extends HttpServlet {
             Gson gson = new Gson();
             User user = SessionUtils.getUser(request);
             user.getWalet().addTransaction(request.getParameter("actionType"),
-                    ServletUtils.getIntParameter(request,"date"),
+                    request.getParameter("date"),
                     ServletUtils.getIntParameter(request,"amount")
             );
             String json = gson.toJson(request.getParameter("actionType"));

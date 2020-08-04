@@ -85,8 +85,12 @@ public class TrempServlet extends HttpServlet {
             User subRideOwner = subRide.getOriginalRide().getRideOwner().getUser();
             subRidesJoined.add(String.valueOf(subRideID));
 
+
+            int day  = subRide.getSchedule().getStartDay();
+            String time = subRide.getSchedule().getStartTime().toString();
+
              //Transfer Money
-            transferMoneyBetweenUsers(trempist, subRideOwner, moneyToTransfer);
+            transferMoneyBetweenUsers(trempist, subRideOwner, moneyToTransfer, day, time);
 
             //Notify
             String driverMsg = "User " + trempist.getName() + " joined your ride "+ subRideID + " in Map " + mapName;
@@ -97,9 +101,17 @@ public class TrempServlet extends HttpServlet {
         notificator.addPrivateMessage(trempistMsg, trempist);
     }
 
-    private void transferMoneyBetweenUsers(User from, User to, double amount) {
+    private void transferMoneyBetweenUsers(User from, User to, double amount, int day , String time ) {
         //TODO MATAN transfer money here
         //EXAMPLE:     from.transferMoneyTo(to, amount);
+
+        String stringTime = day + "," + time;
+
+        from.getWalet().addTransaction("pay", stringTime, amount);
+
+        to.getWalet().addTransaction("recive", stringTime, amount);
+
+
     }
 
     @Override
