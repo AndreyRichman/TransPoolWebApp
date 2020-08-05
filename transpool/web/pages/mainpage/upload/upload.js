@@ -46,7 +46,7 @@ function startUpload() {
     if (!uploading) {
         $.ajax({
             type: 'POST',
-            url: '/transpool_war_exploded/map',
+            url: '../../../map',
             data: formData,
             processData: false,
             contentType: false,

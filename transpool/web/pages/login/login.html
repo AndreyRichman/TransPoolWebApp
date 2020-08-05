@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V12</title>
+	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -32,7 +32,7 @@
 				dataType: "json",
 				success: function (data){
 					if (!$.isEmptyObject(data)) {
-						window.location = "../mainpage/mainpage.html";
+						window.location = "../../index.html";
 					}
 				}
 			});
@@ -47,7 +47,7 @@
 					url: "../../login",
 					method:"POST",
 					success: function(){
-						window.location = "../mainpage/mainpage.html";
+						window.location = "../../index.html";
 					},
 					error: function() {
 						$("#error h3").text("User already logged in..");

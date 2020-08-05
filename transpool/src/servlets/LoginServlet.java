@@ -125,7 +125,7 @@ public class LoginServlet extends HttpServlet {
             ServletUtils.getNotificationsHandler(req.getServletContext()).addUser(user);
             addLoginNotifications(req);
 
-            resp.sendRedirect(req.getContextPath() + "/pages/mainpage/mainpage.html");
+            resp.sendRedirect(req.getContextPath() + "/index.html");
         }
         //check if user already exist in the list
 //        try (PrintWriter out = resp.getWriter()){

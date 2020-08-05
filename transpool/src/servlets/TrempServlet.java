@@ -93,7 +93,8 @@ public class TrempServlet extends HttpServlet {
             transferMoneyBetweenUsers(trempist, subRideOwner, moneyToTransfer, day, time);
 
             //Notify
-            String driverMsg = "User " + trempist.getName() + " joined your ride "+ subRideID + " in Map " + mapName;
+            String driverMsg = "User " + trempist.getName() + " joined your ride "+ subRideID + " in Map " + mapName +
+                    " (+"+ subRide.getTotalCost() + "MIS)";
             notificator.addPrivateMessage(driverMsg, subRideOwner);
         });
 
