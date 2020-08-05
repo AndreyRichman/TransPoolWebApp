@@ -3,7 +3,6 @@ var fileName = '';
 var file;
 var $dropzone = $('.dropzone');
 var $button = $('.upload-btn');
-var $result = $('.result');
 var uploading = false;
 var $syncing = $('.syncing');
 var $done = $('.done');
@@ -43,21 +42,22 @@ function startUpload() {
 
     var formData = new FormData();
     formData.append(fileName, file);
-
-    $.ajax({
-        type: 'POST',
-        url: '/transpool_war_exploded/map',
-        data: formData,
-        processData: false,
-        contentType: false,
-        timeout: 4000,
-        success: function (r) {
-            $("#result").text(r);
-        },
-        error: function () {
-            alert('error');
-        }
-    })
+    if (!uploading) {
+        $.ajax({
+            type: 'POST',
+            url: '/transpool_war_exploded/map',
+            data: formData,
+            processData: false,
+            contentType: false,
+            timeout: 4000,
+            success: function (r) {
+                $("#result").text(r);
+            },
+            error: function () {
+                alert('error');
+            }
+        })
+    }
 
     if (!uploading && fileName != '' ) {
         uploading = true;
@@ -71,9 +71,7 @@ function startUpload() {
 }
 
 function showDone() {
-    $button.html('Done');
-    document.getElementById("upload-btn").style.display = "none";
-    $result.html('DONE')
+    $button.html('Success');
 }
 
 
