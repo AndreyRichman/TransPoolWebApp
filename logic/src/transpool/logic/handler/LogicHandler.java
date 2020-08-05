@@ -177,6 +177,9 @@ public class LogicHandler {
 
     private void initRides(TransPool transPool) throws FaildLoadingXMLFileException {
 
+        if (transPool.getPlannedTrips() == null)
+            return;
+
         for (TransPoolTrip ride : transPool.getPlannedTrips().getTransPoolTrip()) {
 
             List<String> roadListStringNames = Arrays.asList(ride.getRoute().getPath().split("\\s*(,)\\s*"));
