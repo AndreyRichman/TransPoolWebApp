@@ -39,7 +39,7 @@ public class TrempRequestWrapper {
 
     }
 
-    public boolean trempIsNotMatched(){
-        return this.selectedRide == null;
+    public boolean trempIsMatched(){
+        return this.selectedRide != null;
     }
 }

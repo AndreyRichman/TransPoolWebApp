@@ -48,7 +48,7 @@ function initCardClicks() {
 
 function goToMapPage(id) {
     // alert(id);
-    parent.location='../map/map.html' + "?mapID=" + id;
+    parent.location='pages/map/map.html' + "?mapID=" + id;
 
 }
 
