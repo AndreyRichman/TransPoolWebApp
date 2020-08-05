@@ -74,7 +74,7 @@ function showDone() {
         $done.addClass('active');
         $bar.addClass('active');
         timeoutID = window.setTimeout(function (){}, 3200);
-        $("#result").html("<h2 style='text-align: center; color: green'>Upload succedded</h2>");
+        $("#result").html("<h2 style='text-align: center; color: black'>Map Was Uploaded</h2>");
         $("#upload-btn").hide();
         $(".title").hide();
     }
