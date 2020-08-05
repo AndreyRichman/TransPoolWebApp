@@ -61,15 +61,16 @@ public class TransactionServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json");
         try (PrintWriter out = response.getWriter()) {
-            Gson gson = new Gson();
+//            Gson gson = new Gson();
             User user = SessionUtils.getUser(request);
             user.getWalet().addTransaction(request.getParameter("actionType"),
-                    ServletUtils.getIntParameter(request,"date"),
-                    ServletUtils.getIntParameter(request,"amount")
+                    request.getParameter("date"),
+                    ServletUtils.getIntParameter(request,"amount"),
+                    user.getName()
             );
-            String json = gson.toJson(request.getParameter("actionType"));
-            out.println(json);
-            out.flush();
+//            String json = gson.toJson(request.getParameter("actionType"));
+//            out.println(json);
+//            out.flush();
         }
     }
 

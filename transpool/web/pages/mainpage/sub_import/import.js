@@ -88,8 +88,12 @@ new RangeInput(document.querySelector('.range'));
 
 $('#submit').on('click', function(){
 
+
+
     var tran = {
-        date: 1,
+        date: '1,' + new Date().toLocaleTimeString('en-US', { hour12: false,
+            hour: "numeric",
+            minute: "numeric"}),
         amount: parseInt(document.querySelector('.output').value),
         actionType: "import"
     };
