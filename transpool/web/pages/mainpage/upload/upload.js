@@ -42,6 +42,7 @@ function startUpload() {
 
     var formData = new FormData();
     formData.append(fileName, file);
+
     if (!uploading) {
         $.ajax({
             type: 'POST',
@@ -58,6 +59,7 @@ function startUpload() {
             }
         })
     }
+
 
     if (!uploading && fileName != '' ) {
         uploading = true;

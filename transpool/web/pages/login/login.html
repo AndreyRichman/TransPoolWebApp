@@ -27,7 +27,7 @@
 		$(function () {
 			$.ajax({
 				url: "../../login",
-				timeout: 2000,
+
 				method: "GET",
 				dataType: "json",
 				success: function (data){
@@ -41,10 +41,10 @@
 		$(function () {
 			$("#login-form").submit(function () {
 				var parameters = $(this).serialize();
+
 				$.ajax({
 					data: parameters,
 					url: "../../login",
-					timeout: 2000,
 					method:"POST",
 					success: function(){
 						window.location = "../mainpage/mainpage.html";
@@ -78,6 +78,29 @@
 							<i class="fa fa-user"></i>
 						</span>
 					</div>
+
+
+<!--					USER TYPE START-->
+
+					<div class="container-login100-form-btn p-t-10">
+						<div class="switch">
+							<input type="radio" class="switch-input user_radio_btn" name="type" value="TREMPIST" id="one" checked>
+							<label for="one" class="switch-label switch-label-off">
+								<span>Trempist</span>
+							</label>
+
+							<input type="radio" class="switch-input admin_radio_btn" name="type" value="DRIVER" id="two">
+							<label for="two" class="switch-label switch-label-on">
+								<span>Driver</span>
+
+							</label>
+							<span class="slider2"></span>
+						</div>
+					</div>
+
+
+<!--					USER TYPE END-->
+
 
 					<div class="container-login100-form-btn p-t-10">
 						<button class="login100-form-btn">
