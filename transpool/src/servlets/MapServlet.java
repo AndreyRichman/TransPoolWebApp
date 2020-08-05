@@ -93,11 +93,13 @@ public class MapServlet extends HttpServlet {
             notifyMapUploaded(req, "");
             response = gson.toJson(wrapper);
 
-            //RETURN to client object with {Map, NumOfTremps, NumOfRides}
+
         } catch (FaildLoadingXMLFileException e) {
+            System.out.println(e);
             response = e.getReason();
         }
 
+        //RETURN to client object with {Map, NumOfTremps, NumOfRides}
         try (PrintWriter out = resp.getWriter()) {
             out.print(response);
         }

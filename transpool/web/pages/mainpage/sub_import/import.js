@@ -4,6 +4,10 @@ const INPUT = 'input';
 const MAX_ROTATION = 35;
 const SOFTEN_FACTOR = 3;
 
+$(document).ready(() => {
+    $("#moneyImport").show();
+})
+
 class RangeInput {
 
     constructor(el) {
@@ -109,6 +113,9 @@ $('#submit').on('click', function(){
 
         }
     });
+    $("#moneyImport").hide();
+    $("#mainMoneyImport").html(`<h2 style='text-align: center; color: green'>${parseInt(document.querySelector('.output').value)}$ Added Successfully</h2>`);
     return false;
+
 });
 

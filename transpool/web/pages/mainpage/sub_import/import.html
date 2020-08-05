@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="import.css" />
 </head>
 <body>
-<main>
-    <form oninput="output.value = Math.round(range.valueAsNumber / 1000)">
+<main id="mainMoneyImport">
+    <form oninput="output.value = Math.round(range.valueAsNumber / 1000)" id="moneyImport">
         <h2>
             Select amount to import
         </h2>
@@ -18,7 +18,7 @@
                     500
                 </output>
             </div>
-            <button id="submit" >Submit</button>
+            <button id="submit" class="upload-btn" >Submit</button>
         </div>
     </form>
 </main>

@@ -30,7 +30,7 @@ public class XMLHandler {
         try {
             transPool = deserializeFrom(path);
         } catch (JAXBException e) {
-            throw new FaildLoadingXMLFileException("Unmarshaller Failed");
+            throw new FaildLoadingXMLFileException("File extension is not .XML");
         }
 
         return transPool;

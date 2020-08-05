@@ -52,15 +52,20 @@ function startUpload() {
             contentType: false,
             timeout: 4000,
             success: function (r) {
-                $("#result").text(r);
+                showDone(r);
+
             },
-            error: function () {
-                alert('error');
+            error: function (r) {
+                showError(r);
             }
         })
     }
 
 
+
+}
+
+function showDone() {
     if (!uploading && fileName != '' ) {
         uploading = true;
         $button.html('Uploading...');
@@ -68,12 +73,21 @@ function startUpload() {
         $syncing.addClass('active');
         $done.addClass('active');
         $bar.addClass('active');
-        timeoutID = window.setTimeout(showDone, 3200);
+        timeoutID = window.setTimeout(function (){}, 3200);
+        $("#result").html("<h2 style='text-align: center; color: green'>Upload succedded</h2>");
+        $("#upload-btn").hide();
+        $(".title").hide();
     }
+
+
 }
 
-function showDone() {
-    $button.html('Success');
+function showError(r) {
+    $dropzone.fadeOut();
+    $("#result").html(`<h2 style='text-align: center; color: red'>${r.responseText}</h2>`);
+    console.log(r.responseText);
+    $("#upload-btn").hide();
+    $(".title").hide();
 }
 
 
