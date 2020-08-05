@@ -89,6 +89,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json;charset=UTF-8");
         String userName = req.getParameter(Constants.USERNAME);
+        String userType = req.getParameter("type");
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty(Constants.USERNAME, userName);
 
@@ -113,7 +114,7 @@ public class LoginServlet extends HttpServlet {
         }
         else{
             jsonObject.addProperty("isValid", Boolean.TRUE);
-            ServletUtils.getUserManager(getServletContext()).addUser(userName);
+            ServletUtils.getUserManager(getServletContext()).addUser(userName, userType);
 //            allUsers.add(userName);
 //            getServletContext().setAttribute("allUsers", allUsers);
 

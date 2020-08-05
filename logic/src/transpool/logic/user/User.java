@@ -7,10 +7,25 @@ public class User {
     private String name;
     private Walet walet;
 
+    private Type type;
+
+    public enum Type {
+        DRIVER,
+        TREMPIST
+    }
+
     public User(String name) {
         this.id = uniqueID++;
         this.name = name;
         this.walet = new Walet();
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     public Walet getWalet() {

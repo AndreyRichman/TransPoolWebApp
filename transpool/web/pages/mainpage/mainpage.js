@@ -2,7 +2,7 @@ var $users = $('#os');
 var $userslist1 = [];
 var $userslist2 = [];
 var refreshRate = 5000;
-var PRIVATE_NOTIFICATIONS_TIME_INTERVAL = 8000;
+var PRIVATE_NOTIFICATIONS_TIME_INTERVAL = 2000;
 var PUBLIC_NOTIFICATIONS_TIME_INTERVAL = 6000;
 
 $(function () {

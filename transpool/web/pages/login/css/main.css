@@ -526,3 +526,133 @@ iframe {
     padding-right: 15px;
   }
 }
+
+
+
+/*USER TYPE START*/
+
+
+.txt-center{
+  text-align: center;
+}
+
+/*body{*/
+/*  height: 100vh;*/
+/*  font-family: 'Poppins',sans-serif;*/
+/*  background-repeat: no-repeat;*/
+/*  background-size: cover;*/
+/*  background: rgba(239, 227, 245, 0.44);*/
+/*}*/
+
+.center3:before{
+  display: flex;
+  align-items: center;
+  resize: both;
+}
+
+.switch {
+  /*border-radius: 10px 10px 0px 0px;*/
+  display:inline-block;
+  transition: all 0.1s ease;
+  height: 100%;
+  position: relative;
+  background-color: #ffffff;
+  width: 100%;
+  border: 1px solid white;
+  /*border-radius: 10px 10px 0px 0px;*/
+  border-radius: 25px;
+}
+
+.switch-label{
+  direction: rtl;
+  position: relative;
+  z-index: 2;
+  float: left;
+  width: 50%;
+  height:100%;
+  padding:0.7rem 0px;
+  font-size: 15px;
+  color:#666666;
+  text-align: center;
+  cursor: pointer;
+}
+
+.switch-input {
+  display: none;
+}
+
+.switch-input:checked + .switch-label {
+  color: #fff;
+  width: 50%;
+}
+
+.switch-input:checked + .switch-label-on ~ .slider2 {
+  left: 50%;
+  /*border-radius: 0px 10px 0px 0px;*/
+  border-radius: 25px;
+}
+
+.switch-label-on{
+  border-radius: 0px 10px 0px 0px;
+}
+
+.switch-label-off,.switch-input:checked + .switch-label-off ~ .slider2{
+  /*border-radius: 10px 0px 0px 0px;*/
+  border-radius: 25px;
+}
+
+.switch-input:checked + .switch-label svg path{
+  fill: #ffffff;
+}
+
+.swith-row{
+  height: 45px;
+  direction: ltr;
+  width: 100%;
+}
+
+.slider2{
+  display: block;
+  position: absolute;
+  z-index: 1;
+  color: #ffffff;
+  top: 0%;
+  left: 0%;
+  width: 50%;
+  height: 100%;
+  background: #333333;
+  -webkit-transition:  500ms cubic-bezier(0.075, 0.820, 0.165, 1.000);
+  -moz-transition: 500ms cubic-bezier(0.075, 0.820, 0.165, 1.000);
+  -ms-transition: 500ms cubic-bezier(0.075, 0.820, 0.165, 1.000);
+  -o-transition: 500ms cubic-bezier(0.75, 0.820, 0.165, 1.000);
+  transition: 500ms cubic-bezier(0.75, 0.820, 0.165, 1.000);
+}
+
+
+.slide-right {
+  -webkit-animation: slide-right 0.5s infinite alternate-reverse both;
+  animation: slide-right 0.5s infinite alternate-reverse both;
+}
+
+@-webkit-keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(20px);
+    transform: translateX(20px);
+  }
+}
+@keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(20px);
+    transform: translateX(20px);
+  }
+}
+
+/*USER TYPE END*/

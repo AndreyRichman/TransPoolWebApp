@@ -38,7 +38,7 @@ public class MapServlet extends HttpServlet {
         Object specificIdParameter = req.getParameter("id");
         //return all maps
         if (specificIdParameter == null){
-            List<MapDataWrapper> allMaps =  engineHandler.getAllMaps().stream().map(MapDataWrapper::new)
+            List<MapDataWrapper> allMaps =  engineHandler.getAllMaps().stream().map(map -> new MapDataWrapper(map, null))
                     .collect(Collectors.toList());
             responseStr = gson.toJson(allMaps);
         }
@@ -47,7 +47,8 @@ public class MapServlet extends HttpServlet {
             int logicId = Integer.parseInt(idStr);
             LogicHandler logicHandler = engineHandler.getLogicHandlerById(logicId);
 
-            MapDataWrapper wrapper = new MapDataWrapper(logicHandler);
+            User user = SessionUtils.getUser(req);
+            MapDataWrapper wrapper = new MapDataWrapper(logicHandler, user);
             responseStr = gson.toJson(wrapper);
         }
 
@@ -61,7 +62,6 @@ public class MapServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json;charset=UTF-8");
 
-        //TODO: MATAN please handle the load here
         String response;
 
         try {
@@ -89,7 +89,7 @@ public class MapServlet extends HttpServlet {
 
             LogicHandler logicHandler = engineHandler.getLogicHandlerById(logicId);
             Gson gson = new Gson();
-            MapDataWrapper wrapper = new MapDataWrapper(logicHandler);
+            MapDataWrapper wrapper = new MapDataWrapper(logicHandler, null);
             notifyMapUploaded(req, "");
             response = gson.toJson(wrapper);
 

@@ -57,7 +57,7 @@ function startUpload() {
         error: function () {
             alert('error');
         }
-    })
+    });
 
     if (!uploading && fileName != '' ) {
         uploading = true;
