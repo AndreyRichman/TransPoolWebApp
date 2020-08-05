@@ -7,6 +7,7 @@ var uploading = false;
 var $syncing = $('.syncing');
 var $done = $('.done');
 var $bar = $('.bar');
+var $name = $('#file-name');
 var timeOut;
 
 
@@ -32,7 +33,10 @@ $button.bind('click', function() {
 });
 
 $("input:file").change(function (){
-    fileName = $(this)[0].files[0].name;
+    // fileName = $(this)[0].files[0].name;
+    $name.value = $(this)[0].files[0].name;
+    fileName = $name.val();
+    console.log(fileName);
     file = $(this)[0].files[0];
     $('.filename').html(fileName);
     $('.dropzone .upload').hide();
