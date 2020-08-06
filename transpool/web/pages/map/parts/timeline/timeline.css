@@ -20,7 +20,7 @@
     --secondary-color-darkest: hsl(215,  11%,  30%);
     --secondary-color-lightest: hsl(220,  1%,  98%);
     background-color: white;
-    padding-left: 100px;
+    padding-left: 50%;
 }
 
 .timeline {
@@ -42,7 +42,7 @@
 .timeline-line {
     position: absolute;
     top: 0;
-    left: 6px;
+    left: 8px;
     width: 4px;
     height: 100%;
     background: var(--timeline-line-color);

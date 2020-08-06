@@ -85,6 +85,11 @@ function updateMapWindow(){
             initializeMap(data);
             updateRidesList(data.allRides);
             updateTrempsCards(data.allTrempRequests);
+            $("div.header h1").text(data.mapName);
+
+            if(data.currentUser.type === "TREMPIST"){
+                $("#add-new-btn").attr("data-izimodal-open", "#newtremp-modal");
+            }
         },
         error: function (data) {
             alert(data);

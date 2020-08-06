@@ -683,7 +683,7 @@ function createGraph(columns, rows, nodes, edges){
     COLUMNS = columns;
     ROWS = rows;
     var mapElement = $("#map-container")[0];
-    var width = mapElement.clientWidth * 0.95,
+    var width = mapElement.clientWidth * 0.85,
         height = mapElement.clientHeight * 0.95;
 
     initEdgesAndNodes(edges, nodes, width, height, columns, rows);
