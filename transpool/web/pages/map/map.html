@@ -15,22 +15,76 @@
 
 </head>
 <body>
-<div class="grid-container">
+
+<!--<div class="fat-nav">-->
+<!--    <div class="fat-nav__wrapper">-->
+<!--    </div>-->
+<!--</div>-->
+<div class="header">
+    <h1></h1>
+</div>
+
+
+<div class="back" id="back">
+    <a href="../../index.html" class="btn-back">
+        <div>
+            <svg width="16px" height="14px">
+                <path d="M1,7 L15,7"></path>
+                <polyline points="7 1 1 7 7 13"></polyline>
+            </svg>
+        </div>
+        <span style="color: white">Back</span>
+    </a>
+</div>
+<div class="back" id="add">
+    <a href="#" class="btn-back trigger" id="add-new-btn" data-izimodal-open="#newride-modal" data-izimodal-transitionin="fadeInDown">
+        <div>
+<!--            <img src="style/plus.png">-->
+<!--            <svg width="16px" height="14px">-->
+<!--                <path d="M1,7 L15,7"></path>-->
+<!--                <polyline points="7 7 7 7 7 7"></polyline>-->
+<!--            </svg>-->
+        </div>
+        <span style="color: white">Add</span>
+    </a>
+</div>
+
+
+
+
+<!--<div class="wrapper" style="left: 2px; top: 5px;" >-->
+<!--&lt;!&ndash;    <button style="">test</button>&ndash;&gt;-->
+<!--    <button style="display: block">1</button>-->
+<!--    <button style="display: block">2</button>-->
+<!--&lt;!&ndash;    <input type="button" id="back">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="button" id="trigger">&ndash;&gt;-->
+<!--&lt;!&ndash;    <label id="trigger-input" for="trigger"  ></label>&ndash;&gt;-->
+
+<!--    <div id="online-users" class="list-container">-->
+<!--        <button></button>-->
+<!--&lt;!&ndash;        <ul id="os">&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash;                <li><a href="#">Moshe</a></li>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash;                <li><a href="#">List Item</a></li>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash;                <li><a href="#">List Item</a></li>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="grid-container">-->
     <div class="menu-icon">
         <i class="fas fa-bars header__menu"></i>
     </div>
 
-    <aside class="sidenav">
-        <div class="sidenav__close-icon">
-            <i class="fas fa-times sidenav__brand-close"></i>
-        </div>
-        <ul class="sidenav__list">
-            <li href="#" class="trigger sidenav__list-item" data-izimodal-open="#newride-modal" id="99" data-izimodal-transitionin="fadeInDown">Add Ride</li>
-            <li class="sidenav__list-item" data-izimodal-open="#newtremp-modal" data-izimodal-transitionin="fadeInDown">Add Tremp Request</li>
+<!--    <aside class="sidenav">-->
+<!--        <div class="sidenav__close-icon">-->
+<!--            <i class="fas fa-times sidenav__brand-close"></i>-->
+<!--        </div>-->
+<!--        <ul class="sidenav__list">-->
+<!--            <li href="#" class="trigger sidenav__list-item" data-izimodal-open="#newride-modal" id="99" data-izimodal-transitionin="fadeInDown">Add Ride</li>-->
+<!--            <li class="sidenav__list-item" data-izimodal-open="#newtremp-modal" data-izimodal-transitionin="fadeInDown">Add Tremp Request</li>-->
 
-            <li class="sidenav__list-item" onclick="goToMainPage()"> < Go Back to All Maps</li>
-        </ul>
-    </aside>
+<!--            <li class="sidenav__list-item" onclick="goToMainPage()"> < Go Back to All Maps</li>-->
+<!--        </ul>-->
+<!--    </aside>-->
 
     <main class="main">
 
@@ -45,7 +99,7 @@
 
 
         <div class="main-cards">
-            <div id="map-container" class="card">Map
+            <div id="map-container" class="card" style="width: 600px">
                 <div id="world-map"></div>
             </div>
 
@@ -171,7 +225,7 @@
 
     <!--    DUMMY STAFF ENDS HERE-->
 
-</div>
+<!--</div>-->
 
 
 
@@ -220,7 +274,6 @@
     function goToMainPage(){
         parent.location='../../index.html'
     }
-
 
 
 </script>

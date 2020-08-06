@@ -4,9 +4,9 @@
   left: -9999px;
 }
 
-@mixin shadow {
-  box-shadow: 0 5px 15px 0 rgba(0,0,0,.2);
-}
+//@mixin shadow {
+//  //box-shadow: 0 5px 15px 0 rgba(0,0,0,.2);
+//}
 
 @mixin hide {
   -webkit-transform: scale(1, 0);
@@ -14,11 +14,11 @@
   transform: scale(1, 0);
 }
 
-@mixin show {
-  -webkit-transform: scale(1, 1);
-  -ms-transform: scale(1, 1);
-  transform: scale(1, 1);
-}
+//@mixin show {
+//  -webkit-transform: scale(1, 1);
+//  -ms-transform: scale(1, 1);
+//  transform: scale(1, 1);
+//}
 
 @mixin close-btn {
   -webkit-transform: rotate(-135deg);
@@ -64,20 +64,19 @@
 label {
   display: inline-block;
   width: 100%;
-  background: #0096a0;
-  color: white;
+  background:transparent;
+  color: transparent;
   cursor: pointer;
   text-align: center;
   position: relative;
-  border-radius: 3px;
+  //border-radius: 3px;
   font-size: 1.25rem;
   font-weight: 300;
   text-transform: uppercase;
   padding: 0.5rem 0;
-  @include shadow;
 
   &::after {
-    content: '+';
+
     position: absolute;
     right: 1rem;
     top: 0.5rem;
@@ -90,8 +89,8 @@ label {
 
 #trigger-input{
   background: url(user.png);
-  width: 40px;
-  height: 10px;
+  width: 50px;
+  height: 30px;
 
   background-size: cover;
 }

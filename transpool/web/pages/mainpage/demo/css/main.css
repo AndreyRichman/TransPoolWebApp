@@ -38,10 +38,11 @@ h4 {
 
 .header {
     /*background: rgba(0, 0, 0, .9);*/
-    background: #0096a0;
+    /*background: #0096a0;*/
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
+    background-image: url("../img/top-blue.png");
 }
 
 .header h1,
