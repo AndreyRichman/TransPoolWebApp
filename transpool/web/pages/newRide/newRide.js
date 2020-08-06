@@ -85,7 +85,7 @@ $("#add-ride-btn").click(function () {
 
   // alert("sending request with data" + JSON.stringify(requestData));
   $.ajax({
-    url: "/transpool_war_exploded/ride",
+    url: "../../../ride",
     method: "POST",
     data: requestData,
     dataType: "json",
@@ -110,7 +110,7 @@ function getAllStations() {
   var data = {mapID: MAP_ID};
 
   $.ajax({
-    url: "/transpool_war_exploded/stations",
+    url: "../../../stations",
     method: "GET",
     data: data,
     dataType: "json",

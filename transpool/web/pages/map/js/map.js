@@ -73,7 +73,7 @@ function updateMapWindow(){
     var searchParams = new URLSearchParams(window.location.search);
     var mapIDParam = searchParams.get('mapID');
     $.ajax({
-        url: "/transpool_war_exploded/map",
+        url: "../../map",
         data: {id: mapIDParam},
         // timeout: 2000,
         method: "GET",
@@ -101,7 +101,7 @@ function updateRideAndTrempInfo(){
     var searchParams = new URLSearchParams(window.location.search);
     var mapIDParam = searchParams.get('mapID');
     $.ajax({
-        url: "/transpool_war_exploded/map",
+        url: "../../../map",
         data: {id: mapIDParam},
         method: "GET",
         dataType: "json",
@@ -153,7 +153,7 @@ function assignRide(matchIdStr, requestID){
     // ALL_ASSIGNED_MATCHES[matchID] = LAST_FETCHED_MATCHES[matchID];
 
     $.ajax({
-        url: "/transpool_war_exploded/tremp",
+        url: "../../../tremp",
         data: {mapID: mapIDParam, trempID: requestID, matchID: matchID},
         method: "GET",
         dataType: "json",
@@ -184,7 +184,7 @@ function findMatchedForTremp(idStr) {
     var searchParams = new URLSearchParams(window.location.search);
     var mapIDParam = searchParams.get('mapID');
     $.ajax({
-        url: "/transpool_war_exploded/ride",
+        url: "../../../ride",
         data: {mapID: mapIDParam, trempID: id},
         //method: "GET",
         dataType: "json",
@@ -212,7 +212,7 @@ function findMatchedForTremp(idStr) {
 
 function getPublicNotifications(){
     $.ajax({
-        url: "/transpool_war_exploded/notifications",
+        url: "notifications",
         method: "GET",
         data: {notificationType: "PUBLIC"},
         dataType: "json",
@@ -226,7 +226,7 @@ function getPublicNotifications(){
 
 function getPrivateNotifications(){
     $.ajax({
-        url: "/transpool_war_exploded/notifications",
+        url: "notifications",
         method: "GET",
         data: {notificationType: "PRIVATE"},
         dataType: "json",

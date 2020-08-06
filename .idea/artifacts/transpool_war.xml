@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="transpool:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/transpool_war</output-path>
+    <root id="archive" name="transpool_war.war">
+      <element id="artifact" artifact-name="transpool:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -106,7 +106,7 @@ function getAllStations() {
   var data = {mapID: MAP_ID};
 
   $.ajax({
-    url: "/transpool_war_exploded/stations",
+    url: "../../../stations",
     method: "GET",
     data: data,
     dataType: "json",
@@ -172,7 +172,7 @@ $("#myform").submit(function () {
 
   // alert("sending request with data" + JSON.stringify(requestData));
   $.ajax({
-    url: "/transpool_war_exploded/tremp",
+    url: "../../../tremp",
     method: "POST",
     data: requestData,
     dataType: "json",
