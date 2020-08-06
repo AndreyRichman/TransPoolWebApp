@@ -57,7 +57,7 @@ function startUpload() {
     }
 
 
-    if (!uploading) {
+    if (!uploading && originalfileName != '' ) {
         $.ajax({
             type: 'POST',
             url: '/transpool_war_exploded/map',
@@ -80,7 +80,6 @@ function startUpload() {
 }
 
 function showDone() {
-    if (!uploading && originalfileName != '' ) {
         uploading = true;
         $button.html('Uploading');
         $dropzone.fadeOut();
@@ -102,15 +101,10 @@ function showDone() {
             $button.html('Uploading....');
         }, 4000);
         timeoutID = window.setTimeout(function (){
-            $("#result").html("<h2 style='text-align: center; color: green'>Upload succedded</h2>");
+            $("#result").html("<h2 style='text-align: center; color: black'>Map Was Uploaded</h2>");
             $("#upload-btn").hide();
             $(".title").hide();
         }, 5000);
-
-
-    }
-
-
 }
 
 function showError(r) {
