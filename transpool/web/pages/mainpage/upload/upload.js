@@ -42,6 +42,9 @@ $("input:file").change(function (){
     file = $(this)[0].files[0];
     // $('.filename').html(fileName);
     $('.dropzone .upload').hide();
+    $dropzone.fadeOut();
+    $('.title').html('Enter display map name');
+    document.getElementById('file-name').style.display = 'block';
 });
 
 function startUpload() {
@@ -80,6 +83,7 @@ function startUpload() {
 }
 
 function showDone() {
+    if (!uploading && originalfileName != '' ) {
         uploading = true;
         $button.html('Uploading');
         $dropzone.fadeOut();
@@ -105,6 +109,11 @@ function showDone() {
             $("#upload-btn").hide();
             $(".title").hide();
         }, 5000);
+
+
+    }
+
+
 }
 
 function showError(r) {
