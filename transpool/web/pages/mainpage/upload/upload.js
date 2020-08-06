@@ -1,5 +1,6 @@
 var droppedFiles = false;
-var fileName = '';
+var originalfileName = '';
+var newfileName = '';
 var file;
 var $dropzone = $('.dropzone');
 var $button = $('.upload-btn');
@@ -23,8 +24,8 @@ $dropzone.on('drag dragstart dragend dragover dragenter dragleave drop', functio
     })
     .on('drop', function(e) {
         droppedFiles = e.originalEvent.dataTransfer.files;
-        fileName = droppedFiles[0]['name'];
-        $('.filename').html(fileName);
+        originalfileName = droppedFiles[0]['name'];
+        // $('.filename').html(fileName);
         $('.dropzone .upload').hide();
     });
 
@@ -34,18 +35,27 @@ $button.bind('click', function() {
 
 $("input:file").change(function (){
     // fileName = $(this)[0].files[0].name;
-    $name.value = $(this)[0].files[0].name;
-    fileName = $name.val();
-    console.log(fileName);
+    originalfileName = $(this)[0].files[0].name;
+    newfileName = $name.val();
+    console.log(originalfileName);
+    console.log(newfileName);
     file = $(this)[0].files[0];
-    $('.filename').html(fileName);
+    // $('.filename').html(fileName);
     $('.dropzone .upload').hide();
 });
 
 function startUpload() {
 
     var formData = new FormData();
-    formData.append(fileName, file);
+    if (newfileName.length === 0)
+    {
+        formData.append(originalfileName, file);
+    }
+    else
+    {
+        formData.append(newfileName, file);
+    }
+
 
     if (!uploading) {
         $.ajax({
@@ -70,28 +80,70 @@ function startUpload() {
 }
 
 function showDone() {
-    if (!uploading && fileName != '' ) {
+    if (!uploading && originalfileName != '' ) {
         uploading = true;
-        $button.html('Uploading...');
+        $button.html('Uploading');
         $dropzone.fadeOut();
         $syncing.addClass('active');
         $done.addClass('active');
         $bar.addClass('active');
-        timeoutID = window.setTimeout(function (){}, 3200);
-        $("#result").html("<h2 style='text-align: center; color: green'>Upload succedded</h2>");
-        $("#upload-btn").hide();
-        $(".title").hide();
+        document.getElementById('file-name').style.visibility = "hidden" ;
+        timeoutID = window.setTimeout(function (){
+            $button.html('Uploading.');
+        }, 1000);
+        timeoutID = window.setTimeout(function (){
+            $button.html('Uploading..');
+        }, 2000);
+        timeoutID = window.setTimeout(function (){
+            $button.html('Uploading...');
+        }, 3000);
+
+        timeoutID = window.setTimeout(function (){
+            $button.html('Uploading....');
+        }, 4000);
+        timeoutID = window.setTimeout(function (){
+            $("#result").html("<h2 style='text-align: center; color: green'>Upload succedded</h2>");
+            $("#upload-btn").hide();
+            $(".title").hide();
+        }, 5000);
+
+
     }
 
 
 }
 
 function showError(r) {
-    $dropzone.fadeOut();
-    $("#result").html(`<h2 style='text-align: center; color: red'>${r.responseText}</h2>`);
-    console.log(r.responseText);
-    $("#upload-btn").hide();
-    $(".title").hide();
+    if (!uploading && originalfileName != '' ) {
+        uploading = true;
+        $button.html('Uploading');
+        $dropzone.fadeOut();
+        $syncing.addClass('active');
+        $done.addClass('active');
+        $bar.addClass('active');
+        document.getElementById('file-name').style.visibility = "hidden";
+        $dropzone.fadeOut();
+        timeoutID = window.setTimeout(function () {
+            $button.html('Uploading.');
+        }, 1000);
+        timeoutID = window.setTimeout(function () {
+            $button.html('Uploading..');
+        }, 2000);
+        timeoutID = window.setTimeout(function () {
+            $button.html('Uploading...');
+        }, 3000);
+
+        timeoutID = window.setTimeout(function () {
+            $button.html('Uploading....');
+        }, 4000);
+        timeoutID = window.setTimeout(function () {
+            $("#result").html(`<h2 style='text-align: center; color: red'>${r.responseText}</h2>`);
+            console.log(r.responseText);
+            $("#upload-btn").hide();
+            $(".title").hide();
+        }, 5000);
+
+    }
 }
 
 
