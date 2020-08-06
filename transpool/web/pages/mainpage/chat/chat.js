@@ -35,7 +35,7 @@ chatboxForm.addEventListener("submit", e => {
     // console.log(chatInput);
 
     $.ajax({
-        url: '/transpool_war_exploded/sendchat',
+        url: 'sendchat',
         data: "userstring=" + chatInput,
         timeout: 2000,
         error: function() {
@@ -73,7 +73,7 @@ function appendChatEntry(index, entry){
 
 function ajaxChatContent() {
     $.ajax({
-        url: '/transpool_war_exploded/chat',
+        url: 'chat',
         data: "chatversion=" + chatVersion,
         dataType: 'json',
         success: function(data) {

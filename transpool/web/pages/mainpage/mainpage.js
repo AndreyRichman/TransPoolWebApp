@@ -8,7 +8,7 @@ var PUBLIC_NOTIFICATIONS_TIME_INTERVAL = 6000;
 $(function () {
     $.ajax({
         type: 'GET',
-        url: '/transpool_war_exploded/UsersList',
+        url: 'UsersList',
         success: function (data) {
             $.each(data, function (i, username) {
                 $users.append('<li><a href="#">' + username.name + '</a></li>' )
@@ -20,7 +20,7 @@ $(function () {
 
 function ajaxUsersList() {
     $.ajax({
-        url: '/transpool_war_exploded/UsersList',
+        url: 'UsersList',
         success: function(users) {
             refreshUsersList(users);
         }
@@ -52,7 +52,7 @@ function refreshUsersList(users) {
 
 function getPublicNotifications(){
     $.ajax({
-        url: "/transpool_war_exploded/notifications",
+        url: "notifications",
         method: "GET",
         data: {notificationType: "PUBLIC"},
         dataType: "json",
@@ -66,7 +66,7 @@ function getPublicNotifications(){
 
 function getPrivateNotifications(){
     $.ajax({
-        url: "/transpool_war_exploded/notifications",
+        url: "notifications",
         method: "GET",
         data: {notificationType: "PRIVATE"},
         dataType: "json",
@@ -91,7 +91,7 @@ $(function() {
 // window.addEventListener("beforeunload", function (e) {
 //     console.log("im here");
 //     $.ajax({
-//         url: '/transpool_war_exploded/logout',
+//         url: '../../../logout',
 //         success: function(users) {
 //             refreshUsersList(users);
 //         }
