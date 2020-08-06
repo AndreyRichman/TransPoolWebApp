@@ -38,7 +38,7 @@ public class MapDataWrapper {
         this.mapName = logicHandler.getMapName();
         this.numOfRides = this.allRides.size();
         this.numOfTremps = this.allTrempRequests.size();
-        this.numOfMatchedTremps = ((int) this.allTrempRequests.stream().filter(TrempRequestWrapper::trempIsNotMatched).count());
+        this.numOfMatchedTremps = ((int) this.allTrempRequests.stream().filter(TrempRequestWrapper::trempIsMatched).count());
         this.id = logicHandler.getId();
         this.currentUser = user;
     }

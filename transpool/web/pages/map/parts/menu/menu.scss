@@ -1,5 +1,3 @@
-// Palette via Coolors:
-// http://app.coolors.co/e8aeb7-b8e1ff-a9fff7-94fbab-82aba1
 
 $border-radius: 10px;
 
@@ -35,8 +33,6 @@ $border-radius: 10px;
   min-height: 15em;
 }
 
-/*
-Everything below this is just visual sugar, Darlin' */
 
 .ProductPicker {
   max-width: 70rem;
@@ -122,20 +118,21 @@ Everything below this is just visual sugar, Darlin' */
 /* Navigation */
 .NavItem {
   padding: .8rem;
-  background: #94FBAB;
+  background: #ececec;
   font-size: 1.1em;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   //color: darken(#94FBAB, 50%);
-  color: blue;
+  color: black;
   border-color: white;
   //color: red;
 }
 
 .NavItem:hover{
-  background: #E8AEB7;
+  //background: #E8AEB7;
+  border-color:#9e999a;
 }
 
 .NavItem:first-of-type {
@@ -148,7 +145,7 @@ Everything below this is just visual sugar, Darlin' */
 
 .NavItem--is-active {
   padding-top: 1.1rem;
-  background: #E8AEB7;
+  background: #9e999a;
   font-size: 1.2em;
   color: white;
 
@@ -159,14 +156,6 @@ Everything below this is just visual sugar, Darlin' */
   }
 }
 
-
-//body {
-//  padding: 2rem 1rem;
-//  background: url(https://subtlepatterns.com/patterns/debut_light.png);
-//  font-family: 'Open Sans',Helvetica,Arial,sans-serif;
-//  font-size: 1em;
-//  color: #393939;
-//}
-
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700);
+//
+//@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+//@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700);

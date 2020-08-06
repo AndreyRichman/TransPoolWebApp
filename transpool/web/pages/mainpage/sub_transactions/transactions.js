@@ -2,7 +2,7 @@ var $table = $('#table-hover');
 
 $(function () {
     $.ajax({
-        url: '/transpool_war_exploded/transaction',
+        url: '../../../transaction',
         success: function (data) {
             $.each(data.walet.transactions, function (i, item) {
                 $table.append('<tr>');

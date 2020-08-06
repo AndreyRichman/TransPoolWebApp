@@ -20,6 +20,7 @@
     --secondary-color-darkest: hsl(215,  11%,  30%);
     --secondary-color-lightest: hsl(220,  1%,  98%);
     background-color: white;
+    padding-left: 100px;
 }
 
 .timeline {
