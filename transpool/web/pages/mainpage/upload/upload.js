@@ -45,6 +45,7 @@ $("input:file").change(function (){
     $dropzone.fadeOut();
     $('.title').html('Enter display map name');
     document.getElementById('file-name').style.display = 'block';
+    document.getElementById('file-name').placeholder = originalfileName;
 });
 
 function startUpload() {
